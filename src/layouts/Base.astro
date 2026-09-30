@@ -2,10 +2,12 @@
 interface Props {
   title: string;
   description?: string;
+  wide?: boolean;
 }
 const {
   title,
   description = "Learn Python by drilling small challenges, right in your browser. No installs, no accounts.",
+  wide = false,
 } = Astro.props;
 ---
 <!doctype html>
@@ -139,6 +141,7 @@ const {
         margin: 0 auto;
         padding: 16px 20px 40px;
       }
+      main.page.wide { max-width: 1360px; }
 
       .btn {
         display: inline-flex;
@@ -241,7 +244,7 @@ const {
           <div class="topline-left"><slot name="topline-left"><strong>PyDrill</strong></slot></div>
           <div class="streak-chip"><span data-streak>–</span> streak</div>
         </div>
-        <main class="page">
+        <main class="page" class:list={{ wide }}>
           <slot />
         </main>
         <footer class="sitefoot">Runs 100% in your browser via Pyodide. Your progress lives only in this browser's storage.</footer>

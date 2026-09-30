@@ -12,7 +12,7 @@ const { prev, next } = getAdjacent(id!);
 const promptHtml = renderPrompt(challenge.prompt);
 const moduleItems = getModuleChallenges(challenge.moduleSlug);
 ---
-<Base title={challenge.title}>
+<Base title={challenge.title} wide>
   <Fragment slot="topline-left">
     <a class="back-link" href={`/modules/${challenge.moduleSlug}`}>← {challenge.module}</a>
   </Fragment>
