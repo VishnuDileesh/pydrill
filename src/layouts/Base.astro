@@ -1,0 +1,177 @@
+---
+interface Props {
+  title: string;
+  description?: string;
+}
+const {
+  title,
+  description = "Learn Python by drilling small challenges, right in your browser. No installs, no accounts.",
+} = Astro.props;
+---
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>{title} · PyDrill</title>
+    <meta name="description" content={description} />
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🐍</text></svg>" />
+    <style is:global>
+      :root {
+        --bg: #fafaf9;
+        --surface: #ffffff;
+        --border: #e5e5e0;
+        --text: #1c1c1a;
+        --text-dim: #6b6b64;
+        --accent: #16694f;
+        --accent-contrast: #ffffff;
+        --code-bg: #f2f1ec;
+        --ok: #16694f;
+        --ok-bg: #e7f3ee;
+        --fail: #a3312a;
+        --fail-bg: #fbeceb;
+        --radius: 10px;
+        --font-ui: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+        --font-mono: ui-monospace, SFMono-Regular, "SF Mono", Menlo, Consolas, monospace;
+      }
+      @media (prefers-color-scheme: dark) {
+        :root {
+          --bg: #121212;
+          --surface: #191919;
+          --border: #2c2c2c;
+          --text: #eeeeea;
+          --text-dim: #9a9a92;
+          --accent: #4fd1a5;
+          --accent-contrast: #0a1512;
+          --code-bg: #1c1c1c;
+          --ok: #4fd1a5;
+          --ok-bg: #12271f;
+          --fail: #f28b82;
+          --fail-bg: #2a1615;
+        }
+      }
+      * { box-sizing: border-box; }
+      html, body { margin: 0; padding: 0; }
+      body {
+        background: var(--bg);
+        color: var(--text);
+        font-family: var(--font-ui);
+        line-height: 1.5;
+        -webkit-font-smoothing: antialiased;
+      }
+      a { color: inherit; }
+      code, pre, textarea.code-editor {
+        font-family: var(--font-mono);
+      }
+      code {
+        background: var(--code-bg);
+        padding: 0.1em 0.4em;
+        border-radius: 4px;
+        font-size: 0.92em;
+      }
+      button {
+        font-family: var(--font-ui);
+        cursor: pointer;
+      }
+      .topbar {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 12px;
+        padding: 14px 16px;
+        border-bottom: 1px solid var(--border);
+        background: var(--surface);
+        position: sticky;
+        top: 0;
+        z-index: 10;
+      }
+      .brand {
+        font-weight: 700;
+        font-size: 1.05rem;
+        text-decoration: none;
+        letter-spacing: -0.01em;
+      }
+      .brand span { color: var(--accent); }
+      .topbar nav {
+        display: flex;
+        gap: 4px;
+      }
+      .topbar nav a {
+        text-decoration: none;
+        font-size: 0.92rem;
+        color: var(--text-dim);
+        padding: 8px 10px;
+        border-radius: 8px;
+      }
+      .topbar nav a:hover { color: var(--text); background: var(--code-bg); }
+      main {
+        max-width: 880px;
+        margin: 0 auto;
+        padding: 20px 16px 64px;
+      }
+      .btn {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        gap: 6px;
+        border: 1px solid var(--border);
+        background: var(--surface);
+        color: var(--text);
+        padding: 12px 18px;
+        border-radius: var(--radius);
+        font-size: 0.95rem;
+        font-weight: 600;
+        text-decoration: none;
+        min-height: 44px;
+      }
+      .btn-primary {
+        background: var(--accent);
+        border-color: var(--accent);
+        color: var(--accent-contrast);
+      }
+      .btn:disabled { opacity: 0.55; cursor: default; }
+      .badge {
+        display: inline-block;
+        font-size: 0.72rem;
+        font-weight: 700;
+        text-transform: uppercase;
+        letter-spacing: 0.04em;
+        padding: 3px 8px;
+        border-radius: 999px;
+        border: 1px solid var(--border);
+        color: var(--text-dim);
+      }
+      .badge-easy { color: var(--ok); background: var(--ok-bg); border-color: transparent; }
+      .badge-medium { color: #a87415; background: #fbf1de; border-color: transparent; }
+      @media (prefers-color-scheme: dark) {
+        .badge-medium { background: #2c2210; }
+      }
+      .badge-hard { color: var(--fail); background: var(--fail-bg); border-color: transparent; }
+      .card {
+        background: var(--surface);
+        border: 1px solid var(--border);
+        border-radius: var(--radius);
+        padding: 16px;
+      }
+      footer.sitefoot {
+        text-align: center;
+        color: var(--text-dim);
+        font-size: 0.85rem;
+        padding: 32px 16px;
+      }
+    </style>
+  </head>
+  <body>
+    <header class="topbar">
+      <a class="brand" href="/">Py<span>Drill</span></a>
+      <nav>
+        <a href="/">Challenges</a>
+        <a href="/playground">Playground</a>
+      </nav>
+    </header>
+    <main>
+      <slot />
+    </main>
+    <footer class="sitefoot">Runs 100% in your browser via Pyodide. Your progress lives only in this browser's storage.</footer>
+  </body>
+</html>

@@ -1,0 +1,199 @@
+---
+import Base from "../layouts/Base.astro";
+
+const STARTER = `# Nothing to solve here — just tinker.
+# Try things, break things, see what happens.
+
+for i in range(5):
+    print(i, i * i)
+`;
+---
+<Base title="Playground" description="A free-form Python sandbox. No tests, no rules — just tinker.">
+  <h1>Playground</h1>
+  <p class="text-dim lede">No rules here. Write anything, run it, see what happens. This is where fundamentals actually stick.</p>
+
+  <div class="panels">
+    <div class="panel editor-panel">
+      <div class="panel-bar">
+        <span class="panel-label">scratch.py</span>
+        <button id="clear-btn" class="ghost-btn">Clear</button>
+      </div>
+      <textarea id="editor" class="code-editor" spellcheck="false" autocapitalize="off" autocomplete="off">{STARTER}</textarea>
+      <div class="action-row">
+        <button id="run-btn" class="btn btn-primary">▶ Run</button>
+      </div>
+      <p id="status-line" class="status-line" aria-live="polite"></p>
+    </div>
+    <div class="panel output-panel">
+      <div class="panel-bar"><span class="panel-label">Output</span></div>
+      <div id="output" class="output-body">
+        <p class="text-dim hint">Press Run to see what your code prints.</p>
+      </div>
+    </div>
+  </div>
+</Base>
+
+<script define:vars={{ STARTER }}>
+  const editor = document.getElementById("editor");
+  const runBtn = document.getElementById("run-btn");
+  const clearBtn = document.getElementById("clear-btn");
+  const output = document.getElementById("output");
+  const statusLine = document.getElementById("status-line");
+  const DRAFT_KEY = "pydrill:playground-draft";
+
+  try {
+    const saved = localStorage.getItem(DRAFT_KEY);
+    if (saved !== null) editor.value = saved;
+  } catch {}
+
+  editor.addEventListener("input", () => {
+    try {
+      localStorage.setItem(DRAFT_KEY, editor.value);
+    } catch {}
+  });
+
+  editor.addEventListener("keydown", (e) => {
+    if (e.key === "Tab") {
+      e.preventDefault();
+      const start = editor.selectionStart;
+      const end = editor.selectionEnd;
+      editor.value = editor.value.slice(0, start) + "    " + editor.value.slice(end);
+      editor.selectionStart = editor.selectionEnd = start + 4;
+    }
+  });
+
+  clearBtn.addEventListener("click", () => {
+    if (confirm("Clear the editor?")) {
+      editor.value = "";
+      try { localStorage.removeItem(DRAFT_KEY); } catch {}
+      output.innerHTML = '<p class="text-dim hint">Press Run to see what your code prints.</p>';
+    }
+  });
+
+  let pyodidePromise = null;
+  async function getPyodide() {
+    if (!pyodidePromise) {
+      statusLine.textContent = "Booting Python runtime (first run only)…";
+      pyodidePromise = (async () => {
+        if (!window.loadPyodide) {
+          await new Promise((resolve, reject) => {
+            const s = document.createElement("script");
+            s.src = "https://cdn.jsdelivr.net/pyodide/v0.26.4/full/pyodide.js";
+            s.onload = resolve;
+            s.onerror = reject;
+            document.head.appendChild(s);
+          });
+        }
+        return await window.loadPyodide({ indexURL: "https://cdn.jsdelivr.net/pyodide/v0.26.4/full/" });
+      })();
+    }
+    const p = await pyodidePromise;
+    statusLine.textContent = "";
+    return p;
+  }
+
+  function escapeHtml(s) {
+    return String(s).replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;");
+  }
+
+  const RUN_HARNESS = `
+import sys, io, json
+buf = io.StringIO()
+old_stdout = sys.stdout
+sys.stdout = buf
+result = {}
+try:
+    exec(user_code, {})
+    result["stdout"] = buf.getvalue()
+except Exception as e:
+    result["stdout"] = buf.getvalue()
+    result["error"] = f"{type(e).__name__}: {e}"
+finally:
+    sys.stdout = old_stdout
+json.dumps(result)
+`;
+
+  runBtn.addEventListener("click", async () => {
+    runBtn.disabled = true;
+    output.innerHTML = '<p class="text-dim hint">Running…</p>';
+    try {
+      const pyodide = await getPyodide();
+      pyodide.globals.set("user_code", editor.value);
+      const raw = await pyodide.runPythonAsync(RUN_HARNESS);
+      const res = JSON.parse(raw);
+      let html = "";
+      if (res.stdout) html += `<pre class="stdout">${escapeHtml(res.stdout)}</pre>`;
+      if (res.error) html += `<p class="err-line">${escapeHtml(res.error)}</p>`;
+      if (!res.stdout && !res.error) html = '<p class="text-dim hint">Ran with no output. Try adding a print(...).</p>';
+      output.innerHTML = html;
+    } catch (e) {
+      output.innerHTML = `<p class="err-line">${escapeHtml(e)}</p>`;
+    } finally {
+      runBtn.disabled = false;
+    }
+  });
+</script>
+
+<style>
+  h1 { margin: 10px 0 4px; }
+  .lede { max-width: 60ch; margin: 0 0 20px; }
+  .panels { display: flex; flex-direction: column; gap: 14px; }
+  .panel {
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    background: var(--surface);
+    overflow: hidden;
+  }
+  .panel-bar {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 8px 12px;
+    border-bottom: 1px solid var(--border);
+    background: var(--code-bg);
+  }
+  .panel-label { font-size: 0.78rem; color: var(--text-dim); font-weight: 600; }
+  .ghost-btn { background: none; border: none; color: var(--text-dim); font-size: 0.82rem; padding: 4px 8px; }
+  .ghost-btn:hover { color: var(--text); }
+  .code-editor {
+    width: 100%;
+    min-height: 320px;
+    border: none;
+    resize: vertical;
+    padding: 14px;
+    font-size: 16px;
+    line-height: 1.5;
+    background: var(--surface);
+    color: var(--text);
+    tab-size: 4;
+  }
+  .code-editor:focus { outline: none; }
+  .action-row { display: flex; gap: 10px; padding: 12px; border-top: 1px solid var(--border); }
+  .action-row .btn { flex: 1; }
+  .status-line { padding: 0 12px 10px; margin: 0; font-size: 0.82rem; color: var(--text-dim); min-height: 1em; }
+  .output-body { padding: 14px; min-height: 120px; }
+  .stdout {
+    white-space: pre-wrap;
+    word-break: break-word;
+    background: var(--code-bg);
+    padding: 10px;
+    border-radius: 8px;
+    margin: 0;
+    font-size: 0.88rem;
+  }
+  .err-line {
+    color: var(--fail);
+    background: var(--fail-bg);
+    padding: 10px;
+    border-radius: 8px;
+    font-family: var(--font-mono);
+    font-size: 0.86rem;
+    margin: 0;
+  }
+  @media (min-width: 780px) {
+    .panels { flex-direction: row; align-items: stretch; }
+    .panel { flex: 1; display: flex; flex-direction: column; }
+    .code-editor { flex: 1; }
+    .output-body { flex: 1; overflow-y: auto; max-height: 460px; }
+  }
+</style>

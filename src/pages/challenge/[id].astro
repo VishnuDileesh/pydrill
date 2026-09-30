@@ -1,0 +1,395 @@
+---
+import Base from "../../layouts/Base.astro";
+import { challenges, getAdjacent, renderPrompt } from "../../lib/challenges";
+
+export function getStaticPaths() {
+  return challenges.map((c) => ({ params: { id: c.id } }));
+}
+
+const { id } = Astro.params;
+const challenge = challenges.find((c) => c.id === id)!;
+const { prev, next } = getAdjacent(id!);
+const promptHtml = renderPrompt(challenge.prompt);
+---
+<Base title={challenge.title}>
+  <div class="crumb">
+    <a href={`/modules/${challenge.moduleSlug}`}>← {challenge.module}</a>
+  </div>
+
+  <div class="head-row">
+    <h1>{challenge.title}</h1>
+    <span class={`badge badge-${challenge.difficulty}`}>{challenge.difficulty}</span>
+  </div>
+
+  <p class="prompt" set:html={promptHtml} />
+
+  <div class="panels">
+    <div class="panel editor-panel">
+      <div class="panel-bar">
+        <span class="panel-label">code.py</span>
+        <button id="reset-btn" class="ghost-btn" title="Reset to starter code">Reset</button>
+      </div>
+      <textarea id="editor" class="code-editor" spellcheck="false" autocapitalize="off" autocomplete="off"></textarea>
+      <div class="action-row">
+        <button id="run-btn" class="btn">▶ Run</button>
+        <button id="test-btn" class="btn btn-primary">✓ Run Tests</button>
+      </div>
+      <p id="status-line" class="status-line" aria-live="polite"></p>
+    </div>
+
+    <div class="panel output-panel">
+      <div class="panel-bar"><span class="panel-label">Output</span></div>
+      <div id="output" class="output-body">
+        <p class="text-dim hint">Run your code or run the tests to see results here.</p>
+      </div>
+    </div>
+  </div>
+
+  <div id="success-banner" class="success-banner" hidden>
+    <span>🎉 All tests passed — nice work!</span>
+    <div class="success-actions">
+      {next && <a class="btn btn-primary" href={`/challenge/${next.id}`}>Next challenge →</a>}
+      {!next && <a class="btn btn-primary" href="/">Back to modules</a>}
+    </div>
+  </div>
+
+  <nav class="pager">
+    {prev ? <a class="btn" href={`/challenge/${prev.id}`}>← {prev.title}</a> : <span />}
+    {next ? <a class="btn" href={`/challenge/${next.id}`}>{next.title} →</a> : <span />}
+  </nav>
+</Base>
+
+<script define:vars={{
+  id: challenge.id,
+  starter: challenge.starter,
+  funcName: challenge.funcName,
+  tests: challenge.tests,
+}}>
+  const editor = document.getElementById("editor");
+  const runBtn = document.getElementById("run-btn");
+  const testBtn = document.getElementById("test-btn");
+  const resetBtn = document.getElementById("reset-btn");
+  const output = document.getElementById("output");
+  const statusLine = document.getElementById("status-line");
+  const successBanner = document.getElementById("success-banner");
+
+  const DRAFT_KEY = "pydrill:draft:" + id;
+  const COMPLETED_KEY = "pydrill:completed";
+
+  function loadDraft() {
+    try {
+      return localStorage.getItem(DRAFT_KEY);
+    } catch {
+      return null;
+    }
+  }
+  function saveDraft(code) {
+    try {
+      localStorage.setItem(DRAFT_KEY, code);
+    } catch {}
+  }
+  function markCompleted() {
+    try {
+      const raw = localStorage.getItem(COMPLETED_KEY);
+      const set = new Set(raw ? JSON.parse(raw) : []);
+      set.add(id);
+      localStorage.setItem(COMPLETED_KEY, JSON.stringify([...set]));
+    } catch {}
+  }
+
+  editor.value = loadDraft() ?? starter;
+  editor.addEventListener("input", () => saveDraft(editor.value));
+
+  editor.addEventListener("keydown", (e) => {
+    if (e.key === "Tab") {
+      e.preventDefault();
+      const start = editor.selectionStart;
+      const end = editor.selectionEnd;
+      editor.value = editor.value.slice(0, start) + "    " + editor.value.slice(end);
+      editor.selectionStart = editor.selectionEnd = start + 4;
+    }
+  });
+
+  resetBtn.addEventListener("click", () => {
+    if (confirm("Reset your code back to the starter template?")) {
+      editor.value = starter;
+      saveDraft(starter);
+      output.innerHTML = '<p class="text-dim hint">Run your code or run the tests to see results here.</p>';
+      successBanner.hidden = true;
+    }
+  });
+
+  function setButtonsDisabled(disabled) {
+    runBtn.disabled = disabled;
+    testBtn.disabled = disabled;
+  }
+
+  let pyodidePromise = null;
+  async function getPyodide() {
+    if (!pyodidePromise) {
+      statusLine.textContent = "Booting Python runtime (first run only)…";
+      pyodidePromise = (async () => {
+        if (!window.loadPyodide) {
+          await new Promise((resolve, reject) => {
+            const s = document.createElement("script");
+            s.src = "https://cdn.jsdelivr.net/pyodide/v0.26.4/full/pyodide.js";
+            s.onload = resolve;
+            s.onerror = reject;
+            document.head.appendChild(s);
+          });
+        }
+        return await window.loadPyodide({ indexURL: "https://cdn.jsdelivr.net/pyodide/v0.26.4/full/" });
+      })();
+    }
+    const p = await pyodidePromise;
+    statusLine.textContent = "";
+    return p;
+  }
+
+  function escapeHtml(s) {
+    return String(s).replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;");
+  }
+
+  function fmtValue(v) {
+    if (typeof v === "string") return JSON.stringify(v);
+    return JSON.stringify(v);
+  }
+
+  const RUN_HARNESS = `
+import sys, io, json
+buf = io.StringIO()
+old_stdout = sys.stdout
+sys.stdout = buf
+result = {}
+try:
+    exec(user_code, {})
+    result["stdout"] = buf.getvalue()
+except Exception as e:
+    result["stdout"] = buf.getvalue()
+    result["error"] = f"{type(e).__name__}: {e}"
+finally:
+    sys.stdout = old_stdout
+json.dumps(result)
+`;
+
+  const TEST_HARNESS = `
+import json, sys, io
+results = {}
+ns = {}
+buf = io.StringIO()
+old_stdout = sys.stdout
+sys.stdout = buf
+try:
+    exec(user_code, ns)
+    sys.stdout = old_stdout
+except Exception as e:
+    sys.stdout = old_stdout
+    results = {"error": f"{type(e).__name__}: {e}", "stdout": buf.getvalue()}
+else:
+    tests = json.loads(tests_json)
+    func = ns.get(func_name)
+    if func is None:
+        results = {"error": f"Function '{func_name}' not found. Did you rename it or forget to define it?", "stdout": buf.getvalue()}
+    else:
+        test_results = []
+        for t in tests:
+            entry = {"args": t["args"], "expected": t["expected"]}
+            tb = io.StringIO()
+            sys.stdout = tb
+            try:
+                actual = func(*t["args"])
+                entry["actual"] = actual
+                entry["passed"] = actual == t["expected"]
+            except Exception as e:
+                entry["error"] = f"{type(e).__name__}: {e}"
+                entry["passed"] = False
+            sys.stdout = old_stdout
+            entry["stdout"] = tb.getvalue()
+            test_results.append(entry)
+        results = {"tests": test_results, "stdout": buf.getvalue()}
+json.dumps(results)
+`;
+
+  runBtn.addEventListener("click", async () => {
+    setButtonsDisabled(true);
+    successBanner.hidden = true;
+    output.innerHTML = '<p class="text-dim hint">Running…</p>';
+    try {
+      const pyodide = await getPyodide();
+      pyodide.globals.set("user_code", editor.value);
+      const raw = await pyodide.runPythonAsync(RUN_HARNESS);
+      const res = JSON.parse(raw);
+      let html = "";
+      if (res.stdout) html += `<pre class="stdout">${escapeHtml(res.stdout)}</pre>`;
+      if (res.error) html += `<p class="err-line">${escapeHtml(res.error)}</p>`;
+      if (!res.stdout && !res.error) html = '<p class="text-dim hint">Ran with no output. Try adding a print(...) to check values.</p>';
+      output.innerHTML = html;
+    } catch (e) {
+      output.innerHTML = `<p class="err-line">${escapeHtml(e)}</p>`;
+    } finally {
+      setButtonsDisabled(false);
+    }
+  });
+
+  testBtn.addEventListener("click", async () => {
+    setButtonsDisabled(true);
+    successBanner.hidden = true;
+    output.innerHTML = '<p class="text-dim hint">Running tests…</p>';
+    try {
+      const pyodide = await getPyodide();
+      pyodide.globals.set("user_code", editor.value);
+      pyodide.globals.set("func_name", funcName);
+      pyodide.globals.set("tests_json", JSON.stringify(tests));
+      const raw = await pyodide.runPythonAsync(TEST_HARNESS);
+      const res = JSON.parse(raw);
+
+      if (res.error) {
+        output.innerHTML = `<p class="err-line">${escapeHtml(res.error)}</p>` +
+          (res.stdout ? `<pre class="stdout">${escapeHtml(res.stdout)}</pre>` : "");
+        return;
+      }
+
+      const rows = res.tests.map((t, i) => {
+        const argsStr = t.args.map(fmtValue).join(", ");
+        if (t.passed) {
+          return `<li class="test-row pass"><span class="tmark">✓</span><code>${funcName}(${escapeHtml(argsStr)})</code> → <code>${escapeHtml(fmtValue(t.actual))}</code></li>`;
+        }
+        const detail = t.error
+          ? `raised <code>${escapeHtml(t.error)}</code>`
+          : `got <code>${escapeHtml(fmtValue(t.actual))}</code>, expected <code>${escapeHtml(fmtValue(t.expected))}</code>`;
+        return `<li class="test-row fail"><span class="tmark">✗</span><code>${funcName}(${escapeHtml(argsStr)})</code> — ${detail}</li>`;
+      }).join("");
+
+      const passCount = res.tests.filter((t) => t.passed).length;
+      const allPass = passCount === res.tests.length;
+
+      output.innerHTML = `<p class="test-summary">${passCount} / ${res.tests.length} tests passed</p><ul class="test-list">${rows}</ul>`;
+
+      if (allPass) {
+        markCompleted();
+        successBanner.hidden = false;
+      }
+    } catch (e) {
+      output.innerHTML = `<p class="err-line">${escapeHtml(e)}</p>`;
+    } finally {
+      setButtonsDisabled(false);
+    }
+  });
+</script>
+
+<style>
+  .crumb a { color: var(--text-dim); text-decoration: none; font-size: 0.88rem; }
+  .head-row { display: flex; align-items: center; gap: 10px; flex-wrap: wrap; margin: 10px 0 6px; }
+  .head-row h1 { margin: 0; font-size: 1.4rem; }
+  .prompt { color: var(--text); font-size: 0.98rem; max-width: 68ch; margin: 0 0 20px; }
+
+  .panels { display: flex; flex-direction: column; gap: 14px; }
+  .panel {
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    background: var(--surface);
+    overflow: hidden;
+  }
+  .panel-bar {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 8px 12px;
+    border-bottom: 1px solid var(--border);
+    background: var(--code-bg);
+  }
+  .panel-label { font-size: 0.78rem; color: var(--text-dim); font-weight: 600; }
+  .ghost-btn {
+    background: none;
+    border: none;
+    color: var(--text-dim);
+    font-size: 0.82rem;
+    padding: 4px 8px;
+  }
+  .ghost-btn:hover { color: var(--text); }
+
+  .code-editor {
+    width: 100%;
+    min-height: 220px;
+    border: none;
+    resize: vertical;
+    padding: 14px;
+    font-size: 16px;
+    line-height: 1.5;
+    background: var(--surface);
+    color: var(--text);
+    tab-size: 4;
+  }
+  .code-editor:focus { outline: none; }
+
+  .action-row {
+    display: flex;
+    gap: 10px;
+    padding: 12px;
+    border-top: 1px solid var(--border);
+  }
+  .action-row .btn { flex: 1; }
+  .status-line { padding: 0 12px 10px; margin: 0; font-size: 0.82rem; color: var(--text-dim); min-height: 1em; }
+
+  .output-body { padding: 14px; min-height: 80px; }
+  .output-body .hint { margin: 0; }
+  .stdout {
+    white-space: pre-wrap;
+    word-break: break-word;
+    background: var(--code-bg);
+    padding: 10px;
+    border-radius: 8px;
+    margin: 0 0 10px;
+    font-size: 0.88rem;
+  }
+  .err-line {
+    color: var(--fail);
+    background: var(--fail-bg);
+    padding: 10px;
+    border-radius: 8px;
+    font-family: var(--font-mono);
+    font-size: 0.86rem;
+    margin: 0;
+  }
+  .test-summary { margin: 0 0 10px; font-weight: 600; }
+  .test-list { list-style: none; margin: 0; padding: 0; display: flex; flex-direction: column; gap: 6px; }
+  .test-row {
+    display: flex;
+    gap: 8px;
+    align-items: baseline;
+    font-size: 0.86rem;
+    padding: 8px 10px;
+    border-radius: 8px;
+  }
+  .test-row.pass { background: var(--ok-bg); }
+  .test-row.fail { background: var(--fail-bg); }
+  .test-row .tmark { flex-shrink: 0; font-weight: 700; }
+  .test-row.pass .tmark { color: var(--ok); }
+  .test-row.fail .tmark { color: var(--fail); }
+  .test-row code { word-break: break-word; }
+
+  .success-banner {
+    margin-top: 16px;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    align-items: flex-start;
+    background: var(--ok-bg);
+    color: var(--ok);
+    border-radius: var(--radius);
+    padding: 16px;
+    font-weight: 600;
+  }
+  .success-actions .btn { color: var(--accent-contrast); }
+
+  .pager { display: flex; justify-content: space-between; gap: 10px; margin-top: 24px; }
+  .pager .btn { max-width: 48%; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+
+  @media (min-width: 780px) {
+    .panels { flex-direction: row; align-items: stretch; }
+    .panel { flex: 1; display: flex; flex-direction: column; }
+    .editor-panel { flex: 1.1; }
+    .code-editor { flex: 1; }
+    .output-body { flex: 1; overflow-y: auto; max-height: 460px; }
+  }
+</style>

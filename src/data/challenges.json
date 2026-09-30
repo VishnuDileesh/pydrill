@@ -1,0 +1,7530 @@
+[
+  {
+    "id": "s01",
+    "title": "Palindrome Check",
+    "module": "Strings & Character Mechanics",
+    "moduleSlug": "strings",
+    "difficulty": "easy",
+    "prompt": "Write `is_palindrome(s)` that returns True if `s` reads the same backward as forward (case-insensitive).",
+    "funcName": "is_palindrome",
+    "params": [
+      "s"
+    ],
+    "starter": "def is_palindrome(s):\n    # TODO: implement\n    pass\n",
+    "tests": [
+      {
+        "args": [
+          "racecar"
+        ],
+        "expected": true
+      },
+      {
+        "args": [
+          "Hello"
+        ],
+        "expected": false
+      },
+      {
+        "args": [
+          "Level"
+        ],
+        "expected": true
+      },
+      {
+        "args": [
+          "Python"
+        ],
+        "expected": false
+      },
+      {
+        "args": [
+          "A"
+        ],
+        "expected": true
+      }
+    ]
+  },
+  {
+    "id": "s02",
+    "title": "Reverse a String",
+    "module": "Strings & Character Mechanics",
+    "moduleSlug": "strings",
+    "difficulty": "easy",
+    "prompt": "Write `reverse_string(s)` that returns the string reversed, WITHOUT using slicing tricks like `s[::-1]` or `.reverse()`.",
+    "funcName": "reverse_string",
+    "params": [
+      "s"
+    ],
+    "starter": "def reverse_string(s):\n    # TODO: implement (no [::-1])\n    pass\n",
+    "tests": [
+      {
+        "args": [
+          "hello"
+        ],
+        "expected": "olleh"
+      },
+      {
+        "args": [
+          "Python"
+        ],
+        "expected": "nohtyP"
+      },
+      {
+        "args": [
+          "a"
+        ],
+        "expected": "a"
+      },
+      {
+        "args": [
+          ""
+        ],
+        "expected": ""
+      },
+      {
+        "args": [
+          "racecar"
+        ],
+        "expected": "racecar"
+      }
+    ]
+  },
+  {
+    "id": "s03",
+    "title": "Vowel Counter",
+    "module": "Strings & Character Mechanics",
+    "moduleSlug": "strings",
+    "difficulty": "easy",
+    "prompt": "Write `count_vowels(s)` that returns the number of vowels (a, e, i, o, u \u2014 case-insensitive) in `s`.",
+    "funcName": "count_vowels",
+    "params": [
+      "s"
+    ],
+    "starter": "def count_vowels(s):\n    # TODO: implement\n    pass\n",
+    "tests": [
+      {
+        "args": [
+          "Hello World"
+        ],
+        "expected": 3
+      },
+      {
+        "args": [
+          "PYTHON"
+        ],
+        "expected": 1
+      },
+      {
+        "args": [
+          "aeiou"
+        ],
+        "expected": 5
+      },
+      {
+        "args": [
+          "xyz"
+        ],
+        "expected": 0
+      },
+      {
+        "args": [
+          ""
+        ],
+        "expected": 0
+      }
+    ]
+  },
+  {
+    "id": "s04",
+    "title": "Consonant Counter",
+    "module": "Strings & Character Mechanics",
+    "moduleSlug": "strings",
+    "difficulty": "easy",
+    "prompt": "Write `count_consonants(s)` that returns the number of consonant letters in `s` (ignore digits/spaces/punctuation).",
+    "funcName": "count_consonants",
+    "params": [
+      "s"
+    ],
+    "starter": "def count_consonants(s):\n    # TODO: implement\n    pass\n",
+    "tests": [
+      {
+        "args": [
+          "Hello World"
+        ],
+        "expected": 7
+      },
+      {
+        "args": [
+          "Python3"
+        ],
+        "expected": 5
+      },
+      {
+        "args": [
+          "aeiou"
+        ],
+        "expected": 0
+      },
+      {
+        "args": [
+          "bcdfg"
+        ],
+        "expected": 5
+      },
+      {
+        "args": [
+          ""
+        ],
+        "expected": 0
+      }
+    ]
+  },
+  {
+    "id": "s05",
+    "title": "Word Counter",
+    "module": "Strings & Character Mechanics",
+    "moduleSlug": "strings",
+    "difficulty": "easy",
+    "prompt": "Write `count_words(s)` that returns the number of words in a sentence (words are separated by whitespace).",
+    "funcName": "count_words",
+    "params": [
+      "s"
+    ],
+    "starter": "def count_words(s):\n    # TODO: implement\n    pass\n",
+    "tests": [
+      {
+        "args": [
+          "Hello there world"
+        ],
+        "expected": 3
+      },
+      {
+        "args": [
+          "  spaced   out   words  "
+        ],
+        "expected": 3
+      },
+      {
+        "args": [
+          "one"
+        ],
+        "expected": 1
+      },
+      {
+        "args": [
+          ""
+        ],
+        "expected": 0
+      },
+      {
+        "args": [
+          "The quick brown fox"
+        ],
+        "expected": 4
+      }
+    ]
+  },
+  {
+    "id": "s06",
+    "title": "Title Case Formatter",
+    "module": "Strings & Character Mechanics",
+    "moduleSlug": "strings",
+    "difficulty": "easy",
+    "prompt": "Write `title_case(s)` that capitalizes the first letter of every word and lowercases the rest.",
+    "funcName": "title_case",
+    "params": [
+      "s"
+    ],
+    "starter": "def title_case(s):\n    # TODO: implement (do not use str.title())\n    pass\n",
+    "tests": [
+      {
+        "args": [
+          "hello world"
+        ],
+        "expected": "Hello World"
+      },
+      {
+        "args": [
+          "PYTHON is FUN"
+        ],
+        "expected": "Python Is Fun"
+      },
+      {
+        "args": [
+          "the QUICK brown FOX"
+        ],
+        "expected": "The Quick Brown Fox"
+      },
+      {
+        "args": [
+          "a"
+        ],
+        "expected": "A"
+      },
+      {
+        "args": [
+          "already Capitalized"
+        ],
+        "expected": "Already Capitalized"
+      }
+    ]
+  },
+  {
+    "id": "s07",
+    "title": "Character Frequency",
+    "module": "Strings & Character Mechanics",
+    "moduleSlug": "strings",
+    "difficulty": "easy",
+    "prompt": "Write `char_frequency(s, target)` that counts how many times character `target` appears in `s`.",
+    "funcName": "char_frequency",
+    "params": [
+      "s",
+      "target"
+    ],
+    "starter": "def char_frequency(s, target):\n    # TODO: implement\n    pass\n",
+    "tests": [
+      {
+        "args": [
+          "mississippi",
+          "s"
+        ],
+        "expected": 4
+      },
+      {
+        "args": [
+          "banana",
+          "a"
+        ],
+        "expected": 3
+      },
+      {
+        "args": [
+          "hello",
+          "z"
+        ],
+        "expected": 0
+      },
+      {
+        "args": [
+          "aaaa",
+          "a"
+        ],
+        "expected": 4
+      },
+      {
+        "args": [
+          "Hello",
+          "h"
+        ],
+        "expected": 0
+      }
+    ]
+  },
+  {
+    "id": "s08",
+    "title": "Anagram Detector",
+    "module": "Strings & Character Mechanics",
+    "moduleSlug": "strings",
+    "difficulty": "medium",
+    "prompt": "Write `is_anagram(a, b)` that returns True if `a` and `b` are anagrams of each other (same letters, same counts, ignore spaces/case).",
+    "funcName": "is_anagram",
+    "params": [
+      "a",
+      "b"
+    ],
+    "starter": "def is_anagram(a, b):\n    # TODO: implement\n    pass\n",
+    "tests": [
+      {
+        "args": [
+          "listen",
+          "silent"
+        ],
+        "expected": true
+      },
+      {
+        "args": [
+          "hello",
+          "world"
+        ],
+        "expected": false
+      },
+      {
+        "args": [
+          "Dormitory",
+          "Dirty Room"
+        ],
+        "expected": true
+      },
+      {
+        "args": [
+          "aabbcc",
+          "abcabc"
+        ],
+        "expected": true
+      },
+      {
+        "args": [
+          "abc",
+          "abcd"
+        ],
+        "expected": false
+      }
+    ]
+  },
+  {
+    "id": "s09",
+    "title": "Remove Vowels",
+    "module": "Strings & Character Mechanics",
+    "moduleSlug": "strings",
+    "difficulty": "easy",
+    "prompt": "Write `remove_vowels(s)` that returns `s` with all vowels (a, e, i, o, u, both cases) removed.",
+    "funcName": "remove_vowels",
+    "params": [
+      "s"
+    ],
+    "starter": "def remove_vowels(s):\n    # TODO: implement\n    pass\n",
+    "tests": [
+      {
+        "args": [
+          "Hello World"
+        ],
+        "expected": "Hll Wrld"
+      },
+      {
+        "args": [
+          "PYTHON"
+        ],
+        "expected": "PYTHN"
+      },
+      {
+        "args": [
+          "aeiouAEIOU"
+        ],
+        "expected": ""
+      },
+      {
+        "args": [
+          "xyz"
+        ],
+        "expected": "xyz"
+      },
+      {
+        "args": [
+          ""
+        ],
+        "expected": ""
+      }
+    ]
+  },
+  {
+    "id": "s10",
+    "title": "Space Stripper",
+    "module": "Strings & Character Mechanics",
+    "moduleSlug": "strings",
+    "difficulty": "easy",
+    "prompt": "Write `strip_spaces(s)` that removes all spaces from `s`, WITHOUT using `.replace(' ', '')`.",
+    "funcName": "strip_spaces",
+    "params": [
+      "s"
+    ],
+    "starter": "def strip_spaces(s):\n    # TODO: implement (no .replace)\n    pass\n",
+    "tests": [
+      {
+        "args": [
+          "hello world"
+        ],
+        "expected": "helloworld"
+      },
+      {
+        "args": [
+          "  a  b  c  "
+        ],
+        "expected": "abc"
+      },
+      {
+        "args": [
+          "nospaces"
+        ],
+        "expected": "nospaces"
+      },
+      {
+        "args": [
+          ""
+        ],
+        "expected": ""
+      },
+      {
+        "args": [
+          "  "
+        ],
+        "expected": ""
+      }
+    ]
+  },
+  {
+    "id": "s11",
+    "title": "First Unique Character",
+    "module": "Strings & Character Mechanics",
+    "moduleSlug": "strings",
+    "difficulty": "medium",
+    "prompt": "Write `first_unique_char(s)` that returns the first character that doesn't repeat in `s`, or `None` if every character repeats.",
+    "funcName": "first_unique_char",
+    "params": [
+      "s"
+    ],
+    "starter": "def first_unique_char(s):\n    # TODO: implement\n    pass\n",
+    "tests": [
+      {
+        "args": [
+          "swiss"
+        ],
+        "expected": "w"
+      },
+      {
+        "args": [
+          "aabbcc"
+        ],
+        "expected": null
+      },
+      {
+        "args": [
+          "teeter"
+        ],
+        "expected": "r"
+      },
+      {
+        "args": [
+          "x"
+        ],
+        "expected": "x"
+      },
+      {
+        "args": [
+          "abcabc"
+        ],
+        "expected": null
+      }
+    ]
+  },
+  {
+    "id": "s12",
+    "title": "String Compressor",
+    "module": "Strings & Character Mechanics",
+    "moduleSlug": "strings",
+    "difficulty": "medium",
+    "prompt": "Write `compress_string(s)` that turns `'aabcccccaaa'` into `'a2b1c5a3'` (run-length style compression).",
+    "funcName": "compress_string",
+    "params": [
+      "s"
+    ],
+    "starter": "def compress_string(s):\n    # TODO: implement\n    pass\n",
+    "tests": [
+      {
+        "args": [
+          "aabcccccaaa"
+        ],
+        "expected": "a2b1c5a3"
+      },
+      {
+        "args": [
+          "abc"
+        ],
+        "expected": "a1b1c1"
+      },
+      {
+        "args": [
+          "aaaa"
+        ],
+        "expected": "a4"
+      },
+      {
+        "args": [
+          ""
+        ],
+        "expected": ""
+      },
+      {
+        "args": [
+          "a"
+        ],
+        "expected": "a1"
+      }
+    ]
+  },
+  {
+    "id": "s13",
+    "title": "Sub-string Search",
+    "module": "Strings & Character Mechanics",
+    "moduleSlug": "strings",
+    "difficulty": "medium",
+    "prompt": "Write `contains_substring(s, sub)` that checks whether `sub` occurs inside `s`, WITHOUT using the `in` operator.",
+    "funcName": "contains_substring",
+    "params": [
+      "s",
+      "sub"
+    ],
+    "starter": "def contains_substring(s, sub):\n    # TODO: implement (no `in`)\n    pass\n",
+    "tests": [
+      {
+        "args": [
+          "hello world",
+          "wor"
+        ],
+        "expected": true
+      },
+      {
+        "args": [
+          "hello world",
+          "xyz"
+        ],
+        "expected": false
+      },
+      {
+        "args": [
+          "python",
+          "py"
+        ],
+        "expected": true
+      },
+      {
+        "args": [
+          "python",
+          "on"
+        ],
+        "expected": true
+      },
+      {
+        "args": [
+          "abc",
+          "abcd"
+        ],
+        "expected": false
+      }
+    ]
+  },
+  {
+    "id": "s14",
+    "title": "Word Reverser",
+    "module": "Strings & Character Mechanics",
+    "moduleSlug": "strings",
+    "difficulty": "medium",
+    "prompt": "Write `reverse_words_order_kept(s)` that reverses each individual word's letters but keeps the word order the same. E.g. `'hi there'` -> `'ih ereht'`.",
+    "funcName": "reverse_words_order_kept",
+    "params": [
+      "s"
+    ],
+    "starter": "def reverse_words_order_kept(s):\n    # TODO: implement\n    pass\n",
+    "tests": [
+      {
+        "args": [
+          "hi there"
+        ],
+        "expected": "ih ereht"
+      },
+      {
+        "args": [
+          "hello world"
+        ],
+        "expected": "olleh dlrow"
+      },
+      {
+        "args": [
+          "a b c"
+        ],
+        "expected": "a b c"
+      },
+      {
+        "args": [
+          "python"
+        ],
+        "expected": "nohtyp"
+      },
+      {
+        "args": [
+          "one two three"
+        ],
+        "expected": "eno owt eerht"
+      }
+    ]
+  },
+  {
+    "id": "s15",
+    "title": "Pangram Check",
+    "module": "Strings & Character Mechanics",
+    "moduleSlug": "strings",
+    "difficulty": "medium",
+    "prompt": "Write `is_pangram(s)` that returns True if `s` contains every letter of the alphabet at least once.",
+    "funcName": "is_pangram",
+    "params": [
+      "s"
+    ],
+    "starter": "def is_pangram(s):\n    # TODO: implement\n    pass\n",
+    "tests": [
+      {
+        "args": [
+          "The quick brown fox jumps over the lazy dog"
+        ],
+        "expected": true
+      },
+      {
+        "args": [
+          "Hello World"
+        ],
+        "expected": false
+      },
+      {
+        "args": [
+          "Pack my box with five dozen liquor jugs"
+        ],
+        "expected": true
+      },
+      {
+        "args": [
+          "abcdefg"
+        ],
+        "expected": false
+      },
+      {
+        "args": [
+          ""
+        ],
+        "expected": false
+      }
+    ]
+  },
+  {
+    "id": "s16",
+    "title": "ASCII Sum",
+    "module": "Strings & Character Mechanics",
+    "moduleSlug": "strings",
+    "difficulty": "easy",
+    "prompt": "Write `ascii_sum(s)` that returns the sum of the ASCII values of every character in `s`.",
+    "funcName": "ascii_sum",
+    "params": [
+      "s"
+    ],
+    "starter": "def ascii_sum(s):\n    # TODO: implement\n    pass\n",
+    "tests": [
+      {
+        "args": [
+          "abc"
+        ],
+        "expected": 294
+      },
+      {
+        "args": [
+          "A"
+        ],
+        "expected": 65
+      },
+      {
+        "args": [
+          ""
+        ],
+        "expected": 0
+      },
+      {
+        "args": [
+          "Python"
+        ],
+        "expected": 642
+      },
+      {
+        "args": [
+          "123"
+        ],
+        "expected": 150
+      }
+    ]
+  },
+  {
+    "id": "s17",
+    "title": "Digit Extractor",
+    "module": "Strings & Character Mechanics",
+    "moduleSlug": "strings",
+    "difficulty": "easy",
+    "prompt": "Write `extract_digits(s)` that returns a string containing only the numeric characters found in `s`.",
+    "funcName": "extract_digits",
+    "params": [
+      "s"
+    ],
+    "starter": "def extract_digits(s):\n    # TODO: implement\n    pass\n",
+    "tests": [
+      {
+        "args": [
+          "abc123def456"
+        ],
+        "expected": "123456"
+      },
+      {
+        "args": [
+          "no digits here"
+        ],
+        "expected": ""
+      },
+      {
+        "args": [
+          "a1b2c3"
+        ],
+        "expected": "123"
+      },
+      {
+        "args": [
+          "007"
+        ],
+        "expected": "007"
+      },
+      {
+        "args": [
+          ""
+        ],
+        "expected": ""
+      }
+    ]
+  },
+  {
+    "id": "s18",
+    "title": "Alternating Case",
+    "module": "Strings & Character Mechanics",
+    "moduleSlug": "strings",
+    "difficulty": "easy",
+    "prompt": "Write `alternating_case(s)` that converts `s` to `AlTeRnAtInG` case, starting with an uppercase letter at index 0.",
+    "funcName": "alternating_case",
+    "params": [
+      "s"
+    ],
+    "starter": "def alternating_case(s):\n    # TODO: implement\n    pass\n",
+    "tests": [
+      {
+        "args": [
+          "hello"
+        ],
+        "expected": "HeLlO"
+      },
+      {
+        "args": [
+          "python"
+        ],
+        "expected": "PyThOn"
+      },
+      {
+        "args": [
+          "ABCDE"
+        ],
+        "expected": "AbCdE"
+      },
+      {
+        "args": [
+          "a"
+        ],
+        "expected": "A"
+      },
+      {
+        "args": [
+          ""
+        ],
+        "expected": ""
+      }
+    ]
+  },
+  {
+    "id": "s19",
+    "title": "Longest Word Finder",
+    "module": "Strings & Character Mechanics",
+    "moduleSlug": "strings",
+    "difficulty": "easy",
+    "prompt": "Write `longest_word(s)` that returns the longest word in a sentence. If there's a tie, return the first one found.",
+    "funcName": "longest_word",
+    "params": [
+      "s"
+    ],
+    "starter": "def longest_word(s):\n    # TODO: implement\n    pass\n",
+    "tests": [
+      {
+        "args": [
+          "The quick brown fox"
+        ],
+        "expected": "quick"
+      },
+      {
+        "args": [
+          "I am learning Python programming"
+        ],
+        "expected": "programming"
+      },
+      {
+        "args": [
+          "a bb ccc"
+        ],
+        "expected": "ccc"
+      },
+      {
+        "args": [
+          "equal size abcd"
+        ],
+        "expected": "equal"
+      },
+      {
+        "args": [
+          "single"
+        ],
+        "expected": "single"
+      }
+    ]
+  },
+  {
+    "id": "s20",
+    "title": "Rot13 Cipher",
+    "module": "Strings & Character Mechanics",
+    "moduleSlug": "strings",
+    "difficulty": "medium",
+    "prompt": "Write `rot13(s)` that shifts every letter forward by 13 positions in the alphabet (wrapping around), leaving non-letters unchanged.",
+    "funcName": "rot13",
+    "params": [
+      "s"
+    ],
+    "starter": "def rot13(s):\n    # TODO: implement\n    pass\n",
+    "tests": [
+      {
+        "args": [
+          "hello"
+        ],
+        "expected": "uryyb"
+      },
+      {
+        "args": [
+          "Hello, World!"
+        ],
+        "expected": "Uryyb, Jbeyq!"
+      },
+      {
+        "args": [
+          "abcXYZ"
+        ],
+        "expected": "nopKLM"
+      },
+      {
+        "args": [
+          "Python"
+        ],
+        "expected": "Clguba"
+      },
+      {
+        "args": [
+          ""
+        ],
+        "expected": ""
+      }
+    ]
+  },
+  {
+    "id": "m01",
+    "title": "Even or Odd",
+    "module": "Pure Logic & Math Mechanics",
+    "moduleSlug": "math",
+    "difficulty": "easy",
+    "prompt": "Write `is_even(n)` that returns True if `n` is even, without converting to a string.",
+    "funcName": "is_even",
+    "params": [
+      "n"
+    ],
+    "starter": "def is_even(n):\n    # TODO: implement\n    pass\n",
+    "tests": [
+      {
+        "args": [
+          4
+        ],
+        "expected": true
+      },
+      {
+        "args": [
+          7
+        ],
+        "expected": false
+      },
+      {
+        "args": [
+          0
+        ],
+        "expected": true
+      },
+      {
+        "args": [
+          -3
+        ],
+        "expected": false
+      },
+      {
+        "args": [
+          -8
+        ],
+        "expected": true
+      }
+    ]
+  },
+  {
+    "id": "m02",
+    "title": "FizzBuzz",
+    "module": "Pure Logic & Math Mechanics",
+    "moduleSlug": "math",
+    "difficulty": "easy",
+    "prompt": "Write `fizzbuzz(n)` that returns a LIST of strings for 1..n: multiples of 3 -> 'Fizz', 5 -> 'Buzz', both -> 'FizzBuzz', otherwise the number as a string.",
+    "funcName": "fizzbuzz",
+    "params": [
+      "n"
+    ],
+    "starter": "def fizzbuzz(n):\n    # TODO: implement, return a list\n    pass\n",
+    "tests": [
+      {
+        "args": [
+          15
+        ],
+        "expected": [
+          "1",
+          "2",
+          "Fizz",
+          "4",
+          "Buzz",
+          "Fizz",
+          "7",
+          "8",
+          "Fizz",
+          "Buzz",
+          "11",
+          "Fizz",
+          "13",
+          "14",
+          "FizzBuzz"
+        ]
+      },
+      {
+        "args": [
+          1
+        ],
+        "expected": [
+          "1"
+        ]
+      },
+      {
+        "args": [
+          5
+        ],
+        "expected": [
+          "1",
+          "2",
+          "Fizz",
+          "4",
+          "Buzz"
+        ]
+      },
+      {
+        "args": [
+          3
+        ],
+        "expected": [
+          "1",
+          "2",
+          "Fizz"
+        ]
+      },
+      {
+        "args": [
+          20
+        ],
+        "expected": [
+          "1",
+          "2",
+          "Fizz",
+          "4",
+          "Buzz",
+          "Fizz",
+          "7",
+          "8",
+          "Fizz",
+          "Buzz",
+          "11",
+          "Fizz",
+          "13",
+          "14",
+          "FizzBuzz",
+          "16",
+          "17",
+          "Fizz",
+          "19",
+          "Buzz"
+        ]
+      }
+    ]
+  },
+  {
+    "id": "m03",
+    "title": "Prime Checker",
+    "module": "Pure Logic & Math Mechanics",
+    "moduleSlug": "math",
+    "difficulty": "easy",
+    "prompt": "Write `is_prime(n)` that returns True if `n` (an integer > 1) is prime.",
+    "funcName": "is_prime",
+    "params": [
+      "n"
+    ],
+    "starter": "def is_prime(n):\n    # TODO: implement\n    pass\n",
+    "tests": [
+      {
+        "args": [
+          2
+        ],
+        "expected": true
+      },
+      {
+        "args": [
+          17
+        ],
+        "expected": true
+      },
+      {
+        "args": [
+          15
+        ],
+        "expected": false
+      },
+      {
+        "args": [
+          1
+        ],
+        "expected": false
+      },
+      {
+        "args": [
+          97
+        ],
+        "expected": true
+      }
+    ]
+  },
+  {
+    "id": "m04",
+    "title": "Factorial (Loop)",
+    "module": "Pure Logic & Math Mechanics",
+    "moduleSlug": "math",
+    "difficulty": "easy",
+    "prompt": "Write `factorial(n)` that computes n! using an iterative loop (no recursion).",
+    "funcName": "factorial",
+    "params": [
+      "n"
+    ],
+    "starter": "def factorial(n):\n    # TODO: implement iteratively\n    pass\n",
+    "tests": [
+      {
+        "args": [
+          5
+        ],
+        "expected": 120
+      },
+      {
+        "args": [
+          0
+        ],
+        "expected": 1
+      },
+      {
+        "args": [
+          1
+        ],
+        "expected": 1
+      },
+      {
+        "args": [
+          10
+        ],
+        "expected": 3628800
+      },
+      {
+        "args": [
+          6
+        ],
+        "expected": 720
+      }
+    ]
+  },
+  {
+    "id": "m05",
+    "title": "Fibonacci Sequence",
+    "module": "Pure Logic & Math Mechanics",
+    "moduleSlug": "math",
+    "difficulty": "easy",
+    "prompt": "Write `fibonacci(n)` that returns a list containing the first `n` Fibonacci numbers, starting with 0, 1.",
+    "funcName": "fibonacci",
+    "params": [
+      "n"
+    ],
+    "starter": "def fibonacci(n):\n    # TODO: implement, return a list\n    pass\n",
+    "tests": [
+      {
+        "args": [
+          5
+        ],
+        "expected": [
+          0,
+          1,
+          1,
+          2,
+          3
+        ]
+      },
+      {
+        "args": [
+          1
+        ],
+        "expected": [
+          0
+        ]
+      },
+      {
+        "args": [
+          0
+        ],
+        "expected": []
+      },
+      {
+        "args": [
+          10
+        ],
+        "expected": [
+          0,
+          1,
+          1,
+          2,
+          3,
+          5,
+          8,
+          13,
+          21,
+          34
+        ]
+      },
+      {
+        "args": [
+          2
+        ],
+        "expected": [
+          0,
+          1
+        ]
+      }
+    ]
+  },
+  {
+    "id": "m06",
+    "title": "Sum of Digits",
+    "module": "Pure Logic & Math Mechanics",
+    "moduleSlug": "math",
+    "difficulty": "easy",
+    "prompt": "Write `digit_sum(n)` that returns the sum of all digits in integer `n`.",
+    "funcName": "digit_sum",
+    "params": [
+      "n"
+    ],
+    "starter": "def digit_sum(n):\n    # TODO: implement\n    pass\n",
+    "tests": [
+      {
+        "args": [
+          1234
+        ],
+        "expected": 10
+      },
+      {
+        "args": [
+          9
+        ],
+        "expected": 9
+      },
+      {
+        "args": [
+          0
+        ],
+        "expected": 0
+      },
+      {
+        "args": [
+          505
+        ],
+        "expected": 10
+      },
+      {
+        "args": [
+          -123
+        ],
+        "expected": 6
+      }
+    ]
+  },
+  {
+    "id": "m07",
+    "title": "Reverse an Integer",
+    "module": "Pure Logic & Math Mechanics",
+    "moduleSlug": "math",
+    "difficulty": "easy",
+    "prompt": "Write `reverse_integer(n)` that reverses the digits of integer `n` (e.g. 123 -> 321). Preserve the sign for negative numbers.",
+    "funcName": "reverse_integer",
+    "params": [
+      "n"
+    ],
+    "starter": "def reverse_integer(n):\n    # TODO: implement\n    pass\n",
+    "tests": [
+      {
+        "args": [
+          123
+        ],
+        "expected": 321
+      },
+      {
+        "args": [
+          -456
+        ],
+        "expected": -654
+      },
+      {
+        "args": [
+          100
+        ],
+        "expected": 1
+      },
+      {
+        "args": [
+          7
+        ],
+        "expected": 7
+      },
+      {
+        "args": [
+          0
+        ],
+        "expected": 0
+      }
+    ]
+  },
+  {
+    "id": "m08",
+    "title": "Leap Year Validator",
+    "module": "Pure Logic & Math Mechanics",
+    "moduleSlug": "math",
+    "difficulty": "easy",
+    "prompt": "Write `is_leap_year(year)` that returns True if `year` is a leap year (divisible by 4, except century years unless divisible by 400).",
+    "funcName": "is_leap_year",
+    "params": [
+      "year"
+    ],
+    "starter": "def is_leap_year(year):\n    # TODO: implement\n    pass\n",
+    "tests": [
+      {
+        "args": [
+          2024
+        ],
+        "expected": true
+      },
+      {
+        "args": [
+          2023
+        ],
+        "expected": false
+      },
+      {
+        "args": [
+          1900
+        ],
+        "expected": false
+      },
+      {
+        "args": [
+          2000
+        ],
+        "expected": true
+      },
+      {
+        "args": [
+          2100
+        ],
+        "expected": false
+      }
+    ]
+  },
+  {
+    "id": "m09",
+    "title": "Armstrong Number",
+    "module": "Pure Logic & Math Mechanics",
+    "moduleSlug": "math",
+    "difficulty": "medium",
+    "prompt": "Write `is_armstrong(n)` that checks if `n` equals the sum of its own digits each raised to the power of the digit count (e.g. 153 = 1^3+5^3+3^3).",
+    "funcName": "is_armstrong",
+    "params": [
+      "n"
+    ],
+    "starter": "def is_armstrong(n):\n    # TODO: implement\n    pass\n",
+    "tests": [
+      {
+        "args": [
+          153
+        ],
+        "expected": true
+      },
+      {
+        "args": [
+          123
+        ],
+        "expected": false
+      },
+      {
+        "args": [
+          9474
+        ],
+        "expected": true
+      },
+      {
+        "args": [
+          10
+        ],
+        "expected": false
+      },
+      {
+        "args": [
+          0
+        ],
+        "expected": true
+      }
+    ]
+  },
+  {
+    "id": "m10",
+    "title": "GCD / HCF",
+    "module": "Pure Logic & Math Mechanics",
+    "moduleSlug": "math",
+    "difficulty": "easy",
+    "prompt": "Write `gcd(a, b)` that returns the Greatest Common Divisor of two positive integers.",
+    "funcName": "gcd",
+    "params": [
+      "a",
+      "b"
+    ],
+    "starter": "def gcd(a, b):\n    # TODO: implement\n    pass\n",
+    "tests": [
+      {
+        "args": [
+          12,
+          18
+        ],
+        "expected": 6
+      },
+      {
+        "args": [
+          17,
+          5
+        ],
+        "expected": 1
+      },
+      {
+        "args": [
+          100,
+          75
+        ],
+        "expected": 25
+      },
+      {
+        "args": [
+          7,
+          7
+        ],
+        "expected": 7
+      },
+      {
+        "args": [
+          48,
+          18
+        ],
+        "expected": 6
+      }
+    ]
+  },
+  {
+    "id": "m11",
+    "title": "LCM",
+    "module": "Pure Logic & Math Mechanics",
+    "moduleSlug": "math",
+    "difficulty": "easy",
+    "prompt": "Write `lcm(a, b)` that returns the Least Common Multiple of two positive integers.",
+    "funcName": "lcm",
+    "params": [
+      "a",
+      "b"
+    ],
+    "starter": "def lcm(a, b):\n    # TODO: implement\n    pass\n",
+    "tests": [
+      {
+        "args": [
+          4,
+          6
+        ],
+        "expected": 12
+      },
+      {
+        "args": [
+          21,
+          6
+        ],
+        "expected": 42
+      },
+      {
+        "args": [
+          7,
+          5
+        ],
+        "expected": 35
+      },
+      {
+        "args": [
+          12,
+          12
+        ],
+        "expected": 12
+      },
+      {
+        "args": [
+          8,
+          9
+        ],
+        "expected": 72
+      }
+    ]
+  },
+  {
+    "id": "m12",
+    "title": "Number to Binary",
+    "module": "Pure Logic & Math Mechanics",
+    "moduleSlug": "math",
+    "difficulty": "medium",
+    "prompt": "Write `to_binary(n)` that converts a non-negative decimal integer to its binary string representation, WITHOUT using `bin()`.",
+    "funcName": "to_binary",
+    "params": [
+      "n"
+    ],
+    "starter": "def to_binary(n):\n    # TODO: implement (no bin())\n    pass\n",
+    "tests": [
+      {
+        "args": [
+          10
+        ],
+        "expected": "1010"
+      },
+      {
+        "args": [
+          0
+        ],
+        "expected": "0"
+      },
+      {
+        "args": [
+          1
+        ],
+        "expected": "1"
+      },
+      {
+        "args": [
+          255
+        ],
+        "expected": "11111111"
+      },
+      {
+        "args": [
+          37
+        ],
+        "expected": "100101"
+      }
+    ]
+  },
+  {
+    "id": "m13",
+    "title": "Binary to Decimal",
+    "module": "Pure Logic & Math Mechanics",
+    "moduleSlug": "math",
+    "difficulty": "medium",
+    "prompt": "Write `to_decimal(b)` that converts a binary string `b` to its decimal integer value, WITHOUT using `int(b, 2)`.",
+    "funcName": "to_decimal",
+    "params": [
+      "b"
+    ],
+    "starter": "def to_decimal(b):\n    # TODO: implement (no int(b, 2))\n    pass\n",
+    "tests": [
+      {
+        "args": [
+          "1010"
+        ],
+        "expected": 10
+      },
+      {
+        "args": [
+          "0"
+        ],
+        "expected": 0
+      },
+      {
+        "args": [
+          "1"
+        ],
+        "expected": 1
+      },
+      {
+        "args": [
+          "11111111"
+        ],
+        "expected": 255
+      },
+      {
+        "args": [
+          "100101"
+        ],
+        "expected": 37
+      }
+    ]
+  },
+  {
+    "id": "m14",
+    "title": "Perfect Number",
+    "module": "Pure Logic & Math Mechanics",
+    "moduleSlug": "math",
+    "difficulty": "medium",
+    "prompt": "Write `is_perfect(n)` that returns True if the sum of `n`'s proper divisors (excluding itself) equals `n`.",
+    "funcName": "is_perfect",
+    "params": [
+      "n"
+    ],
+    "starter": "def is_perfect(n):\n    # TODO: implement\n    pass\n",
+    "tests": [
+      {
+        "args": [
+          6
+        ],
+        "expected": true
+      },
+      {
+        "args": [
+          28
+        ],
+        "expected": true
+      },
+      {
+        "args": [
+          12
+        ],
+        "expected": false
+      },
+      {
+        "args": [
+          1
+        ],
+        "expected": false
+      },
+      {
+        "args": [
+          496
+        ],
+        "expected": true
+      }
+    ]
+  },
+  {
+    "id": "m15",
+    "title": "Power Calculator",
+    "module": "Pure Logic & Math Mechanics",
+    "moduleSlug": "math",
+    "difficulty": "easy",
+    "prompt": "Write `power(a, b)` that computes a^b (b is a non-negative integer) WITHOUT using `**` or `pow()`.",
+    "funcName": "power",
+    "params": [
+      "a",
+      "b"
+    ],
+    "starter": "def power(a, b):\n    # TODO: implement (no ** or pow)\n    pass\n",
+    "tests": [
+      {
+        "args": [
+          2,
+          10
+        ],
+        "expected": 1024
+      },
+      {
+        "args": [
+          5,
+          0
+        ],
+        "expected": 1
+      },
+      {
+        "args": [
+          3,
+          3
+        ],
+        "expected": 27
+      },
+      {
+        "args": [
+          7,
+          1
+        ],
+        "expected": 7
+      },
+      {
+        "args": [
+          2,
+          0
+        ],
+        "expected": 1
+      }
+    ]
+  },
+  {
+    "id": "m16",
+    "title": "Multiplication Table",
+    "module": "Pure Logic & Math Mechanics",
+    "moduleSlug": "math",
+    "difficulty": "easy",
+    "prompt": "Write `multiplication_table(n)` that returns a list of the products of `n` times 1 through 10.",
+    "funcName": "multiplication_table",
+    "params": [
+      "n"
+    ],
+    "starter": "def multiplication_table(n):\n    # TODO: implement, return a list\n    pass\n",
+    "tests": [
+      {
+        "args": [
+          5
+        ],
+        "expected": [
+          5,
+          10,
+          15,
+          20,
+          25,
+          30,
+          35,
+          40,
+          45,
+          50
+        ]
+      },
+      {
+        "args": [
+          1
+        ],
+        "expected": [
+          1,
+          2,
+          3,
+          4,
+          5,
+          6,
+          7,
+          8,
+          9,
+          10
+        ]
+      },
+      {
+        "args": [
+          0
+        ],
+        "expected": [
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0
+        ]
+      },
+      {
+        "args": [
+          12
+        ],
+        "expected": [
+          12,
+          24,
+          36,
+          48,
+          60,
+          72,
+          84,
+          96,
+          108,
+          120
+        ]
+      },
+      {
+        "args": [
+          -3
+        ],
+        "expected": [
+          -3,
+          -6,
+          -9,
+          -12,
+          -15,
+          -18,
+          -21,
+          -24,
+          -27,
+          -30
+        ]
+      }
+    ]
+  },
+  {
+    "id": "m17",
+    "title": "Collatz Sequence",
+    "module": "Pure Logic & Math Mechanics",
+    "moduleSlug": "math",
+    "difficulty": "medium",
+    "prompt": "Write `collatz_steps(n)` that returns the list of values in the Collatz sequence starting at `n` until it reaches 1 (n/2 if even, 3n+1 if odd).",
+    "funcName": "collatz_steps",
+    "params": [
+      "n"
+    ],
+    "starter": "def collatz_steps(n):\n    # TODO: implement, return a list\n    pass\n",
+    "tests": [
+      {
+        "args": [
+          6
+        ],
+        "expected": [
+          6,
+          3,
+          10,
+          5,
+          16,
+          8,
+          4,
+          2,
+          1
+        ]
+      },
+      {
+        "args": [
+          1
+        ],
+        "expected": [
+          1
+        ]
+      },
+      {
+        "args": [
+          7
+        ],
+        "expected": [
+          7,
+          22,
+          11,
+          34,
+          17,
+          52,
+          26,
+          13,
+          40,
+          20,
+          10,
+          5,
+          16,
+          8,
+          4,
+          2,
+          1
+        ]
+      },
+      {
+        "args": [
+          2
+        ],
+        "expected": [
+          2,
+          1
+        ]
+      },
+      {
+        "args": [
+          27
+        ],
+        "expected": [
+          27,
+          82,
+          41,
+          124,
+          62,
+          31,
+          94,
+          47,
+          142,
+          71,
+          214,
+          107,
+          322,
+          161,
+          484,
+          242,
+          121,
+          364,
+          182,
+          91,
+          274,
+          137,
+          412,
+          206,
+          103,
+          310,
+          155,
+          466,
+          233,
+          700,
+          350,
+          175,
+          526,
+          263,
+          790,
+          395,
+          1186,
+          593,
+          1780,
+          890,
+          445,
+          1336,
+          668,
+          334,
+          167,
+          502,
+          251,
+          754,
+          377,
+          1132,
+          566,
+          283,
+          850,
+          425,
+          1276,
+          638,
+          319,
+          958,
+          479,
+          1438,
+          719,
+          2158,
+          1079,
+          3238,
+          1619,
+          4858,
+          2429,
+          7288,
+          3644,
+          1822,
+          911,
+          2734,
+          1367,
+          4102,
+          2051,
+          6154,
+          3077,
+          9232,
+          4616,
+          2308,
+          1154,
+          577,
+          1732,
+          866,
+          433,
+          1300,
+          650,
+          325,
+          976,
+          488,
+          244,
+          122,
+          61,
+          184,
+          92,
+          46,
+          23,
+          70,
+          35,
+          106,
+          53,
+          160,
+          80,
+          40,
+          20,
+          10,
+          5,
+          16,
+          8,
+          4,
+          2,
+          1
+        ]
+      }
+    ]
+  },
+  {
+    "id": "m18",
+    "title": "Square Root Approximation",
+    "module": "Pure Logic & Math Mechanics",
+    "moduleSlug": "math",
+    "difficulty": "medium",
+    "prompt": "Write `sqrt_floor(n)` that estimates floor(sqrt(n)) for a non-negative integer `n`, using only loops/integer math (no `**0.5` or `math.sqrt`).",
+    "funcName": "sqrt_floor",
+    "params": [
+      "n"
+    ],
+    "starter": "def sqrt_floor(n):\n    # TODO: implement\n    pass\n",
+    "tests": [
+      {
+        "args": [
+          16
+        ],
+        "expected": 4
+      },
+      {
+        "args": [
+          10
+        ],
+        "expected": 3
+      },
+      {
+        "args": [
+          0
+        ],
+        "expected": 0
+      },
+      {
+        "args": [
+          1
+        ],
+        "expected": 1
+      },
+      {
+        "args": [
+          99
+        ],
+        "expected": 9
+      }
+    ]
+  },
+  {
+    "id": "m19",
+    "title": "Number of Divisors",
+    "module": "Pure Logic & Math Mechanics",
+    "moduleSlug": "math",
+    "difficulty": "easy",
+    "prompt": "Write `count_divisors(n)` that returns how many positive integers evenly divide `n`.",
+    "funcName": "count_divisors",
+    "params": [
+      "n"
+    ],
+    "starter": "def count_divisors(n):\n    # TODO: implement\n    pass\n",
+    "tests": [
+      {
+        "args": [
+          12
+        ],
+        "expected": 6
+      },
+      {
+        "args": [
+          1
+        ],
+        "expected": 1
+      },
+      {
+        "args": [
+          13
+        ],
+        "expected": 2
+      },
+      {
+        "args": [
+          28
+        ],
+        "expected": 6
+      },
+      {
+        "args": [
+          100
+        ],
+        "expected": 9
+      }
+    ]
+  },
+  {
+    "id": "m20",
+    "title": "Strong Number",
+    "module": "Pure Logic & Math Mechanics",
+    "moduleSlug": "math",
+    "difficulty": "medium",
+    "prompt": "Write `is_strong(n)` that returns True if the sum of the factorials of `n`'s digits equals `n` (e.g. 145 = 1! + 4! + 5!).",
+    "funcName": "is_strong",
+    "params": [
+      "n"
+    ],
+    "starter": "def is_strong(n):\n    # TODO: implement\n    pass\n",
+    "tests": [
+      {
+        "args": [
+          145
+        ],
+        "expected": true
+      },
+      {
+        "args": [
+          1
+        ],
+        "expected": true
+      },
+      {
+        "args": [
+          2
+        ],
+        "expected": true
+      },
+      {
+        "args": [
+          123
+        ],
+        "expected": false
+      },
+      {
+        "args": [
+          40585
+        ],
+        "expected": true
+      }
+    ]
+  },
+  {
+    "id": "l01",
+    "title": "Find Maximum",
+    "module": "List & Sequence Mechanics",
+    "moduleSlug": "lists",
+    "difficulty": "easy",
+    "prompt": "Write `find_max(arr)` that returns the largest value in a non-empty list, WITHOUT using `max()`.",
+    "funcName": "find_max",
+    "params": [
+      "arr"
+    ],
+    "starter": "def find_max(arr):\n    # TODO: implement (no max())\n    pass\n",
+    "tests": [
+      {
+        "args": [
+          [
+            3,
+            1,
+            4,
+            1,
+            5,
+            9,
+            2,
+            6
+          ]
+        ],
+        "expected": 9
+      },
+      {
+        "args": [
+          [
+            1
+          ]
+        ],
+        "expected": 1
+      },
+      {
+        "args": [
+          [
+            -5,
+            -2,
+            -9
+          ]
+        ],
+        "expected": -2
+      },
+      {
+        "args": [
+          [
+            7,
+            7,
+            7
+          ]
+        ],
+        "expected": 7
+      },
+      {
+        "args": [
+          [
+            10,
+            2,
+            33,
+            4
+          ]
+        ],
+        "expected": 33
+      }
+    ]
+  },
+  {
+    "id": "l02",
+    "title": "Find Minimum",
+    "module": "List & Sequence Mechanics",
+    "moduleSlug": "lists",
+    "difficulty": "easy",
+    "prompt": "Write `find_min(arr)` that returns the smallest value in a non-empty list, WITHOUT using `min()`.",
+    "funcName": "find_min",
+    "params": [
+      "arr"
+    ],
+    "starter": "def find_min(arr):\n    # TODO: implement (no min())\n    pass\n",
+    "tests": [
+      {
+        "args": [
+          [
+            3,
+            1,
+            4,
+            1,
+            5,
+            9,
+            2,
+            6
+          ]
+        ],
+        "expected": 1
+      },
+      {
+        "args": [
+          [
+            1
+          ]
+        ],
+        "expected": 1
+      },
+      {
+        "args": [
+          [
+            -5,
+            -2,
+            -9
+          ]
+        ],
+        "expected": -9
+      },
+      {
+        "args": [
+          [
+            7,
+            7,
+            7
+          ]
+        ],
+        "expected": 7
+      },
+      {
+        "args": [
+          [
+            10,
+            2,
+            33,
+            4
+          ]
+        ],
+        "expected": 2
+      }
+    ]
+  },
+  {
+    "id": "l03",
+    "title": "Second Largest",
+    "module": "List & Sequence Mechanics",
+    "moduleSlug": "lists",
+    "difficulty": "medium",
+    "prompt": "Write `second_largest(arr)` that returns the second highest distinct value in an unsorted list.",
+    "funcName": "second_largest",
+    "params": [
+      "arr"
+    ],
+    "starter": "def second_largest(arr):\n    # TODO: implement\n    pass\n",
+    "tests": [
+      {
+        "args": [
+          [
+            3,
+            1,
+            4,
+            1,
+            5,
+            9,
+            2,
+            6
+          ]
+        ],
+        "expected": 6
+      },
+      {
+        "args": [
+          [
+            1,
+            2
+          ]
+        ],
+        "expected": 1
+      },
+      {
+        "args": [
+          [
+            5,
+            5,
+            4
+          ]
+        ],
+        "expected": 4
+      },
+      {
+        "args": [
+          [
+            10,
+            9,
+            8,
+            7
+          ]
+        ],
+        "expected": 9
+      },
+      {
+        "args": [
+          [
+            -1,
+            -2,
+            -3
+          ]
+        ],
+        "expected": -2
+      }
+    ]
+  },
+  {
+    "id": "l04",
+    "title": "List Inversion",
+    "module": "List & Sequence Mechanics",
+    "moduleSlug": "lists",
+    "difficulty": "easy",
+    "prompt": "Write `invert_list(arr)` that returns a new list with elements reversed, WITHOUT using `.reverse()` or `[::-1]`.",
+    "funcName": "invert_list",
+    "params": [
+      "arr"
+    ],
+    "starter": "def invert_list(arr):\n    # TODO: implement, return a new list\n    pass\n",
+    "tests": [
+      {
+        "args": [
+          [
+            1,
+            2,
+            3,
+            4
+          ]
+        ],
+        "expected": [
+          4,
+          3,
+          2,
+          1
+        ]
+      },
+      {
+        "args": [
+          [
+            1
+          ]
+        ],
+        "expected": [
+          1
+        ]
+      },
+      {
+        "args": [
+          []
+        ],
+        "expected": []
+      },
+      {
+        "args": [
+          [
+            "a",
+            "b",
+            "c"
+          ]
+        ],
+        "expected": [
+          "c",
+          "b",
+          "a"
+        ]
+      },
+      {
+        "args": [
+          [
+            5,
+            4,
+            3,
+            2,
+            1
+          ]
+        ],
+        "expected": [
+          1,
+          2,
+          3,
+          4,
+          5
+        ]
+      }
+    ]
+  },
+  {
+    "id": "l05",
+    "title": "Deduplicate List",
+    "module": "List & Sequence Mechanics",
+    "moduleSlug": "lists",
+    "difficulty": "easy",
+    "prompt": "Write `dedupe(arr)` that removes duplicate entries while keeping the original order of first appearance.",
+    "funcName": "dedupe",
+    "params": [
+      "arr"
+    ],
+    "starter": "def dedupe(arr):\n    # TODO: implement\n    pass\n",
+    "tests": [
+      {
+        "args": [
+          [
+            1,
+            2,
+            2,
+            3,
+            1,
+            4
+          ]
+        ],
+        "expected": [
+          1,
+          2,
+          3,
+          4
+        ]
+      },
+      {
+        "args": [
+          [
+            1,
+            1,
+            1
+          ]
+        ],
+        "expected": [
+          1
+        ]
+      },
+      {
+        "args": [
+          []
+        ],
+        "expected": []
+      },
+      {
+        "args": [
+          [
+            "a",
+            "b",
+            "a",
+            "c"
+          ]
+        ],
+        "expected": [
+          "a",
+          "b",
+          "c"
+        ]
+      },
+      {
+        "args": [
+          [
+            1,
+            2,
+            3
+          ]
+        ],
+        "expected": [
+          1,
+          2,
+          3
+        ]
+      }
+    ]
+  },
+  {
+    "id": "l06",
+    "title": "Linear Search",
+    "module": "List & Sequence Mechanics",
+    "moduleSlug": "lists",
+    "difficulty": "easy",
+    "prompt": "Write `linear_search(arr, target)` that returns the index of `target` in `arr`, or -1 if not found.",
+    "funcName": "linear_search",
+    "params": [
+      "arr",
+      "target"
+    ],
+    "starter": "def linear_search(arr, target):\n    # TODO: implement\n    pass\n",
+    "tests": [
+      {
+        "args": [
+          [
+            5,
+            3,
+            8,
+            1
+          ],
+          8
+        ],
+        "expected": 2
+      },
+      {
+        "args": [
+          [
+            5,
+            3,
+            8,
+            1
+          ],
+          9
+        ],
+        "expected": -1
+      },
+      {
+        "args": [
+          [],
+          1
+        ],
+        "expected": -1
+      },
+      {
+        "args": [
+          [
+            1,
+            2,
+            3
+          ],
+          1
+        ],
+        "expected": 0
+      },
+      {
+        "args": [
+          [
+            4,
+            4,
+            4
+          ],
+          4
+        ],
+        "expected": 0
+      }
+    ]
+  },
+  {
+    "id": "l07",
+    "title": "Binary Search",
+    "module": "List & Sequence Mechanics",
+    "moduleSlug": "lists",
+    "difficulty": "medium",
+    "prompt": "Write `binary_search(arr, target)` that finds `target`'s index in a SORTED list `arr` using binary search, or returns -1.",
+    "funcName": "binary_search",
+    "params": [
+      "arr",
+      "target"
+    ],
+    "starter": "def binary_search(arr, target):\n    # TODO: implement\n    pass\n",
+    "tests": [
+      {
+        "args": [
+          [
+            1,
+            3,
+            5,
+            7,
+            9,
+            11
+          ],
+          7
+        ],
+        "expected": 3
+      },
+      {
+        "args": [
+          [
+            1,
+            3,
+            5,
+            7,
+            9,
+            11
+          ],
+          4
+        ],
+        "expected": -1
+      },
+      {
+        "args": [
+          [
+            1
+          ],
+          1
+        ],
+        "expected": 0
+      },
+      {
+        "args": [
+          [],
+          5
+        ],
+        "expected": -1
+      },
+      {
+        "args": [
+          [
+            2,
+            4,
+            6,
+            8,
+            10,
+            12,
+            14
+          ],
+          2
+        ],
+        "expected": 0
+      }
+    ]
+  },
+  {
+    "id": "l08",
+    "title": "Count Occurrences",
+    "module": "List & Sequence Mechanics",
+    "moduleSlug": "lists",
+    "difficulty": "easy",
+    "prompt": "Write `count_occurrences(arr)` that returns a dict mapping each item in `arr` to how many times it appears.",
+    "funcName": "count_occurrences",
+    "params": [
+      "arr"
+    ],
+    "starter": "def count_occurrences(arr):\n    # TODO: implement, return a dict\n    pass\n",
+    "tests": [
+      {
+        "args": [
+          [
+            1,
+            2,
+            2,
+            3,
+            3,
+            3
+          ]
+        ],
+        "expected": {
+          "1": 1,
+          "2": 2,
+          "3": 3
+        }
+      },
+      {
+        "args": [
+          [
+            "a",
+            "b",
+            "a"
+          ]
+        ],
+        "expected": {
+          "a": 2,
+          "b": 1
+        }
+      },
+      {
+        "args": [
+          []
+        ],
+        "expected": {}
+      },
+      {
+        "args": [
+          [
+            1,
+            1,
+            1
+          ]
+        ],
+        "expected": {
+          "1": 3
+        }
+      },
+      {
+        "args": [
+          [
+            5,
+            6,
+            7
+          ]
+        ],
+        "expected": {
+          "5": 1,
+          "6": 1,
+          "7": 1
+        }
+      }
+    ]
+  },
+  {
+    "id": "l09",
+    "title": "Check Sorted",
+    "module": "List & Sequence Mechanics",
+    "moduleSlug": "lists",
+    "difficulty": "easy",
+    "prompt": "Write `is_sorted_asc(arr)` that returns True if `arr` is STRICTLY sorted in ascending order.",
+    "funcName": "is_sorted_asc",
+    "params": [
+      "arr"
+    ],
+    "starter": "def is_sorted_asc(arr):\n    # TODO: implement\n    pass\n",
+    "tests": [
+      {
+        "args": [
+          [
+            1,
+            2,
+            3,
+            4
+          ]
+        ],
+        "expected": true
+      },
+      {
+        "args": [
+          [
+            1,
+            2,
+            2,
+            3
+          ]
+        ],
+        "expected": false
+      },
+      {
+        "args": [
+          [
+            3,
+            2,
+            1
+          ]
+        ],
+        "expected": false
+      },
+      {
+        "args": [
+          []
+        ],
+        "expected": true
+      },
+      {
+        "args": [
+          [
+            1
+          ]
+        ],
+        "expected": true
+      }
+    ]
+  },
+  {
+    "id": "l10",
+    "title": "Merge Sequences",
+    "module": "List & Sequence Mechanics",
+    "moduleSlug": "lists",
+    "difficulty": "medium",
+    "prompt": "Write `merge_sorted(a, b)` that merges two already-sorted lists into a single sorted list.",
+    "funcName": "merge_sorted",
+    "params": [
+      "a",
+      "b"
+    ],
+    "starter": "def merge_sorted(a, b):\n    # TODO: implement\n    pass\n",
+    "tests": [
+      {
+        "args": [
+          [
+            1,
+            3,
+            5
+          ],
+          [
+            2,
+            4,
+            6
+          ]
+        ],
+        "expected": [
+          1,
+          2,
+          3,
+          4,
+          5,
+          6
+        ]
+      },
+      {
+        "args": [
+          [],
+          [
+            1,
+            2
+          ]
+        ],
+        "expected": [
+          1,
+          2
+        ]
+      },
+      {
+        "args": [
+          [
+            1,
+            2
+          ],
+          []
+        ],
+        "expected": [
+          1,
+          2
+        ]
+      },
+      {
+        "args": [
+          [
+            1,
+            1
+          ],
+          [
+            1,
+            1
+          ]
+        ],
+        "expected": [
+          1,
+          1,
+          1,
+          1
+        ]
+      },
+      {
+        "args": [
+          [
+            1,
+            4,
+            9
+          ],
+          [
+            2,
+            3,
+            8
+          ]
+        ],
+        "expected": [
+          1,
+          2,
+          3,
+          4,
+          8,
+          9
+        ]
+      }
+    ]
+  },
+  {
+    "id": "l11",
+    "title": "Rotate Array",
+    "module": "List & Sequence Mechanics",
+    "moduleSlug": "lists",
+    "difficulty": "medium",
+    "prompt": "Write `rotate_left(arr, k)` that shifts list elements left by `k` positions (wrapping around).",
+    "funcName": "rotate_left",
+    "params": [
+      "arr",
+      "k"
+    ],
+    "starter": "def rotate_left(arr, k):\n    # TODO: implement\n    pass\n",
+    "tests": [
+      {
+        "args": [
+          [
+            1,
+            2,
+            3,
+            4,
+            5
+          ],
+          2
+        ],
+        "expected": [
+          3,
+          4,
+          5,
+          1,
+          2
+        ]
+      },
+      {
+        "args": [
+          [
+            1,
+            2,
+            3
+          ],
+          0
+        ],
+        "expected": [
+          1,
+          2,
+          3
+        ]
+      },
+      {
+        "args": [
+          [
+            1,
+            2,
+            3
+          ],
+          3
+        ],
+        "expected": [
+          1,
+          2,
+          3
+        ]
+      },
+      {
+        "args": [
+          [
+            1,
+            2,
+            3,
+            4
+          ],
+          5
+        ],
+        "expected": [
+          2,
+          3,
+          4,
+          1
+        ]
+      },
+      {
+        "args": [
+          [
+            1
+          ],
+          1
+        ],
+        "expected": [
+          1
+        ]
+      }
+    ]
+  },
+  {
+    "id": "l12",
+    "title": "Cumulative Sum",
+    "module": "List & Sequence Mechanics",
+    "moduleSlug": "lists",
+    "difficulty": "easy",
+    "prompt": "Write `cumulative_sum(arr)` that returns a list of running totals across `arr`.",
+    "funcName": "cumulative_sum",
+    "params": [
+      "arr"
+    ],
+    "starter": "def cumulative_sum(arr):\n    # TODO: implement, return a list\n    pass\n",
+    "tests": [
+      {
+        "args": [
+          [
+            1,
+            2,
+            3,
+            4
+          ]
+        ],
+        "expected": [
+          1,
+          3,
+          6,
+          10
+        ]
+      },
+      {
+        "args": [
+          [
+            5
+          ]
+        ],
+        "expected": [
+          5
+        ]
+      },
+      {
+        "args": [
+          []
+        ],
+        "expected": []
+      },
+      {
+        "args": [
+          [
+            1,
+            -1,
+            1,
+            -1
+          ]
+        ],
+        "expected": [
+          1,
+          0,
+          1,
+          0
+        ]
+      },
+      {
+        "args": [
+          [
+            10,
+            20,
+            30
+          ]
+        ],
+        "expected": [
+          10,
+          30,
+          60
+        ]
+      }
+    ]
+  },
+  {
+    "id": "l13",
+    "title": "Find Missing Number",
+    "module": "List & Sequence Mechanics",
+    "moduleSlug": "lists",
+    "difficulty": "medium",
+    "prompt": "Write `find_missing(arr, n)` that finds the single missing integer from a list that should contain 1..n exactly once each (minus one missing value).",
+    "funcName": "find_missing",
+    "params": [
+      "arr",
+      "n"
+    ],
+    "starter": "def find_missing(arr, n):\n    # TODO: implement\n    pass\n",
+    "tests": [
+      {
+        "args": [
+          [
+            1,
+            2,
+            4,
+            5
+          ],
+          5
+        ],
+        "expected": 3
+      },
+      {
+        "args": [
+          [
+            2,
+            3,
+            4,
+            5
+          ],
+          5
+        ],
+        "expected": 1
+      },
+      {
+        "args": [
+          [
+            1
+          ],
+          2
+        ],
+        "expected": 2
+      },
+      {
+        "args": [
+          [
+            1,
+            2,
+            3,
+            5
+          ],
+          5
+        ],
+        "expected": 4
+      },
+      {
+        "args": [
+          [
+            1,
+            3
+          ],
+          3
+        ],
+        "expected": 2
+      }
+    ]
+  },
+  {
+    "id": "l14",
+    "title": "Common Elements",
+    "module": "List & Sequence Mechanics",
+    "moduleSlug": "lists",
+    "difficulty": "medium",
+    "prompt": "Write `common_elements(a, b)` that returns a list of values present in BOTH `a` and `b` (no duplicates, order from `a`).",
+    "funcName": "common_elements",
+    "params": [
+      "a",
+      "b"
+    ],
+    "starter": "def common_elements(a, b):\n    # TODO: implement\n    pass\n",
+    "tests": [
+      {
+        "args": [
+          [
+            1,
+            2,
+            3,
+            4
+          ],
+          [
+            3,
+            4,
+            5,
+            6
+          ]
+        ],
+        "expected": [
+          3,
+          4
+        ]
+      },
+      {
+        "args": [
+          [
+            1,
+            2
+          ],
+          [
+            3,
+            4
+          ]
+        ],
+        "expected": []
+      },
+      {
+        "args": [
+          [
+            1,
+            1,
+            2
+          ],
+          [
+            1,
+            2
+          ]
+        ],
+        "expected": [
+          1,
+          2
+        ]
+      },
+      {
+        "args": [
+          [],
+          [
+            1,
+            2
+          ]
+        ],
+        "expected": []
+      },
+      {
+        "args": [
+          [
+            "a",
+            "b"
+          ],
+          [
+            "b",
+            "c"
+          ]
+        ],
+        "expected": [
+          "b"
+        ]
+      }
+    ]
+  },
+  {
+    "id": "l15",
+    "title": "List Difference",
+    "module": "List & Sequence Mechanics",
+    "moduleSlug": "lists",
+    "difficulty": "easy",
+    "prompt": "Write `list_difference(a, b)` that returns items present in list `a` but not in list `b`.",
+    "funcName": "list_difference",
+    "params": [
+      "a",
+      "b"
+    ],
+    "starter": "def list_difference(a, b):\n    # TODO: implement\n    pass\n",
+    "tests": [
+      {
+        "args": [
+          [
+            1,
+            2,
+            3,
+            4
+          ],
+          [
+            2,
+            4
+          ]
+        ],
+        "expected": [
+          1,
+          3
+        ]
+      },
+      {
+        "args": [
+          [
+            1,
+            2
+          ],
+          [
+            1,
+            2
+          ]
+        ],
+        "expected": []
+      },
+      {
+        "args": [
+          [],
+          [
+            1
+          ]
+        ],
+        "expected": []
+      },
+      {
+        "args": [
+          [
+            1,
+            2,
+            3
+          ],
+          []
+        ],
+        "expected": [
+          1,
+          2,
+          3
+        ]
+      },
+      {
+        "args": [
+          [
+            "a",
+            "b",
+            "c"
+          ],
+          [
+            "b"
+          ]
+        ],
+        "expected": [
+          "a",
+          "c"
+        ]
+      }
+    ]
+  },
+  {
+    "id": "l16",
+    "title": "Chunk Array",
+    "module": "List & Sequence Mechanics",
+    "moduleSlug": "lists",
+    "difficulty": "medium",
+    "prompt": "Write `chunk_array(arr, n)` that splits `arr` into a list of sub-lists, each of length `n` (the last chunk may be shorter).",
+    "funcName": "chunk_array",
+    "params": [
+      "arr",
+      "n"
+    ],
+    "starter": "def chunk_array(arr, n):\n    # TODO: implement\n    pass\n",
+    "tests": [
+      {
+        "args": [
+          [
+            1,
+            2,
+            3,
+            4,
+            5
+          ],
+          2
+        ],
+        "expected": [
+          [
+            1,
+            2
+          ],
+          [
+            3,
+            4
+          ],
+          [
+            5
+          ]
+        ]
+      },
+      {
+        "args": [
+          [
+            1,
+            2,
+            3,
+            4
+          ],
+          2
+        ],
+        "expected": [
+          [
+            1,
+            2
+          ],
+          [
+            3,
+            4
+          ]
+        ]
+      },
+      {
+        "args": [
+          [
+            1,
+            2,
+            3
+          ],
+          5
+        ],
+        "expected": [
+          [
+            1,
+            2,
+            3
+          ]
+        ]
+      },
+      {
+        "args": [
+          [],
+          3
+        ],
+        "expected": []
+      },
+      {
+        "args": [
+          [
+            1,
+            2,
+            3,
+            4,
+            5,
+            6
+          ],
+          3
+        ],
+        "expected": [
+          [
+            1,
+            2,
+            3
+          ],
+          [
+            4,
+            5,
+            6
+          ]
+        ]
+      }
+    ]
+  },
+  {
+    "id": "l17",
+    "title": "Flatten List",
+    "module": "List & Sequence Mechanics",
+    "moduleSlug": "lists",
+    "difficulty": "easy",
+    "prompt": "Write `flatten(matrix)` that converts a 2D list into a single flat 1D list.",
+    "funcName": "flatten",
+    "params": [
+      "matrix"
+    ],
+    "starter": "def flatten(matrix):\n    # TODO: implement\n    pass\n",
+    "tests": [
+      {
+        "args": [
+          [
+            [
+              1,
+              2
+            ],
+            [
+              3,
+              4
+            ]
+          ]
+        ],
+        "expected": [
+          1,
+          2,
+          3,
+          4
+        ]
+      },
+      {
+        "args": [
+          [
+            [
+              1
+            ],
+            [
+              2
+            ],
+            [
+              3
+            ]
+          ]
+        ],
+        "expected": [
+          1,
+          2,
+          3
+        ]
+      },
+      {
+        "args": [
+          [
+            []
+          ]
+        ],
+        "expected": []
+      },
+      {
+        "args": [
+          [
+            [
+              1,
+              2,
+              3
+            ]
+          ]
+        ],
+        "expected": [
+          1,
+          2,
+          3
+        ]
+      },
+      {
+        "args": [
+          [
+            [
+              1,
+              2
+            ],
+            [],
+            [
+              3
+            ]
+          ]
+        ],
+        "expected": [
+          1,
+          2,
+          3
+        ]
+      }
+    ]
+  },
+  {
+    "id": "l18",
+    "title": "Move Zeroes",
+    "module": "List & Sequence Mechanics",
+    "moduleSlug": "lists",
+    "difficulty": "medium",
+    "prompt": "Write `move_zeroes(arr)` that moves all zeroes to the end of the list while keeping the relative order of non-zero elements.",
+    "funcName": "move_zeroes",
+    "params": [
+      "arr"
+    ],
+    "starter": "def move_zeroes(arr):\n    # TODO: implement\n    pass\n",
+    "tests": [
+      {
+        "args": [
+          [
+            0,
+            1,
+            0,
+            3,
+            12
+          ]
+        ],
+        "expected": [
+          1,
+          3,
+          12,
+          0,
+          0
+        ]
+      },
+      {
+        "args": [
+          [
+            0,
+            0,
+            1
+          ]
+        ],
+        "expected": [
+          1,
+          0,
+          0
+        ]
+      },
+      {
+        "args": [
+          [
+            1,
+            2,
+            3
+          ]
+        ],
+        "expected": [
+          1,
+          2,
+          3
+        ]
+      },
+      {
+        "args": [
+          [
+            0
+          ]
+        ],
+        "expected": [
+          0
+        ]
+      },
+      {
+        "args": [
+          [
+            4,
+            0,
+            5,
+            0,
+            6
+          ]
+        ],
+        "expected": [
+          4,
+          5,
+          6,
+          0,
+          0
+        ]
+      }
+    ]
+  },
+  {
+    "id": "l19",
+    "title": "Pair Target Sum",
+    "module": "List & Sequence Mechanics",
+    "moduleSlug": "lists",
+    "difficulty": "medium",
+    "prompt": "Write `pair_sum(arr, target)` that returns a sorted 2-element list `[a, b]` from `arr` where `a + b == target`, or `None` if no pair exists.",
+    "funcName": "pair_sum",
+    "params": [
+      "arr",
+      "target"
+    ],
+    "starter": "def pair_sum(arr, target):\n    # TODO: implement\n    pass\n",
+    "tests": [
+      {
+        "args": [
+          [
+            2,
+            7,
+            11,
+            15
+          ],
+          9
+        ],
+        "expected": [
+          2,
+          7
+        ]
+      },
+      {
+        "args": [
+          [
+            1,
+            2,
+            3
+          ],
+          10
+        ],
+        "expected": null
+      },
+      {
+        "args": [
+          [
+            3,
+            3
+          ],
+          6
+        ],
+        "expected": [
+          3,
+          3
+        ]
+      },
+      {
+        "args": [
+          [
+            1,
+            4,
+            5,
+            6
+          ],
+          10
+        ],
+        "expected": [
+          4,
+          6
+        ]
+      },
+      {
+        "args": [
+          [
+            1,
+            2,
+            3,
+            4
+          ],
+          7
+        ],
+        "expected": [
+          3,
+          4
+        ]
+      }
+    ]
+  },
+  {
+    "id": "l20",
+    "title": "Check Subsequence",
+    "module": "List & Sequence Mechanics",
+    "moduleSlug": "lists",
+    "difficulty": "medium",
+    "prompt": "Write `is_subsequence(a, b)` that returns True if all elements of `a` appear in `b` IN ORDER (not necessarily contiguous).",
+    "funcName": "is_subsequence",
+    "params": [
+      "a",
+      "b"
+    ],
+    "starter": "def is_subsequence(a, b):\n    # TODO: implement\n    pass\n",
+    "tests": [
+      {
+        "args": [
+          [
+            1,
+            3,
+            5
+          ],
+          [
+            1,
+            2,
+            3,
+            4,
+            5
+          ]
+        ],
+        "expected": true
+      },
+      {
+        "args": [
+          [
+            1,
+            5,
+            3
+          ],
+          [
+            1,
+            2,
+            3,
+            4,
+            5
+          ]
+        ],
+        "expected": false
+      },
+      {
+        "args": [
+          [],
+          [
+            1,
+            2,
+            3
+          ]
+        ],
+        "expected": true
+      },
+      {
+        "args": [
+          [
+            1,
+            2,
+            3
+          ],
+          [
+            1,
+            2,
+            3
+          ]
+        ],
+        "expected": true
+      },
+      {
+        "args": [
+          [
+            6
+          ],
+          [
+            1,
+            2,
+            3
+          ]
+        ],
+        "expected": false
+      }
+    ]
+  },
+  {
+    "id": "d01",
+    "title": "Word Frequency Map",
+    "module": "Dictionary & Key-Value Logic",
+    "moduleSlug": "dicts",
+    "difficulty": "easy",
+    "prompt": "Write `word_frequency(s)` that returns a dict counting occurrences of each word (lowercased) in sentence `s`.",
+    "funcName": "word_frequency",
+    "params": [
+      "s"
+    ],
+    "starter": "def word_frequency(s):\n    # TODO: implement, return a dict\n    pass\n",
+    "tests": [
+      {
+        "args": [
+          "the cat sat on the mat"
+        ],
+        "expected": {
+          "the": 2,
+          "cat": 1,
+          "sat": 1,
+          "on": 1,
+          "mat": 1
+        }
+      },
+      {
+        "args": [
+          "a a a b b"
+        ],
+        "expected": {
+          "a": 3,
+          "b": 2
+        }
+      },
+      {
+        "args": [
+          "one"
+        ],
+        "expected": {
+          "one": 1
+        }
+      },
+      {
+        "args": [
+          "Hello hello HELLO"
+        ],
+        "expected": {
+          "hello": 3
+        }
+      },
+      {
+        "args": [
+          ""
+        ],
+        "expected": {}
+      }
+    ]
+  },
+  {
+    "id": "d02",
+    "title": "Invert Dictionary",
+    "module": "Dictionary & Key-Value Logic",
+    "moduleSlug": "dicts",
+    "difficulty": "easy",
+    "prompt": "Write `invert_dict(d)` that swaps keys and values in dictionary `d`.",
+    "funcName": "invert_dict",
+    "params": [
+      "d"
+    ],
+    "starter": "def invert_dict(d):\n    # TODO: implement\n    pass\n",
+    "tests": [
+      {
+        "args": [
+          {
+            "a": 1,
+            "b": 2
+          }
+        ],
+        "expected": {
+          "1": "a",
+          "2": "b"
+        }
+      },
+      {
+        "args": [
+          {
+            "x": 10
+          }
+        ],
+        "expected": {
+          "10": "x"
+        }
+      },
+      {
+        "args": [
+          {}
+        ],
+        "expected": {}
+      },
+      {
+        "args": [
+          {
+            "a": 1,
+            "b": 2,
+            "c": 3
+          }
+        ],
+        "expected": {
+          "1": "a",
+          "2": "b",
+          "3": "c"
+        }
+      },
+      {
+        "args": [
+          {
+            "k": "v"
+          }
+        ],
+        "expected": {
+          "v": "k"
+        }
+      }
+    ]
+  },
+  {
+    "id": "d03",
+    "title": "Merge Dictionaries",
+    "module": "Dictionary & Key-Value Logic",
+    "moduleSlug": "dicts",
+    "difficulty": "medium",
+    "prompt": "Write `merge_sum(a, b)` that combines two dicts, SUMMING values for keys that appear in both.",
+    "funcName": "merge_sum",
+    "params": [
+      "a",
+      "b"
+    ],
+    "starter": "def merge_sum(a, b):\n    # TODO: implement\n    pass\n",
+    "tests": [
+      {
+        "args": [
+          {
+            "a": 1,
+            "b": 2
+          },
+          {
+            "b": 3,
+            "c": 4
+          }
+        ],
+        "expected": {
+          "a": 1,
+          "b": 5,
+          "c": 4
+        }
+      },
+      {
+        "args": [
+          {},
+          {
+            "a": 1
+          }
+        ],
+        "expected": {
+          "a": 1
+        }
+      },
+      {
+        "args": [
+          {
+            "a": 1
+          },
+          {}
+        ],
+        "expected": {
+          "a": 1
+        }
+      },
+      {
+        "args": [
+          {
+            "x": 5
+          },
+          {
+            "x": 5
+          }
+        ],
+        "expected": {
+          "x": 10
+        }
+      },
+      {
+        "args": [
+          {
+            "a": 1,
+            "b": 1
+          },
+          {
+            "a": 1,
+            "c": 1
+          }
+        ],
+        "expected": {
+          "a": 2,
+          "b": 1,
+          "c": 1
+        }
+      }
+    ]
+  },
+  {
+    "id": "d04",
+    "title": "Max Value Key",
+    "module": "Dictionary & Key-Value Logic",
+    "moduleSlug": "dicts",
+    "difficulty": "easy",
+    "prompt": "Write `max_value_key(d)` that returns the key with the largest value in dict `d`.",
+    "funcName": "max_value_key",
+    "params": [
+      "d"
+    ],
+    "starter": "def max_value_key(d):\n    # TODO: implement\n    pass\n",
+    "tests": [
+      {
+        "args": [
+          {
+            "a": 3,
+            "b": 9,
+            "c": 1
+          }
+        ],
+        "expected": "b"
+      },
+      {
+        "args": [
+          {
+            "x": 1
+          }
+        ],
+        "expected": "x"
+      },
+      {
+        "args": [
+          {
+            "p": 5,
+            "q": 5,
+            "r": 2
+          }
+        ],
+        "expected": "p"
+      },
+      {
+        "args": [
+          {
+            "a": -1,
+            "b": -5
+          }
+        ],
+        "expected": "a"
+      },
+      {
+        "args": [
+          {
+            "low": 1,
+            "high": 100
+          }
+        ],
+        "expected": "high"
+      }
+    ]
+  },
+  {
+    "id": "d05",
+    "title": "Dictionary Filter",
+    "module": "Dictionary & Key-Value Logic",
+    "moduleSlug": "dicts",
+    "difficulty": "easy",
+    "prompt": "Write `filter_above(d, k)` that returns a new dict keeping only entries whose value is greater than `k`.",
+    "funcName": "filter_above",
+    "params": [
+      "d",
+      "k"
+    ],
+    "starter": "def filter_above(d, k):\n    # TODO: implement\n    pass\n",
+    "tests": [
+      {
+        "args": [
+          {
+            "a": 1,
+            "b": 5,
+            "c": 10
+          },
+          3
+        ],
+        "expected": {
+          "b": 5,
+          "c": 10
+        }
+      },
+      {
+        "args": [
+          {
+            "a": 1
+          },
+          5
+        ],
+        "expected": {}
+      },
+      {
+        "args": [
+          {},
+          0
+        ],
+        "expected": {}
+      },
+      {
+        "args": [
+          {
+            "x": 10,
+            "y": 20
+          },
+          15
+        ],
+        "expected": {
+          "y": 20
+        }
+      },
+      {
+        "args": [
+          {
+            "a": 0,
+            "b": 0
+          },
+          -1
+        ],
+        "expected": {
+          "a": 0,
+          "b": 0
+        }
+      }
+    ]
+  },
+  {
+    "id": "d06",
+    "title": "Group by Length",
+    "module": "Dictionary & Key-Value Logic",
+    "moduleSlug": "dicts",
+    "difficulty": "medium",
+    "prompt": "Write `group_by_length(words)` that groups a list of words into a dict keyed by word length.",
+    "funcName": "group_by_length",
+    "params": [
+      "words"
+    ],
+    "starter": "def group_by_length(words):\n    # TODO: implement\n    pass\n",
+    "tests": [
+      {
+        "args": [
+          [
+            "cat",
+            "dog",
+            "fish",
+            "ox"
+          ]
+        ],
+        "expected": {
+          "3": [
+            "cat",
+            "dog"
+          ],
+          "4": [
+            "fish"
+          ],
+          "2": [
+            "ox"
+          ]
+        }
+      },
+      {
+        "args": [
+          [
+            "a",
+            "bb",
+            "cc",
+            "d"
+          ]
+        ],
+        "expected": {
+          "1": [
+            "a",
+            "d"
+          ],
+          "2": [
+            "bb",
+            "cc"
+          ]
+        }
+      },
+      {
+        "args": [
+          []
+        ],
+        "expected": {}
+      },
+      {
+        "args": [
+          [
+            "hi"
+          ]
+        ],
+        "expected": {
+          "2": [
+            "hi"
+          ]
+        }
+      },
+      {
+        "args": [
+          [
+            "one",
+            "two",
+            "six"
+          ]
+        ],
+        "expected": {
+          "3": [
+            "one",
+            "two",
+            "six"
+          ]
+        }
+      }
+    ]
+  },
+  {
+    "id": "d07",
+    "title": "Phonebook Lookup",
+    "module": "Dictionary & Key-Value Logic",
+    "moduleSlug": "dicts",
+    "difficulty": "easy",
+    "prompt": "Write `phonebook_lookup(book, name)` that returns the phone number for `name` in dict `book`, or `'Not found'` if absent.",
+    "funcName": "phonebook_lookup",
+    "params": [
+      "book",
+      "name"
+    ],
+    "starter": "def phonebook_lookup(book, name):\n    # TODO: implement\n    pass\n",
+    "tests": [
+      {
+        "args": [
+          {
+            "Alice": "123",
+            "Bob": "456"
+          },
+          "Alice"
+        ],
+        "expected": "123"
+      },
+      {
+        "args": [
+          {
+            "Alice": "123"
+          },
+          "Charlie"
+        ],
+        "expected": "Not found"
+      },
+      {
+        "args": [
+          {},
+          "Bob"
+        ],
+        "expected": "Not found"
+      },
+      {
+        "args": [
+          {
+            "A": "1",
+            "B": "2"
+          },
+          "B"
+        ],
+        "expected": "2"
+      },
+      {
+        "args": [
+          {
+            "X": "9"
+          },
+          "Y"
+        ],
+        "expected": "Not found"
+      }
+    ]
+  },
+  {
+    "id": "d08",
+    "title": "Nested Dict Extractor",
+    "module": "Dictionary & Key-Value Logic",
+    "moduleSlug": "dicts",
+    "difficulty": "medium",
+    "prompt": "Write `safe_nested_get(d, keys)` that walks a list of `keys` through nested dicts `d`, returning `None` if any key is missing along the way (no exceptions).",
+    "funcName": "safe_nested_get",
+    "params": [
+      "d",
+      "keys"
+    ],
+    "starter": "def safe_nested_get(d, keys):\n    # TODO: implement\n    pass\n",
+    "tests": [
+      {
+        "args": [
+          {
+            "a": {
+              "b": {
+                "c": 42
+              }
+            }
+          },
+          [
+            "a",
+            "b",
+            "c"
+          ]
+        ],
+        "expected": 42
+      },
+      {
+        "args": [
+          {
+            "a": {
+              "b": 1
+            }
+          },
+          [
+            "a",
+            "x"
+          ]
+        ],
+        "expected": null
+      },
+      {
+        "args": [
+          {},
+          [
+            "a"
+          ]
+        ],
+        "expected": null
+      },
+      {
+        "args": [
+          {
+            "a": 1
+          },
+          [
+            "a"
+          ]
+        ],
+        "expected": 1
+      },
+      {
+        "args": [
+          {
+            "a": {
+              "b": 2
+            }
+          },
+          [
+            "a",
+            "b",
+            "c"
+          ]
+        ],
+        "expected": null
+      }
+    ]
+  },
+  {
+    "id": "d09",
+    "title": "Character Counter Map",
+    "module": "Dictionary & Key-Value Logic",
+    "moduleSlug": "dicts",
+    "difficulty": "easy",
+    "prompt": "Write `char_count_map(s)` that returns a dict of character counts for string `s`.",
+    "funcName": "char_count_map",
+    "params": [
+      "s"
+    ],
+    "starter": "def char_count_map(s):\n    # TODO: implement, return a dict\n    pass\n",
+    "tests": [
+      {
+        "args": [
+          "hello"
+        ],
+        "expected": {
+          "h": 1,
+          "e": 1,
+          "l": 2,
+          "o": 1
+        }
+      },
+      {
+        "args": [
+          "aab"
+        ],
+        "expected": {
+          "a": 2,
+          "b": 1
+        }
+      },
+      {
+        "args": [
+          ""
+        ],
+        "expected": {}
+      },
+      {
+        "args": [
+          "xyz"
+        ],
+        "expected": {
+          "x": 1,
+          "y": 1,
+          "z": 1
+        }
+      },
+      {
+        "args": [
+          "mississippi"
+        ],
+        "expected": {
+          "m": 1,
+          "i": 4,
+          "s": 4,
+          "p": 2
+        }
+      }
+    ]
+  },
+  {
+    "id": "d10",
+    "title": "Sort Dict by Keys",
+    "module": "Dictionary & Key-Value Logic",
+    "moduleSlug": "dicts",
+    "difficulty": "easy",
+    "prompt": "Write `sort_by_keys(d)` that returns a new dict with items sorted alphabetically by key.",
+    "funcName": "sort_by_keys",
+    "params": [
+      "d"
+    ],
+    "starter": "def sort_by_keys(d):\n    # TODO: implement\n    pass\n",
+    "tests": [
+      {
+        "args": [
+          {
+            "b": 2,
+            "a": 1,
+            "c": 3
+          }
+        ],
+        "expected": {
+          "a": 1,
+          "b": 2,
+          "c": 3
+        }
+      },
+      {
+        "args": [
+          {
+            "z": 1,
+            "y": 2
+          }
+        ],
+        "expected": {
+          "y": 2,
+          "z": 1
+        }
+      },
+      {
+        "args": [
+          {}
+        ],
+        "expected": {}
+      },
+      {
+        "args": [
+          {
+            "a": 1
+          }
+        ],
+        "expected": {
+          "a": 1
+        }
+      },
+      {
+        "args": [
+          {
+            "banana": 1,
+            "apple": 2,
+            "cherry": 3
+          }
+        ],
+        "expected": {
+          "apple": 2,
+          "banana": 1,
+          "cherry": 3
+        }
+      }
+    ]
+  },
+  {
+    "id": "d11",
+    "title": "Sort Dict by Values",
+    "module": "Dictionary & Key-Value Logic",
+    "moduleSlug": "dicts",
+    "difficulty": "easy",
+    "prompt": "Write `sort_by_values(d)` that returns a new dict with items sorted numerically by value (ascending).",
+    "funcName": "sort_by_values",
+    "params": [
+      "d"
+    ],
+    "starter": "def sort_by_values(d):\n    # TODO: implement\n    pass\n",
+    "tests": [
+      {
+        "args": [
+          {
+            "a": 3,
+            "b": 1,
+            "c": 2
+          }
+        ],
+        "expected": {
+          "b": 1,
+          "c": 2,
+          "a": 3
+        }
+      },
+      {
+        "args": [
+          {
+            "x": 10
+          }
+        ],
+        "expected": {
+          "x": 10
+        }
+      },
+      {
+        "args": [
+          {}
+        ],
+        "expected": {}
+      },
+      {
+        "args": [
+          {
+            "a": 1,
+            "b": 1
+          }
+        ],
+        "expected": {
+          "a": 1,
+          "b": 1
+        }
+      },
+      {
+        "args": [
+          {
+            "p": 5,
+            "q": -1,
+            "r": 2
+          }
+        ],
+        "expected": {
+          "q": -1,
+          "r": 2,
+          "p": 5
+        }
+      }
+    ]
+  },
+  {
+    "id": "d12",
+    "title": "Common Dict Keys",
+    "module": "Dictionary & Key-Value Logic",
+    "moduleSlug": "dicts",
+    "difficulty": "medium",
+    "prompt": "Write `common_keys(a, b)` that returns a SORTED list of keys present in both dict `a` and dict `b`.",
+    "funcName": "common_keys",
+    "params": [
+      "a",
+      "b"
+    ],
+    "starter": "def common_keys(a, b):\n    # TODO: implement, return a sorted list\n    pass\n",
+    "tests": [
+      {
+        "args": [
+          {
+            "a": 1,
+            "b": 2
+          },
+          {
+            "b": 3,
+            "c": 4
+          }
+        ],
+        "expected": [
+          "b"
+        ]
+      },
+      {
+        "args": [
+          {},
+          {
+            "a": 1
+          }
+        ],
+        "expected": []
+      },
+      {
+        "args": [
+          {
+            "x": 1,
+            "y": 2
+          },
+          {
+            "x": 9,
+            "y": 9
+          }
+        ],
+        "expected": [
+          "x",
+          "y"
+        ]
+      },
+      {
+        "args": [
+          {
+            "a": 1
+          },
+          {
+            "a": 1
+          }
+        ],
+        "expected": [
+          "a"
+        ]
+      },
+      {
+        "args": [
+          {
+            "m": 1
+          },
+          {
+            "n": 1
+          }
+        ],
+        "expected": []
+      }
+    ]
+  },
+  {
+    "id": "d13",
+    "title": "Default Value Setter",
+    "module": "Dictionary & Key-Value Logic",
+    "moduleSlug": "dicts",
+    "difficulty": "easy",
+    "prompt": "Write `with_default(d, key, default)` that returns `d[key]` if it exists, otherwise `default` (no exceptions).",
+    "funcName": "with_default",
+    "params": [
+      "d",
+      "key",
+      "default"
+    ],
+    "starter": "def with_default(d, key, default):\n    # TODO: implement\n    pass\n",
+    "tests": [
+      {
+        "args": [
+          {
+            "a": 1
+          },
+          "a",
+          0
+        ],
+        "expected": 1
+      },
+      {
+        "args": [
+          {
+            "a": 1
+          },
+          "b",
+          99
+        ],
+        "expected": 99
+      },
+      {
+        "args": [
+          {},
+          "x",
+          "none"
+        ],
+        "expected": "none"
+      },
+      {
+        "args": [
+          {
+            "y": 5
+          },
+          "y",
+          1
+        ],
+        "expected": 5
+      },
+      {
+        "args": [
+          {
+            "a": null
+          },
+          "a",
+          5
+        ],
+        "expected": null
+      }
+    ]
+  },
+  {
+    "id": "d14",
+    "title": "Frequency Threshold Filter",
+    "module": "Dictionary & Key-Value Logic",
+    "moduleSlug": "dicts",
+    "difficulty": "medium",
+    "prompt": "Write `filter_by_min_count(d, n)` that returns entries from count-dict `d` whose value is at least `n`.",
+    "funcName": "filter_by_min_count",
+    "params": [
+      "d",
+      "n"
+    ],
+    "starter": "def filter_by_min_count(d, n):\n    # TODO: implement\n    pass\n",
+    "tests": [
+      {
+        "args": [
+          {
+            "a": 1,
+            "b": 3,
+            "c": 5
+          },
+          3
+        ],
+        "expected": {
+          "b": 3,
+          "c": 5
+        }
+      },
+      {
+        "args": [
+          {
+            "x": 1
+          },
+          2
+        ],
+        "expected": {}
+      },
+      {
+        "args": [
+          {},
+          1
+        ],
+        "expected": {}
+      },
+      {
+        "args": [
+          {
+            "a": 10,
+            "b": 10
+          },
+          10
+        ],
+        "expected": {
+          "a": 10,
+          "b": 10
+        }
+      },
+      {
+        "args": [
+          {
+            "p": 2,
+            "q": 4
+          },
+          5
+        ],
+        "expected": {}
+      }
+    ]
+  },
+  {
+    "id": "d15",
+    "title": "Student Grade Classifier",
+    "module": "Dictionary & Key-Value Logic",
+    "moduleSlug": "dicts",
+    "difficulty": "medium",
+    "prompt": "Write `classify_grades(scores)` mapping each student name to a letter grade: A(>=90) B(>=80) C(>=70) D(>=60) F(below).",
+    "funcName": "classify_grades",
+    "params": [
+      "scores"
+    ],
+    "starter": "def classify_grades(scores):\n    # TODO: implement, return a dict\n    pass\n",
+    "tests": [
+      {
+        "args": [
+          {
+            "Alice": 95,
+            "Bob": 82
+          }
+        ],
+        "expected": {
+          "Alice": "A",
+          "Bob": "B"
+        }
+      },
+      {
+        "args": [
+          {
+            "Sam": 55
+          }
+        ],
+        "expected": {
+          "Sam": "F"
+        }
+      },
+      {
+        "args": [
+          {
+            "A": 100,
+            "B": 89,
+            "C": 75,
+            "D": 61,
+            "E": 40
+          }
+        ],
+        "expected": {
+          "A": "A",
+          "B": "B",
+          "C": "C",
+          "D": "D",
+          "E": "F"
+        }
+      },
+      {
+        "args": [
+          {
+            "X": 90
+          }
+        ],
+        "expected": {
+          "X": "A"
+        }
+      },
+      {
+        "args": [
+          {
+            "Y": 0
+          }
+        ],
+        "expected": {
+          "Y": "F"
+        }
+      }
+    ]
+  },
+  {
+    "id": "d16",
+    "title": "Roster Splitter",
+    "module": "Dictionary & Key-Value Logic",
+    "moduleSlug": "dicts",
+    "difficulty": "medium",
+    "prompt": "Write `split_pass_fail(scores, passing=60)` that groups student names into `{'pass': [...], 'fail': [...]}` based on `passing` threshold.",
+    "funcName": "split_pass_fail",
+    "params": [
+      "scores",
+      "passing=60"
+    ],
+    "starter": "def split_pass_fail(scores, passing=60):\n    # TODO: implement, return a dict\n    pass\n",
+    "tests": [
+      {
+        "args": [
+          {
+            "Alice": 75,
+            "Bob": 40
+          },
+          60
+        ],
+        "expected": {
+          "pass": [
+            "Alice"
+          ],
+          "fail": [
+            "Bob"
+          ]
+        }
+      },
+      {
+        "args": [
+          {
+            "A": 60
+          },
+          60
+        ],
+        "expected": {
+          "pass": [
+            "A"
+          ],
+          "fail": []
+        }
+      },
+      {
+        "args": [
+          {
+            "X": 59,
+            "Y": 61
+          },
+          60
+        ],
+        "expected": {
+          "pass": [
+            "Y"
+          ],
+          "fail": [
+            "X"
+          ]
+        }
+      },
+      {
+        "args": [
+          {},
+          60
+        ],
+        "expected": {
+          "pass": [],
+          "fail": []
+        }
+      },
+      {
+        "args": [
+          {
+            "A": 100,
+            "B": 0
+          },
+          50
+        ],
+        "expected": {
+          "pass": [
+            "A"
+          ],
+          "fail": [
+            "B"
+          ]
+        }
+      }
+    ]
+  },
+  {
+    "id": "d17",
+    "title": "Shopping Cart Total",
+    "module": "Dictionary & Key-Value Logic",
+    "moduleSlug": "dicts",
+    "difficulty": "medium",
+    "prompt": "Write `cart_total(prices, cart)` that computes total cost, where `prices` maps item->price and `cart` maps item->quantity.",
+    "funcName": "cart_total",
+    "params": [
+      "prices",
+      "cart"
+    ],
+    "starter": "def cart_total(prices, cart):\n    # TODO: implement\n    pass\n",
+    "tests": [
+      {
+        "args": [
+          {
+            "apple": 2,
+            "bread": 3
+          },
+          {
+            "apple": 2,
+            "bread": 1
+          }
+        ],
+        "expected": 7
+      },
+      {
+        "args": [
+          {
+            "a": 10
+          },
+          {
+            "a": 0
+          }
+        ],
+        "expected": 0
+      },
+      {
+        "args": [
+          {},
+          {
+            "x": 5
+          }
+        ],
+        "expected": 0
+      },
+      {
+        "args": [
+          {
+            "milk": 4
+          },
+          {
+            "milk": 3
+          }
+        ],
+        "expected": 12
+      },
+      {
+        "args": [
+          {
+            "a": 1,
+            "b": 2
+          },
+          {
+            "a": 2,
+            "b": 2
+          }
+        ],
+        "expected": 6
+      }
+    ]
+  },
+  {
+    "id": "d18",
+    "title": "Count Unique Values",
+    "module": "Dictionary & Key-Value Logic",
+    "moduleSlug": "dicts",
+    "difficulty": "easy",
+    "prompt": "Write `count_unique_values(d)` that returns how many distinct values exist in dict `d`.",
+    "funcName": "count_unique_values",
+    "params": [
+      "d"
+    ],
+    "starter": "def count_unique_values(d):\n    # TODO: implement\n    pass\n",
+    "tests": [
+      {
+        "args": [
+          {
+            "a": 1,
+            "b": 1,
+            "c": 2
+          }
+        ],
+        "expected": 2
+      },
+      {
+        "args": [
+          {
+            "x": 1,
+            "y": 2,
+            "z": 3
+          }
+        ],
+        "expected": 3
+      },
+      {
+        "args": [
+          {}
+        ],
+        "expected": 0
+      },
+      {
+        "args": [
+          {
+            "a": 5
+          }
+        ],
+        "expected": 1
+      },
+      {
+        "args": [
+          {
+            "a": 1,
+            "b": 2,
+            "c": 1,
+            "d": 2
+          }
+        ],
+        "expected": 2
+      }
+    ]
+  },
+  {
+    "id": "d19",
+    "title": "Key Renamer",
+    "module": "Dictionary & Key-Value Logic",
+    "moduleSlug": "dicts",
+    "difficulty": "easy",
+    "prompt": "Write `rename_key(d, old, new)` that renames key `old` to `new`, keeping its value (returns a new dict).",
+    "funcName": "rename_key",
+    "params": [
+      "d",
+      "old",
+      "new"
+    ],
+    "starter": "def rename_key(d, old, new):\n    # TODO: implement\n    pass\n",
+    "tests": [
+      {
+        "args": [
+          {
+            "a": 1,
+            "b": 2
+          },
+          "a",
+          "x"
+        ],
+        "expected": {
+          "b": 2,
+          "x": 1
+        }
+      },
+      {
+        "args": [
+          {
+            "a": 1
+          },
+          "z",
+          "y"
+        ],
+        "expected": {
+          "a": 1
+        }
+      },
+      {
+        "args": [
+          {},
+          "a",
+          "b"
+        ],
+        "expected": {}
+      },
+      {
+        "args": [
+          {
+            "name": "Sam"
+          },
+          "name",
+          "full_name"
+        ],
+        "expected": {
+          "full_name": "Sam"
+        }
+      },
+      {
+        "args": [
+          {
+            "a": 1,
+            "b": 2
+          },
+          "b",
+          "c"
+        ],
+        "expected": {
+          "a": 1,
+          "c": 2
+        }
+      }
+    ]
+  },
+  {
+    "id": "d20",
+    "title": "Dictionary Difference",
+    "module": "Dictionary & Key-Value Logic",
+    "moduleSlug": "dicts",
+    "difficulty": "medium",
+    "prompt": "Write `dict_diff(a, b)` that returns a SORTED list of keys whose values differ between dict `a` and dict `b` (including keys missing from one side).",
+    "funcName": "dict_diff",
+    "params": [
+      "a",
+      "b"
+    ],
+    "starter": "def dict_diff(a, b):\n    # TODO: implement, return a sorted list\n    pass\n",
+    "tests": [
+      {
+        "args": [
+          {
+            "a": 1,
+            "b": 2
+          },
+          {
+            "a": 1,
+            "b": 3
+          }
+        ],
+        "expected": [
+          "b"
+        ]
+      },
+      {
+        "args": [
+          {
+            "a": 1
+          },
+          {
+            "a": 1
+          }
+        ],
+        "expected": []
+      },
+      {
+        "args": [
+          {
+            "a": 1
+          },
+          {
+            "b": 1
+          }
+        ],
+        "expected": [
+          "a",
+          "b"
+        ]
+      },
+      {
+        "args": [
+          {},
+          {
+            "a": 1
+          }
+        ],
+        "expected": [
+          "a"
+        ]
+      },
+      {
+        "args": [
+          {
+            "x": 1,
+            "y": 2
+          },
+          {
+            "x": 1,
+            "y": 2,
+            "z": 3
+          }
+        ],
+        "expected": [
+          "z"
+        ]
+      }
+    ]
+  },
+  {
+    "id": "p01",
+    "title": "Right Triangle Pattern",
+    "module": "Patterns, Matrices & Multi-Step Logic",
+    "moduleSlug": "patterns",
+    "difficulty": "easy",
+    "prompt": "Write `right_triangle(n)` that returns a list of `n` strings forming a right-angled triangle of `*` (row i has i stars).",
+    "funcName": "right_triangle",
+    "params": [
+      "n"
+    ],
+    "starter": "def right_triangle(n):\n    # TODO: implement, return a list of strings\n    pass\n",
+    "tests": [
+      {
+        "args": [
+          3
+        ],
+        "expected": [
+          "*",
+          "**",
+          "***"
+        ]
+      },
+      {
+        "args": [
+          1
+        ],
+        "expected": [
+          "*"
+        ]
+      },
+      {
+        "args": [
+          5
+        ],
+        "expected": [
+          "*",
+          "**",
+          "***",
+          "****",
+          "*****"
+        ]
+      },
+      {
+        "args": [
+          4
+        ],
+        "expected": [
+          "*",
+          "**",
+          "***",
+          "****"
+        ]
+      },
+      {
+        "args": [
+          2
+        ],
+        "expected": [
+          "*",
+          "**"
+        ]
+      }
+    ]
+  },
+  {
+    "id": "p02",
+    "title": "Pyramid Pattern",
+    "module": "Patterns, Matrices & Multi-Step Logic",
+    "moduleSlug": "patterns",
+    "difficulty": "medium",
+    "prompt": "Write `pyramid(n)` that returns a list of `n` strings forming a centered pyramid of `*` (use leading spaces to center).",
+    "funcName": "pyramid",
+    "params": [
+      "n"
+    ],
+    "starter": "def pyramid(n):\n    # TODO: implement, return a list of strings\n    pass\n",
+    "tests": [
+      {
+        "args": [
+          3
+        ],
+        "expected": [
+          "  *",
+          " ***",
+          "*****"
+        ]
+      },
+      {
+        "args": [
+          1
+        ],
+        "expected": [
+          "*"
+        ]
+      },
+      {
+        "args": [
+          4
+        ],
+        "expected": [
+          "   *",
+          "  ***",
+          " *****",
+          "*******"
+        ]
+      },
+      {
+        "args": [
+          5
+        ],
+        "expected": [
+          "    *",
+          "   ***",
+          "  *****",
+          " *******",
+          "*********"
+        ]
+      },
+      {
+        "args": [
+          2
+        ],
+        "expected": [
+          " *",
+          "***"
+        ]
+      }
+    ]
+  },
+  {
+    "id": "p03",
+    "title": "Inverted Triangle Pattern",
+    "module": "Patterns, Matrices & Multi-Step Logic",
+    "moduleSlug": "patterns",
+    "difficulty": "easy",
+    "prompt": "Write `inverted_triangle(n)` that returns a list of `n` strings forming an upside-down triangle of `*`.",
+    "funcName": "inverted_triangle",
+    "params": [
+      "n"
+    ],
+    "starter": "def inverted_triangle(n):\n    # TODO: implement, return a list of strings\n    pass\n",
+    "tests": [
+      {
+        "args": [
+          3
+        ],
+        "expected": [
+          "***",
+          "**",
+          "*"
+        ]
+      },
+      {
+        "args": [
+          1
+        ],
+        "expected": [
+          "*"
+        ]
+      },
+      {
+        "args": [
+          5
+        ],
+        "expected": [
+          "*****",
+          "****",
+          "***",
+          "**",
+          "*"
+        ]
+      },
+      {
+        "args": [
+          4
+        ],
+        "expected": [
+          "****",
+          "***",
+          "**",
+          "*"
+        ]
+      },
+      {
+        "args": [
+          2
+        ],
+        "expected": [
+          "**",
+          "*"
+        ]
+      }
+    ]
+  },
+  {
+    "id": "p04",
+    "title": "Diamond Pattern",
+    "module": "Patterns, Matrices & Multi-Step Logic",
+    "moduleSlug": "patterns",
+    "difficulty": "medium",
+    "prompt": "Write `diamond(n)` that returns a list of strings forming a symmetric diamond of `*` with `n` rows in the top half.",
+    "funcName": "diamond",
+    "params": [
+      "n"
+    ],
+    "starter": "def diamond(n):\n    # TODO: implement, return a list of strings\n    pass\n",
+    "tests": [
+      {
+        "args": [
+          3
+        ],
+        "expected": [
+          "  *",
+          " ***",
+          "*****",
+          " ***",
+          "  *"
+        ]
+      },
+      {
+        "args": [
+          1
+        ],
+        "expected": [
+          "*"
+        ]
+      },
+      {
+        "args": [
+          4
+        ],
+        "expected": [
+          "   *",
+          "  ***",
+          " *****",
+          "*******",
+          " *****",
+          "  ***",
+          "   *"
+        ]
+      },
+      {
+        "args": [
+          2
+        ],
+        "expected": [
+          " *",
+          "***",
+          " *"
+        ]
+      },
+      {
+        "args": [
+          5
+        ],
+        "expected": [
+          "    *",
+          "   ***",
+          "  *****",
+          " *******",
+          "*********",
+          " *******",
+          "  *****",
+          "   ***",
+          "    *"
+        ]
+      }
+    ]
+  },
+  {
+    "id": "p05",
+    "title": "Number Pyramid",
+    "module": "Patterns, Matrices & Multi-Step Logic",
+    "moduleSlug": "patterns",
+    "difficulty": "medium",
+    "prompt": "Write `number_pyramid(n)` that returns a list of `n` strings; row i contains numbers 1..i separated by single spaces.",
+    "funcName": "number_pyramid",
+    "params": [
+      "n"
+    ],
+    "starter": "def number_pyramid(n):\n    # TODO: implement, return a list of strings\n    pass\n",
+    "tests": [
+      {
+        "args": [
+          3
+        ],
+        "expected": [
+          "1",
+          "1 2",
+          "1 2 3"
+        ]
+      },
+      {
+        "args": [
+          1
+        ],
+        "expected": [
+          "1"
+        ]
+      },
+      {
+        "args": [
+          5
+        ],
+        "expected": [
+          "1",
+          "1 2",
+          "1 2 3",
+          "1 2 3 4",
+          "1 2 3 4 5"
+        ]
+      },
+      {
+        "args": [
+          4
+        ],
+        "expected": [
+          "1",
+          "1 2",
+          "1 2 3",
+          "1 2 3 4"
+        ]
+      },
+      {
+        "args": [
+          2
+        ],
+        "expected": [
+          "1",
+          "1 2"
+        ]
+      }
+    ]
+  },
+  {
+    "id": "p06",
+    "title": "Pascal's Triangle",
+    "module": "Patterns, Matrices & Multi-Step Logic",
+    "moduleSlug": "patterns",
+    "difficulty": "medium",
+    "prompt": "Write `pascals_triangle(n)` that returns a list of `n` lists, each being one row of Pascal's Triangle.",
+    "funcName": "pascals_triangle",
+    "params": [
+      "n"
+    ],
+    "starter": "def pascals_triangle(n):\n    # TODO: implement, return a list of lists\n    pass\n",
+    "tests": [
+      {
+        "args": [
+          5
+        ],
+        "expected": [
+          [
+            1
+          ],
+          [
+            1,
+            1
+          ],
+          [
+            1,
+            2,
+            1
+          ],
+          [
+            1,
+            3,
+            3,
+            1
+          ],
+          [
+            1,
+            4,
+            6,
+            4,
+            1
+          ]
+        ]
+      },
+      {
+        "args": [
+          1
+        ],
+        "expected": [
+          [
+            1
+          ]
+        ]
+      },
+      {
+        "args": [
+          3
+        ],
+        "expected": [
+          [
+            1
+          ],
+          [
+            1,
+            1
+          ],
+          [
+            1,
+            2,
+            1
+          ]
+        ]
+      },
+      {
+        "args": [
+          4
+        ],
+        "expected": [
+          [
+            1
+          ],
+          [
+            1,
+            1
+          ],
+          [
+            1,
+            2,
+            1
+          ],
+          [
+            1,
+            3,
+            3,
+            1
+          ]
+        ]
+      },
+      {
+        "args": [
+          6
+        ],
+        "expected": [
+          [
+            1
+          ],
+          [
+            1,
+            1
+          ],
+          [
+            1,
+            2,
+            1
+          ],
+          [
+            1,
+            3,
+            3,
+            1
+          ],
+          [
+            1,
+            4,
+            6,
+            4,
+            1
+          ],
+          [
+            1,
+            5,
+            10,
+            10,
+            5,
+            1
+          ]
+        ]
+      }
+    ]
+  },
+  {
+    "id": "p07",
+    "title": "Matrix Addition",
+    "module": "Patterns, Matrices & Multi-Step Logic",
+    "moduleSlug": "patterns",
+    "difficulty": "medium",
+    "prompt": "Write `matrix_add(a, b)` that returns the element-wise sum of two same-shaped 2D matrices.",
+    "funcName": "matrix_add",
+    "params": [
+      "a",
+      "b"
+    ],
+    "starter": "def matrix_add(a, b):\n    # TODO: implement\n    pass\n",
+    "tests": [
+      {
+        "args": [
+          [
+            [
+              1,
+              2
+            ],
+            [
+              3,
+              4
+            ]
+          ],
+          [
+            [
+              5,
+              6
+            ],
+            [
+              7,
+              8
+            ]
+          ]
+        ],
+        "expected": [
+          [
+            6,
+            8
+          ],
+          [
+            10,
+            12
+          ]
+        ]
+      },
+      {
+        "args": [
+          [
+            [
+              0
+            ]
+          ],
+          [
+            [
+              0
+            ]
+          ]
+        ],
+        "expected": [
+          [
+            0
+          ]
+        ]
+      },
+      {
+        "args": [
+          [
+            [
+              1,
+              1,
+              1
+            ]
+          ],
+          [
+            [
+              2,
+              2,
+              2
+            ]
+          ]
+        ],
+        "expected": [
+          [
+            3,
+            3,
+            3
+          ]
+        ]
+      },
+      {
+        "args": [
+          [
+            [
+              1,
+              2
+            ],
+            [
+              3,
+              4
+            ]
+          ],
+          [
+            [
+              0,
+              0
+            ],
+            [
+              0,
+              0
+            ]
+          ]
+        ],
+        "expected": [
+          [
+            1,
+            2
+          ],
+          [
+            3,
+            4
+          ]
+        ]
+      },
+      {
+        "args": [
+          [
+            [
+              1
+            ]
+          ],
+          [
+            [
+              9
+            ]
+          ]
+        ],
+        "expected": [
+          [
+            10
+          ]
+        ]
+      }
+    ]
+  },
+  {
+    "id": "p08",
+    "title": "Matrix Transpose",
+    "module": "Patterns, Matrices & Multi-Step Logic",
+    "moduleSlug": "patterns",
+    "difficulty": "medium",
+    "prompt": "Write `transpose(matrix)` that swaps rows and columns of a 2D matrix.",
+    "funcName": "transpose",
+    "params": [
+      "matrix"
+    ],
+    "starter": "def transpose(matrix):\n    # TODO: implement\n    pass\n",
+    "tests": [
+      {
+        "args": [
+          [
+            [
+              1,
+              2,
+              3
+            ],
+            [
+              4,
+              5,
+              6
+            ]
+          ]
+        ],
+        "expected": [
+          [
+            1,
+            4
+          ],
+          [
+            2,
+            5
+          ],
+          [
+            3,
+            6
+          ]
+        ]
+      },
+      {
+        "args": [
+          [
+            [
+              1
+            ]
+          ]
+        ],
+        "expected": [
+          [
+            1
+          ]
+        ]
+      },
+      {
+        "args": [
+          [
+            [
+              1,
+              2
+            ],
+            [
+              3,
+              4
+            ]
+          ]
+        ],
+        "expected": [
+          [
+            1,
+            3
+          ],
+          [
+            2,
+            4
+          ]
+        ]
+      },
+      {
+        "args": [
+          [
+            [
+              1,
+              2,
+              3
+            ]
+          ]
+        ],
+        "expected": [
+          [
+            1
+          ],
+          [
+            2
+          ],
+          [
+            3
+          ]
+        ]
+      },
+      {
+        "args": [
+          [
+            [
+              1
+            ],
+            [
+              2
+            ],
+            [
+              3
+            ]
+          ]
+        ],
+        "expected": [
+          [
+            1,
+            2,
+            3
+          ]
+        ]
+      }
+    ]
+  },
+  {
+    "id": "p09",
+    "title": "Identity Matrix Checker",
+    "module": "Patterns, Matrices & Multi-Step Logic",
+    "moduleSlug": "patterns",
+    "difficulty": "medium",
+    "prompt": "Write `is_identity(matrix)` that returns True if the square matrix is an identity matrix (1s on diagonal, 0s elsewhere).",
+    "funcName": "is_identity",
+    "params": [
+      "matrix"
+    ],
+    "starter": "def is_identity(matrix):\n    # TODO: implement\n    pass\n",
+    "tests": [
+      {
+        "args": [
+          [
+            [
+              1,
+              0
+            ],
+            [
+              0,
+              1
+            ]
+          ]
+        ],
+        "expected": true
+      },
+      {
+        "args": [
+          [
+            [
+              1,
+              0
+            ],
+            [
+              1,
+              1
+            ]
+          ]
+        ],
+        "expected": false
+      },
+      {
+        "args": [
+          [
+            [
+              1
+            ]
+          ]
+        ],
+        "expected": true
+      },
+      {
+        "args": [
+          [
+            [
+              1,
+              0,
+              0
+            ],
+            [
+              0,
+              1,
+              0
+            ],
+            [
+              0,
+              0,
+              1
+            ]
+          ]
+        ],
+        "expected": true
+      },
+      {
+        "args": [
+          [
+            [
+              0,
+              1
+            ],
+            [
+              1,
+              0
+            ]
+          ]
+        ],
+        "expected": false
+      }
+    ]
+  },
+  {
+    "id": "p10",
+    "title": "Symmetric Matrix Checker",
+    "module": "Patterns, Matrices & Multi-Step Logic",
+    "moduleSlug": "patterns",
+    "difficulty": "medium",
+    "prompt": "Write `is_symmetric(matrix)` that returns True if the square matrix equals its own transpose.",
+    "funcName": "is_symmetric",
+    "params": [
+      "matrix"
+    ],
+    "starter": "def is_symmetric(matrix):\n    # TODO: implement\n    pass\n",
+    "tests": [
+      {
+        "args": [
+          [
+            [
+              1,
+              2
+            ],
+            [
+              2,
+              1
+            ]
+          ]
+        ],
+        "expected": true
+      },
+      {
+        "args": [
+          [
+            [
+              1,
+              2
+            ],
+            [
+              3,
+              1
+            ]
+          ]
+        ],
+        "expected": false
+      },
+      {
+        "args": [
+          [
+            [
+              1
+            ]
+          ]
+        ],
+        "expected": true
+      },
+      {
+        "args": [
+          [
+            [
+              1,
+              2,
+              3
+            ],
+            [
+              2,
+              4,
+              5
+            ],
+            [
+              3,
+              5,
+              6
+            ]
+          ]
+        ],
+        "expected": true
+      },
+      {
+        "args": [
+          [
+            [
+              0,
+              1
+            ],
+            [
+              0,
+              0
+            ]
+          ]
+        ],
+        "expected": false
+      }
+    ]
+  },
+  {
+    "id": "p11",
+    "title": "Flatten & Sort Matrix",
+    "module": "Patterns, Matrices & Multi-Step Logic",
+    "moduleSlug": "patterns",
+    "difficulty": "easy",
+    "prompt": "Write `flatten_and_sort(matrix)` that unrolls a 2D list into 1D and returns it sorted ascending.",
+    "funcName": "flatten_and_sort",
+    "params": [
+      "matrix"
+    ],
+    "starter": "def flatten_and_sort(matrix):\n    # TODO: implement\n    pass\n",
+    "tests": [
+      {
+        "args": [
+          [
+            [
+              3,
+              1
+            ],
+            [
+              4,
+              2
+            ]
+          ]
+        ],
+        "expected": [
+          1,
+          2,
+          3,
+          4
+        ]
+      },
+      {
+        "args": [
+          [
+            [
+              5
+            ]
+          ]
+        ],
+        "expected": [
+          5
+        ]
+      },
+      {
+        "args": [
+          [
+            [
+              9,
+              8,
+              7
+            ]
+          ]
+        ],
+        "expected": [
+          7,
+          8,
+          9
+        ]
+      },
+      {
+        "args": [
+          [
+            [
+              1,
+              2
+            ],
+            [
+              3,
+              4
+            ]
+          ]
+        ],
+        "expected": [
+          1,
+          2,
+          3,
+          4
+        ]
+      },
+      {
+        "args": [
+          [
+            [
+              2,
+              2
+            ],
+            [
+              1,
+              1
+            ]
+          ]
+        ],
+        "expected": [
+          1,
+          1,
+          2,
+          2
+        ]
+      }
+    ]
+  },
+  {
+    "id": "p12",
+    "title": "Spiral Matrix Order",
+    "module": "Patterns, Matrices & Multi-Step Logic",
+    "moduleSlug": "patterns",
+    "difficulty": "hard",
+    "prompt": "Write `spiral_order(matrix)` that returns the elements of a 2D matrix visited in clockwise spiral order, as a flat list.",
+    "funcName": "spiral_order",
+    "params": [
+      "matrix"
+    ],
+    "starter": "def spiral_order(matrix):\n    # TODO: implement, return a flat list\n    pass\n",
+    "tests": [
+      {
+        "args": [
+          [
+            [
+              1,
+              2,
+              3
+            ],
+            [
+              4,
+              5,
+              6
+            ],
+            [
+              7,
+              8,
+              9
+            ]
+          ]
+        ],
+        "expected": [
+          1,
+          2,
+          3,
+          6,
+          9,
+          8,
+          7,
+          4,
+          5
+        ]
+      },
+      {
+        "args": [
+          [
+            [
+              1
+            ]
+          ]
+        ],
+        "expected": [
+          1
+        ]
+      },
+      {
+        "args": [
+          [
+            [
+              1,
+              2
+            ],
+            [
+              3,
+              4
+            ]
+          ]
+        ],
+        "expected": [
+          1,
+          2,
+          4,
+          3
+        ]
+      },
+      {
+        "args": [
+          [
+            [
+              1,
+              2,
+              3,
+              4
+            ]
+          ]
+        ],
+        "expected": [
+          1,
+          2,
+          3,
+          4
+        ]
+      },
+      {
+        "args": [
+          [
+            [
+              1
+            ],
+            [
+              2
+            ],
+            [
+              3
+            ]
+          ]
+        ],
+        "expected": [
+          1,
+          2,
+          3
+        ]
+      }
+    ]
+  },
+  {
+    "id": "p13",
+    "title": "Diagonal Sum",
+    "module": "Patterns, Matrices & Multi-Step Logic",
+    "moduleSlug": "patterns",
+    "difficulty": "easy",
+    "prompt": "Write `diagonal_sum(matrix)` that returns the sum of the main diagonal elements of a square matrix.",
+    "funcName": "diagonal_sum",
+    "params": [
+      "matrix"
+    ],
+    "starter": "def diagonal_sum(matrix):\n    # TODO: implement\n    pass\n",
+    "tests": [
+      {
+        "args": [
+          [
+            [
+              1,
+              2
+            ],
+            [
+              3,
+              4
+            ]
+          ]
+        ],
+        "expected": 5
+      },
+      {
+        "args": [
+          [
+            [
+              5
+            ]
+          ]
+        ],
+        "expected": 5
+      },
+      {
+        "args": [
+          [
+            [
+              1,
+              0,
+              0
+            ],
+            [
+              0,
+              1,
+              0
+            ],
+            [
+              0,
+              0,
+              1
+            ]
+          ]
+        ],
+        "expected": 3
+      },
+      {
+        "args": [
+          [
+            [
+              1,
+              2,
+              3
+            ],
+            [
+              4,
+              5,
+              6
+            ],
+            [
+              7,
+              8,
+              9
+            ]
+          ]
+        ],
+        "expected": 15
+      },
+      {
+        "args": [
+          [
+            [
+              0,
+              0
+            ],
+            [
+              0,
+              0
+            ]
+          ]
+        ],
+        "expected": 0
+      }
+    ]
+  },
+  {
+    "id": "p14",
+    "title": "Tic-Tac-Toe Win Check",
+    "module": "Patterns, Matrices & Multi-Step Logic",
+    "moduleSlug": "patterns",
+    "difficulty": "hard",
+    "prompt": "Write `check_winner(board)` for a 3x3 list of lists using `'X'`, `'O'`, or `''` for empty. Return `'X'` or `'O'` if that player has a winning row/column/diagonal, otherwise `None`.",
+    "funcName": "check_winner",
+    "params": [
+      "board"
+    ],
+    "starter": "def check_winner(board):\n    # TODO: implement\n    pass\n",
+    "tests": [
+      {
+        "args": [
+          [
+            [
+              "X",
+              "X",
+              "X"
+            ],
+            [
+              "",
+              "O",
+              "O"
+            ],
+            [
+              "",
+              "",
+              "O"
+            ]
+          ]
+        ],
+        "expected": "X"
+      },
+      {
+        "args": [
+          [
+            [
+              "X",
+              "O",
+              ""
+            ],
+            [
+              "X",
+              "O",
+              ""
+            ],
+            [
+              "X",
+              "",
+              "O"
+            ]
+          ]
+        ],
+        "expected": "X"
+      },
+      {
+        "args": [
+          [
+            [
+              "X",
+              "O",
+              "X"
+            ],
+            [
+              "O",
+              "X",
+              "O"
+            ],
+            [
+              "O",
+              "X",
+              "O"
+            ]
+          ]
+        ],
+        "expected": null
+      },
+      {
+        "args": [
+          [
+            [
+              "X",
+              "O",
+              "O"
+            ],
+            [
+              "O",
+              "X",
+              "O"
+            ],
+            [
+              "O",
+              "O",
+              "X"
+            ]
+          ]
+        ],
+        "expected": "X"
+      },
+      {
+        "args": [
+          [
+            [
+              "",
+              "",
+              ""
+            ],
+            [
+              "",
+              "",
+              ""
+            ],
+            [
+              "",
+              "",
+              ""
+            ]
+          ]
+        ],
+        "expected": null
+      }
+    ]
+  },
+  {
+    "id": "p15",
+    "title": "Valid Sudoku Sub-Grid",
+    "module": "Patterns, Matrices & Multi-Step Logic",
+    "moduleSlug": "patterns",
+    "difficulty": "medium",
+    "prompt": "Write `valid_subgrid(grid)` that checks if a 3x3 grid of ints contains each digit 1-9 exactly once.",
+    "funcName": "valid_subgrid",
+    "params": [
+      "grid"
+    ],
+    "starter": "def valid_subgrid(grid):\n    # TODO: implement\n    pass\n",
+    "tests": [
+      {
+        "args": [
+          [
+            [
+              1,
+              2,
+              3
+            ],
+            [
+              4,
+              5,
+              6
+            ],
+            [
+              7,
+              8,
+              9
+            ]
+          ]
+        ],
+        "expected": true
+      },
+      {
+        "args": [
+          [
+            [
+              1,
+              1,
+              3
+            ],
+            [
+              4,
+              5,
+              6
+            ],
+            [
+              7,
+              8,
+              9
+            ]
+          ]
+        ],
+        "expected": false
+      },
+      {
+        "args": [
+          [
+            [
+              9,
+              8,
+              7
+            ],
+            [
+              6,
+              5,
+              4
+            ],
+            [
+              3,
+              2,
+              1
+            ]
+          ]
+        ],
+        "expected": true
+      },
+      {
+        "args": [
+          [
+            [
+              1,
+              2,
+              3
+            ],
+            [
+              4,
+              5,
+              6
+            ],
+            [
+              7,
+              8,
+              10
+            ]
+          ]
+        ],
+        "expected": false
+      },
+      {
+        "args": [
+          [
+            [
+              5,
+              3,
+              4
+            ],
+            [
+              6,
+              7,
+              2
+            ],
+            [
+              1,
+              9,
+              8
+            ]
+          ]
+        ],
+        "expected": true
+      }
+    ]
+  },
+  {
+    "id": "p16",
+    "title": "Run-Length Encoding (RLE)",
+    "module": "Patterns, Matrices & Multi-Step Logic",
+    "moduleSlug": "patterns",
+    "difficulty": "medium",
+    "prompt": "Write `run_length_encode(s)` that encodes repeating runs as `count+char` pairs, e.g. `'aaabb'` -> `'3a2b'`.",
+    "funcName": "run_length_encode",
+    "params": [
+      "s"
+    ],
+    "starter": "def run_length_encode(s):\n    # TODO: implement\n    pass\n",
+    "tests": [
+      {
+        "args": [
+          "aaabb"
+        ],
+        "expected": "3a2b"
+      },
+      {
+        "args": [
+          "abc"
+        ],
+        "expected": "1a1b1c"
+      },
+      {
+        "args": [
+          ""
+        ],
+        "expected": ""
+      },
+      {
+        "args": [
+          "aaaa"
+        ],
+        "expected": "4a"
+      },
+      {
+        "args": [
+          "aabbbcccc"
+        ],
+        "expected": "2a3b4c"
+      }
+    ]
+  },
+  {
+    "id": "p17",
+    "title": "Run-Length Decoding",
+    "module": "Patterns, Matrices & Multi-Step Logic",
+    "moduleSlug": "patterns",
+    "difficulty": "medium",
+    "prompt": "Write `run_length_decode(s)` that expands a run-length string like `'3a2b'` back into `'aaabb'`.",
+    "funcName": "run_length_decode",
+    "params": [
+      "s"
+    ],
+    "starter": "def run_length_decode(s):\n    # TODO: implement\n    pass\n",
+    "tests": [
+      {
+        "args": [
+          "3a2b"
+        ],
+        "expected": "aaabb"
+      },
+      {
+        "args": [
+          "1a1b1c"
+        ],
+        "expected": "abc"
+      },
+      {
+        "args": [
+          ""
+        ],
+        "expected": ""
+      },
+      {
+        "args": [
+          "4a"
+        ],
+        "expected": "aaaa"
+      },
+      {
+        "args": [
+          "2a3b4c"
+        ],
+        "expected": "aabbbcccc"
+      }
+    ]
+  },
+  {
+    "id": "p18",
+    "title": "Roman to Integer",
+    "module": "Patterns, Matrices & Multi-Step Logic",
+    "moduleSlug": "patterns",
+    "difficulty": "medium",
+    "prompt": "Write `roman_to_int(s)` that converts a Roman numeral string into an integer.",
+    "funcName": "roman_to_int",
+    "params": [
+      "s"
+    ],
+    "starter": "def roman_to_int(s):\n    # TODO: implement\n    pass\n",
+    "tests": [
+      {
+        "args": [
+          "III"
+        ],
+        "expected": 3
+      },
+      {
+        "args": [
+          "IX"
+        ],
+        "expected": 9
+      },
+      {
+        "args": [
+          "LVIII"
+        ],
+        "expected": 58
+      },
+      {
+        "args": [
+          "MCMXCIV"
+        ],
+        "expected": 1994
+      },
+      {
+        "args": [
+          "IV"
+        ],
+        "expected": 4
+      }
+    ]
+  },
+  {
+    "id": "p19",
+    "title": "Integer to Roman",
+    "module": "Patterns, Matrices & Multi-Step Logic",
+    "moduleSlug": "patterns",
+    "difficulty": "medium",
+    "prompt": "Write `int_to_roman(n)` that converts an integer (1-3999) into its Roman numeral string.",
+    "funcName": "int_to_roman",
+    "params": [
+      "n"
+    ],
+    "starter": "def int_to_roman(n):\n    # TODO: implement\n    pass\n",
+    "tests": [
+      {
+        "args": [
+          3
+        ],
+        "expected": "III"
+      },
+      {
+        "args": [
+          9
+        ],
+        "expected": "IX"
+      },
+      {
+        "args": [
+          58
+        ],
+        "expected": "LVIII"
+      },
+      {
+        "args": [
+          1994
+        ],
+        "expected": "MCMXCIV"
+      },
+      {
+        "args": [
+          4
+        ],
+        "expected": "IV"
+      }
+    ]
+  },
+  {
+    "id": "p20",
+    "title": "Balanced Parentheses",
+    "module": "Patterns, Matrices & Multi-Step Logic",
+    "moduleSlug": "patterns",
+    "difficulty": "medium",
+    "prompt": "Write `is_balanced(s)` that checks if all brackets `()`, `{}`, `[]` in `s` are correctly matched and nested.",
+    "funcName": "is_balanced",
+    "params": [
+      "s"
+    ],
+    "starter": "def is_balanced(s):\n    # TODO: implement\n    pass\n",
+    "tests": [
+      {
+        "args": [
+          "()"
+        ],
+        "expected": true
+      },
+      {
+        "args": [
+          "([{}])"
+        ],
+        "expected": true
+      },
+      {
+        "args": [
+          "(]"
+        ],
+        "expected": false
+      },
+      {
+        "args": [
+          "([)]"
+        ],
+        "expected": false
+      },
+      {
+        "args": [
+          ""
+        ],
+        "expected": true
+      }
+    ]
+  },
+  {
+    "id": "b01",
+    "title": "Recursive Factorial",
+    "module": "Bonus: Recursion & Algorithms",
+    "moduleSlug": "bonus",
+    "difficulty": "medium",
+    "prompt": "Write `factorial_recursive(n)` that computes n! using RECURSION (the function calling itself).",
+    "funcName": "factorial_recursive",
+    "params": [
+      "n"
+    ],
+    "starter": "def factorial_recursive(n):\n    # TODO: implement recursively\n    pass\n",
+    "tests": [
+      {
+        "args": [
+          5
+        ],
+        "expected": 120
+      },
+      {
+        "args": [
+          0
+        ],
+        "expected": 1
+      },
+      {
+        "args": [
+          1
+        ],
+        "expected": 1
+      },
+      {
+        "args": [
+          6
+        ],
+        "expected": 720
+      },
+      {
+        "args": [
+          10
+        ],
+        "expected": 3628800
+      }
+    ]
+  },
+  {
+    "id": "b02",
+    "title": "Recursive Fibonacci",
+    "module": "Bonus: Recursion & Algorithms",
+    "moduleSlug": "bonus",
+    "difficulty": "medium",
+    "prompt": "Write `fib_recursive(n)` that returns the n-th Fibonacci number (0-indexed: fib(0)=0, fib(1)=1) using RECURSION.",
+    "funcName": "fib_recursive",
+    "params": [
+      "n"
+    ],
+    "starter": "def fib_recursive(n):\n    # TODO: implement recursively\n    pass\n",
+    "tests": [
+      {
+        "args": [
+          0
+        ],
+        "expected": 0
+      },
+      {
+        "args": [
+          1
+        ],
+        "expected": 1
+      },
+      {
+        "args": [
+          6
+        ],
+        "expected": 8
+      },
+      {
+        "args": [
+          10
+        ],
+        "expected": 55
+      },
+      {
+        "args": [
+          2
+        ],
+        "expected": 1
+      }
+    ]
+  },
+  {
+    "id": "b03",
+    "title": "Recursive List Sum",
+    "module": "Bonus: Recursion & Algorithms",
+    "moduleSlug": "bonus",
+    "difficulty": "medium",
+    "prompt": "Write `sum_list_recursive(arr)` that returns the sum of all numbers in `arr` using RECURSION, not a loop or `sum()`.",
+    "funcName": "sum_list_recursive",
+    "params": [
+      "arr"
+    ],
+    "starter": "def sum_list_recursive(arr):\n    # TODO: implement recursively\n    pass\n",
+    "tests": [
+      {
+        "args": [
+          [
+            1,
+            2,
+            3,
+            4
+          ]
+        ],
+        "expected": 10
+      },
+      {
+        "args": [
+          []
+        ],
+        "expected": 0
+      },
+      {
+        "args": [
+          [
+            5
+          ]
+        ],
+        "expected": 5
+      },
+      {
+        "args": [
+          [
+            10,
+            -2,
+            3
+          ]
+        ],
+        "expected": 11
+      },
+      {
+        "args": [
+          [
+            1,
+            1,
+            1,
+            1,
+            1
+          ]
+        ],
+        "expected": 5
+      }
+    ]
+  },
+  {
+    "id": "b04",
+    "title": "Recursive Power",
+    "module": "Bonus: Recursion & Algorithms",
+    "moduleSlug": "bonus",
+    "difficulty": "medium",
+    "prompt": "Write `power_recursive(a, b)` that computes a^b (b >= 0) using RECURSION, without `**` or `pow()`.",
+    "funcName": "power_recursive",
+    "params": [
+      "a",
+      "b"
+    ],
+    "starter": "def power_recursive(a, b):\n    # TODO: implement recursively\n    pass\n",
+    "tests": [
+      {
+        "args": [
+          2,
+          5
+        ],
+        "expected": 32
+      },
+      {
+        "args": [
+          3,
+          0
+        ],
+        "expected": 1
+      },
+      {
+        "args": [
+          5,
+          2
+        ],
+        "expected": 25
+      },
+      {
+        "args": [
+          2,
+          10
+        ],
+        "expected": 1024
+      },
+      {
+        "args": [
+          7,
+          1
+        ],
+        "expected": 7
+      }
+    ]
+  },
+  {
+    "id": "b05",
+    "title": "Recursive Sorted Check",
+    "module": "Bonus: Recursion & Algorithms",
+    "moduleSlug": "bonus",
+    "difficulty": "medium",
+    "prompt": "Write `is_sorted_recursive(arr)` that checks if `arr` is sorted ascending (non-strict), using RECURSION.",
+    "funcName": "is_sorted_recursive",
+    "params": [
+      "arr"
+    ],
+    "starter": "def is_sorted_recursive(arr):\n    # TODO: implement recursively\n    pass\n",
+    "tests": [
+      {
+        "args": [
+          [
+            1,
+            2,
+            3
+          ]
+        ],
+        "expected": true
+      },
+      {
+        "args": [
+          [
+            3,
+            2,
+            1
+          ]
+        ],
+        "expected": false
+      },
+      {
+        "args": [
+          []
+        ],
+        "expected": true
+      },
+      {
+        "args": [
+          [
+            1
+          ]
+        ],
+        "expected": true
+      },
+      {
+        "args": [
+          [
+            1,
+            1,
+            2,
+            2
+          ]
+        ],
+        "expected": true
+      }
+    ]
+  },
+  {
+    "id": "b06",
+    "title": "Tower of Hanoi Move Count",
+    "module": "Bonus: Recursion & Algorithms",
+    "moduleSlug": "bonus",
+    "difficulty": "easy",
+    "prompt": "Write `hanoi_moves(n)` that returns the minimum number of moves needed to solve Tower of Hanoi with `n` disks.",
+    "funcName": "hanoi_moves",
+    "params": [
+      "n"
+    ],
+    "starter": "def hanoi_moves(n):\n    # TODO: implement\n    pass\n",
+    "tests": [
+      {
+        "args": [
+          1
+        ],
+        "expected": 1
+      },
+      {
+        "args": [
+          2
+        ],
+        "expected": 3
+      },
+      {
+        "args": [
+          3
+        ],
+        "expected": 7
+      },
+      {
+        "args": [
+          4
+        ],
+        "expected": 15
+      },
+      {
+        "args": [
+          10
+        ],
+        "expected": 1023
+      }
+    ]
+  },
+  {
+    "id": "b07",
+    "title": "Bubble Sort",
+    "module": "Bonus: Recursion & Algorithms",
+    "moduleSlug": "bonus",
+    "difficulty": "medium",
+    "prompt": "Write `bubble_sort(arr)` that sorts a list ascending using the bubble sort algorithm, WITHOUT using `sorted()` or `.sort()`.",
+    "funcName": "bubble_sort",
+    "params": [
+      "arr"
+    ],
+    "starter": "def bubble_sort(arr):\n    # TODO: implement bubble sort\n    pass\n",
+    "tests": [
+      {
+        "args": [
+          [
+            5,
+            2,
+            4,
+            1,
+            3
+          ]
+        ],
+        "expected": [
+          1,
+          2,
+          3,
+          4,
+          5
+        ]
+      },
+      {
+        "args": [
+          [
+            1
+          ]
+        ],
+        "expected": [
+          1
+        ]
+      },
+      {
+        "args": [
+          []
+        ],
+        "expected": []
+      },
+      {
+        "args": [
+          [
+            3,
+            3,
+            2,
+            1
+          ]
+        ],
+        "expected": [
+          1,
+          2,
+          3,
+          3
+        ]
+      },
+      {
+        "args": [
+          [
+            9,
+            8,
+            7,
+            6,
+            5
+          ]
+        ],
+        "expected": [
+          5,
+          6,
+          7,
+          8,
+          9
+        ]
+      }
+    ]
+  },
+  {
+    "id": "b08",
+    "title": "Selection Sort",
+    "module": "Bonus: Recursion & Algorithms",
+    "moduleSlug": "bonus",
+    "difficulty": "medium",
+    "prompt": "Write `selection_sort(arr)` that sorts a list ascending using the selection sort algorithm, WITHOUT `sorted()` or `.sort()`.",
+    "funcName": "selection_sort",
+    "params": [
+      "arr"
+    ],
+    "starter": "def selection_sort(arr):\n    # TODO: implement selection sort\n    pass\n",
+    "tests": [
+      {
+        "args": [
+          [
+            5,
+            2,
+            4,
+            1,
+            3
+          ]
+        ],
+        "expected": [
+          1,
+          2,
+          3,
+          4,
+          5
+        ]
+      },
+      {
+        "args": [
+          [
+            1
+          ]
+        ],
+        "expected": [
+          1
+        ]
+      },
+      {
+        "args": [
+          []
+        ],
+        "expected": []
+      },
+      {
+        "args": [
+          [
+            3,
+            3,
+            2,
+            1
+          ]
+        ],
+        "expected": [
+          1,
+          2,
+          3,
+          3
+        ]
+      },
+      {
+        "args": [
+          [
+            9,
+            8,
+            7,
+            6,
+            5
+          ]
+        ],
+        "expected": [
+          5,
+          6,
+          7,
+          8,
+          9
+        ]
+      }
+    ]
+  },
+  {
+    "id": "b09",
+    "title": "Recursive Count Occurrences",
+    "module": "Bonus: Recursion & Algorithms",
+    "moduleSlug": "bonus",
+    "difficulty": "medium",
+    "prompt": "Write `count_occurrences_recursive(arr, target)` that counts how many times `target` appears in `arr`, using RECURSION.",
+    "funcName": "count_occurrences_recursive",
+    "params": [
+      "arr",
+      "target"
+    ],
+    "starter": "def count_occurrences_recursive(arr, target):\n    # TODO: implement recursively\n    pass\n",
+    "tests": [
+      {
+        "args": [
+          [
+            1,
+            2,
+            1,
+            3,
+            1
+          ],
+          1
+        ],
+        "expected": 3
+      },
+      {
+        "args": [
+          [
+            1,
+            2,
+            3
+          ],
+          5
+        ],
+        "expected": 0
+      },
+      {
+        "args": [
+          [],
+          1
+        ],
+        "expected": 0
+      },
+      {
+        "args": [
+          [
+            "a",
+            "b",
+            "a"
+          ],
+          "a"
+        ],
+        "expected": 2
+      },
+      {
+        "args": [
+          [
+            4,
+            4,
+            4,
+            4
+          ],
+          4
+        ],
+        "expected": 4
+      }
+    ]
+  },
+  {
+    "id": "b10",
+    "title": "Recursive GCD",
+    "module": "Bonus: Recursion & Algorithms",
+    "moduleSlug": "bonus",
+    "difficulty": "medium",
+    "prompt": "Write `gcd_recursive(a, b)` that computes the GCD of two positive integers using RECURSION (Euclid's algorithm).",
+    "funcName": "gcd_recursive",
+    "params": [
+      "a",
+      "b"
+    ],
+    "starter": "def gcd_recursive(a, b):\n    # TODO: implement recursively\n    pass\n",
+    "tests": [
+      {
+        "args": [
+          12,
+          18
+        ],
+        "expected": 6
+      },
+      {
+        "args": [
+          17,
+          5
+        ],
+        "expected": 1
+      },
+      {
+        "args": [
+          100,
+          75
+        ],
+        "expected": 25
+      },
+      {
+        "args": [
+          7,
+          7
+        ],
+        "expected": 7
+      },
+      {
+        "args": [
+          48,
+          18
+        ],
+        "expected": 6
+      }
+    ]
+  }
+]

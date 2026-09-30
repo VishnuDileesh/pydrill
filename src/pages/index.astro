@@ -1,0 +1,133 @@
+---
+import Base from "../layouts/Base.astro";
+import { challenges, modules } from "../lib/challenges";
+
+const total = challenges.length;
+const moduleIds = modules.map((m) => ({
+  slug: m.slug,
+  ids: challenges.filter((c) => c.moduleSlug === m.slug).map((c) => c.id),
+}));
+---
+<Base title="Challenges">
+  <section class="hero">
+    <h1>Learn Python by <em>doing</em>, not reading.</h1>
+    <p class="lede">
+      110 bite-sized challenges. Write real code, run it instantly in your browser,
+      and build fundamentals one small win at a time. No installs, no signups — just play around until it clicks.
+    </p>
+    <div class="hero-actions">
+      <button id="random-btn" class="btn btn-primary">🎲 Surprise me</button>
+      <a class="btn" href="#modules">Browse by topic</a>
+      <a class="btn" href="/playground">Open playground</a>
+    </div>
+  </section>
+
+  <section class="progress-card card" id="progress-card">
+    <div class="progress-head">
+      <strong id="progress-label">0 / {total} solved</strong>
+      <span class="text-dim" id="progress-pct">0%</span>
+    </div>
+    <div class="progress-track">
+      <div class="progress-fill" id="progress-fill"></div>
+    </div>
+  </section>
+
+  <h2 id="modules" class="section-title">Modules</h2>
+  <div class="module-grid">
+    {modules.map((m) => (
+      <a class="module-card card" href={`/modules/${m.slug}`} data-module={m.slug}>
+        <div class="module-top">
+          <h3>{m.name}</h3>
+          <span class="module-count" data-count>0/{m.count}</span>
+        </div>
+        <p class="text-dim">{m.blurb}</p>
+        <div class="mini-track"><div class="mini-fill" data-fill></div></div>
+      </a>
+    ))}
+  </div>
+</Base>
+
+<script define:vars={{ moduleIds, allIds: challenges.map((c) => c.id) }}>
+  function getCompleted() {
+    try {
+      const raw = localStorage.getItem("pydrill:completed");
+      return new Set(raw ? JSON.parse(raw) : []);
+    } catch {
+      return new Set();
+    }
+  }
+
+  const completed = getCompleted();
+  const total = allIds.length;
+  const done = allIds.filter((id) => completed.has(id)).length;
+  const pct = total ? Math.round((done / total) * 100) : 0;
+
+  document.getElementById("progress-label").textContent = `${done} / ${total} solved`;
+  document.getElementById("progress-pct").textContent = `${pct}%`;
+  document.getElementById("progress-fill").style.width = pct + "%";
+
+  for (const m of moduleIds) {
+    const card = document.querySelector(`[data-module="${m.slug}"]`);
+    if (!card) continue;
+    const doneHere = m.ids.filter((id) => completed.has(id)).length;
+    card.querySelector("[data-count]").textContent = `${doneHere}/${m.ids.length}`;
+    const pctHere = m.ids.length ? (doneHere / m.ids.length) * 100 : 0;
+    card.querySelector("[data-fill]").style.width = pctHere + "%";
+  }
+
+  document.getElementById("random-btn").addEventListener("click", () => {
+    const remaining = allIds.filter((id) => !completed.has(id));
+    const pool = remaining.length ? remaining : allIds;
+    const pick = pool[Math.floor(Math.random() * pool.length)];
+    window.location.href = `/challenge/${pick}`;
+  });
+</script>
+
+<style>
+  .hero { padding: 24px 0 8px; }
+  .hero h1 {
+    font-size: clamp(1.6rem, 5vw, 2.4rem);
+    line-height: 1.15;
+    letter-spacing: -0.02em;
+    margin: 0 0 12px;
+  }
+  .hero em { color: var(--accent); font-style: normal; }
+  .lede { color: var(--text-dim); font-size: 1rem; max-width: 60ch; margin: 0 0 20px; }
+  .hero-actions { display: flex; flex-wrap: wrap; gap: 10px; margin-bottom: 8px; }
+
+  .progress-card { margin: 20px 0 32px; }
+  .progress-head { display: flex; justify-content: space-between; align-items: baseline; margin-bottom: 10px; }
+  .text-dim { color: var(--text-dim); }
+  .progress-track, .mini-track {
+    height: 8px;
+    border-radius: 999px;
+    background: var(--code-bg);
+    overflow: hidden;
+  }
+  .progress-fill, .mini-fill {
+    height: 100%;
+    width: 0%;
+    background: var(--accent);
+    transition: width 0.3s ease;
+  }
+
+  .section-title { font-size: 1.1rem; margin: 8px 0 12px; }
+  .module-grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 12px;
+  }
+  @media (min-width: 640px) {
+    .module-grid { grid-template-columns: 1fr 1fr; }
+  }
+  .module-card {
+    text-decoration: none;
+    color: var(--text);
+    display: block;
+  }
+  .module-top { display: flex; justify-content: space-between; align-items: baseline; gap: 8px; margin-bottom: 6px; }
+  .module-card h3 { margin: 0; font-size: 1.02rem; }
+  .module-count { font-size: 0.82rem; color: var(--text-dim); white-space: nowrap; }
+  .module-card p { margin: 0 0 12px; font-size: 0.88rem; }
+  .mini-track { height: 6px; }
+</style>

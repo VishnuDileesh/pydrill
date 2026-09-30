@@ -1,0 +1,71 @@
+---
+import Base from "../../layouts/Base.astro";
+import { modules, getModuleChallenges } from "../../lib/challenges";
+
+export function getStaticPaths() {
+  return modules.map((m) => ({ params: { slug: m.slug } }));
+}
+
+const { slug } = Astro.params;
+const mod = modules.find((m) => m.slug === slug)!;
+const items = getModuleChallenges(slug!);
+---
+<Base title={mod.name}>
+  <a class="back" href="/">← All modules</a>
+  <h1>{mod.name}</h1>
+  <p class="text-dim">{mod.blurb}</p>
+
+  <ol class="challenge-list">
+    {items.map((c, i) => (
+      <li>
+        <a class="challenge-row card" href={`/challenge/${c.id}`} data-id={c.id}>
+          <span class="row-num">{i + 1}</span>
+          <span class="row-title">{c.title}</span>
+          <span class={`badge badge-${c.difficulty}`}>{c.difficulty}</span>
+          <span class="row-check" data-check aria-hidden="true"></span>
+        </a>
+      </li>
+    ))}
+  </ol>
+</Base>
+
+<script>
+  function getCompleted() {
+    try {
+      const raw = localStorage.getItem("pydrill:completed");
+      return new Set(raw ? JSON.parse(raw) : []);
+    } catch {
+      return new Set();
+    }
+  }
+  const completed = getCompleted();
+  document.querySelectorAll("[data-id]").forEach((el) => {
+    const id = el.getAttribute("data-id");
+    if (id && completed.has(id)) {
+      el.classList.add("done");
+      const check = el.querySelector("[data-check]");
+      if (check) check.textContent = "✓";
+    }
+  });
+</script>
+
+<style>
+  .back { color: var(--text-dim); text-decoration: none; font-size: 0.9rem; }
+  h1 { margin: 10px 0 4px; }
+  .challenge-list { list-style: none; margin: 20px 0 0; padding: 0; display: flex; flex-direction: column; gap: 8px; }
+  .challenge-row {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    text-decoration: none;
+    color: var(--text);
+    padding: 14px 16px;
+  }
+  .row-num { color: var(--text-dim); font-size: 0.85rem; width: 1.6em; flex-shrink: 0; }
+  .row-title { flex: 1; font-weight: 600; font-size: 0.96rem; }
+  .row-check {
+    width: 1.4em; text-align: center; color: var(--ok); font-weight: 700; flex-shrink: 0;
+  }
+  .challenge-row.done { border-color: var(--ok); }
+  .challenge-row.done .row-title { color: var(--text-dim); }
+</style>
