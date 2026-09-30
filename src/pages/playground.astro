@@ -9,6 +9,9 @@ for i in range(5):
 `;
 ---
 <Base title="Playground" description="A free-form Python sandbox. No tests, no rules — just tinker.">
+  <Fragment slot="topline-left">
+    <a class="back-link" href="/">← Home</a>
+  </Fragment>
   <h1>Playground</h1>
   <p class="text-dim lede">No rules here. Write anything, run it, see what happens. This is where fundamentals actually stick.</p>
 
@@ -135,12 +138,13 @@ json.dumps(result)
 </script>
 
 <style>
+  .back-link { color: var(--text-dim); text-decoration: none; font-size: 0.9rem; font-weight: 600; }
   h1 { margin: 10px 0 4px; }
   .lede { max-width: 60ch; margin: 0 0 20px; }
   .panels { display: flex; flex-direction: column; gap: 14px; }
   .panel {
     border: 1px solid var(--border);
-    border-radius: var(--radius);
+    border-radius: var(--radius-lg);
     background: var(--surface);
     overflow: hidden;
   }

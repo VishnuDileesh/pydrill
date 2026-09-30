@@ -18,36 +18,49 @@ const {
     <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🐍</text></svg>" />
     <style is:global>
       :root {
-        --bg: #fafaf9;
+        --bg: #f1f0ec;
         --surface: #ffffff;
-        --border: #e5e5e0;
-        --text: #1c1c1a;
-        --text-dim: #6b6b64;
-        --accent: #16694f;
+        --surface-2: #f6f5f1;
+        --border: #e6e4dd;
+        --text: #16160f;
+        --text-dim: #86847a;
+        --accent: #16160f;
         --accent-contrast: #ffffff;
-        --code-bg: #f2f1ec;
-        --ok: #16694f;
-        --ok-bg: #e7f3ee;
-        --fail: #a3312a;
+        --code-bg: #f6f5f1;
+        --ok: #1f8f5f;
+        --ok-bg: #e5f3ea;
+        --fail: #b23b2e;
         --fail-bg: #fbeceb;
-        --radius: 10px;
+        --warn: #a87415;
+        --warn-bg: #fbf1de;
+        --flame-bg: #fdece0;
+        --flame-text: #c2530f;
+        --radius-lg: 22px;
+        --radius-md: 14px;
+        --radius-sm: 10px;
+        --rail-w: 88px;
         --font-ui: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
         --font-mono: ui-monospace, SFMono-Regular, "SF Mono", Menlo, Consolas, monospace;
       }
       @media (prefers-color-scheme: dark) {
         :root {
-          --bg: #121212;
-          --surface: #191919;
-          --border: #2c2c2c;
-          --text: #eeeeea;
-          --text-dim: #9a9a92;
-          --accent: #4fd1a5;
-          --accent-contrast: #0a1512;
-          --code-bg: #1c1c1c;
+          --bg: #0e0e0c;
+          --surface: #191917;
+          --surface-2: #201f1c;
+          --border: #2c2b27;
+          --text: #f1f0ea;
+          --text-dim: #948f83;
+          --accent: #f1f0ea;
+          --accent-contrast: #16160f;
+          --code-bg: #201f1c;
           --ok: #4fd1a5;
           --ok-bg: #12271f;
           --fail: #f28b82;
           --fail-bg: #2a1615;
+          --warn: #e0b45a;
+          --warn-bg: #2c2210;
+          --flame-bg: #2c1c10;
+          --flame-text: #f0975a;
         }
       }
       * { box-sizing: border-box; }
@@ -60,55 +73,84 @@ const {
         -webkit-font-smoothing: antialiased;
       }
       a { color: inherit; }
-      code, pre, textarea.code-editor {
-        font-family: var(--font-mono);
-      }
+      code, pre, textarea.code-editor { font-family: var(--font-mono); }
       code {
         background: var(--code-bg);
         padding: 0.1em 0.4em;
         border-radius: 4px;
         font-size: 0.92em;
       }
-      button {
-        font-family: var(--font-ui);
-        cursor: pointer;
+      button { font-family: var(--font-ui); cursor: pointer; }
+
+      .shell { display: flex; min-height: 100vh; }
+
+      .rail {
+        width: var(--rail-w);
+        flex-shrink: 0;
+        background: var(--surface);
+        border-right: 1px solid var(--border);
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        padding: 18px 8px;
+        gap: 22px;
+        position: sticky;
+        top: 0;
+        height: 100vh;
       }
-      .topbar {
+      .rail-logo {
+        font-size: 1.5rem;
+        text-decoration: none;
+        line-height: 1;
+      }
+      .rail-nav { display: flex; flex-direction: column; gap: 6px; width: 100%; }
+      .rail-item {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 4px;
+        text-decoration: none;
+        color: var(--text-dim);
+        padding: 10px 4px;
+        border-radius: var(--radius-sm);
+        font-size: 0.66rem;
+        font-weight: 600;
+      }
+      .rail-item svg { width: 20px; height: 20px; }
+      .rail-item:hover { background: var(--surface-2); color: var(--text); }
+      .rail-item.active { background: var(--accent); color: var(--accent-contrast); }
+
+      .shell-main { flex: 1; min-width: 0; display: flex; flex-direction: column; }
+
+      .topline {
         display: flex;
         align-items: center;
         justify-content: space-between;
         gap: 12px;
-        padding: 14px 16px;
-        border-bottom: 1px solid var(--border);
-        background: var(--surface);
-        position: sticky;
-        top: 0;
-        z-index: 10;
+        padding: 18px 20px 0;
       }
-      .brand {
+      .topline-left { min-width: 0; }
+      .streak-chip {
+        display: inline-flex;
+        align-items: center;
+        gap: 6px;
+        background: var(--flame-bg);
+        color: var(--flame-text);
         font-weight: 700;
-        font-size: 1.05rem;
-        text-decoration: none;
-        letter-spacing: -0.01em;
+        font-size: 0.82rem;
+        padding: 8px 12px;
+        border-radius: 999px;
+        white-space: nowrap;
+        flex-shrink: 0;
       }
-      .brand span { color: var(--accent); }
-      .topbar nav {
-        display: flex;
-        gap: 4px;
-      }
-      .topbar nav a {
-        text-decoration: none;
-        font-size: 0.92rem;
-        color: var(--text-dim);
-        padding: 8px 10px;
-        border-radius: 8px;
-      }
-      .topbar nav a:hover { color: var(--text); background: var(--code-bg); }
-      main {
-        max-width: 880px;
+
+      main.page {
+        max-width: 980px;
+        width: 100%;
         margin: 0 auto;
-        padding: 20px 16px 64px;
+        padding: 16px 20px 100px;
       }
+
       .btn {
         display: inline-flex;
         align-items: center;
@@ -118,7 +160,7 @@ const {
         background: var(--surface);
         color: var(--text);
         padding: 12px 18px;
-        border-radius: var(--radius);
+        border-radius: 999px;
         font-size: 0.95rem;
         font-weight: 600;
         text-decoration: none;
@@ -129,49 +171,127 @@ const {
         border-color: var(--accent);
         color: var(--accent-contrast);
       }
-      .btn:disabled { opacity: 0.55; cursor: default; }
+      .btn:disabled { opacity: 0.5; cursor: default; }
+
       .badge {
         display: inline-block;
         font-size: 0.72rem;
         font-weight: 700;
         text-transform: uppercase;
         letter-spacing: 0.04em;
-        padding: 3px 8px;
+        padding: 3px 9px;
         border-radius: 999px;
         border: 1px solid var(--border);
         color: var(--text-dim);
       }
       .badge-easy { color: var(--ok); background: var(--ok-bg); border-color: transparent; }
-      .badge-medium { color: #a87415; background: #fbf1de; border-color: transparent; }
-      @media (prefers-color-scheme: dark) {
-        .badge-medium { background: #2c2210; }
-      }
+      .badge-medium { color: var(--warn); background: var(--warn-bg); border-color: transparent; }
       .badge-hard { color: var(--fail); background: var(--fail-bg); border-color: transparent; }
+
       .card {
         background: var(--surface);
         border: 1px solid var(--border);
-        border-radius: var(--radius);
-        padding: 16px;
+        border-radius: var(--radius-lg);
+        padding: 18px;
       }
+
       footer.sitefoot {
         text-align: center;
         color: var(--text-dim);
-        font-size: 0.85rem;
-        padding: 32px 16px;
+        font-size: 0.82rem;
+        padding: 8px 16px 28px;
+      }
+
+      @media (max-width: 900px) {
+        .shell { flex-direction: column; }
+        .rail {
+          position: fixed;
+          bottom: 0;
+          left: 0;
+          right: 0;
+          top: auto;
+          width: 100%;
+          height: 64px;
+          flex-direction: row;
+          justify-content: space-around;
+          align-items: center;
+          padding: 0 8px;
+          border-right: none;
+          border-top: 1px solid var(--border);
+          z-index: 20;
+          gap: 0;
+        }
+        .rail-logo { display: none; }
+        .rail-nav { flex-direction: row; justify-content: space-around; width: 100%; }
+        .rail-item { padding: 6px 10px; border-radius: var(--radius-sm); }
+        main.page { padding-bottom: 88px; }
       }
     </style>
   </head>
   <body>
-    <header class="topbar">
-      <a class="brand" href="/">Py<span>Drill</span></a>
-      <nav>
-        <a href="/">Challenges</a>
-        <a href="/playground">Playground</a>
-      </nav>
-    </header>
-    <main>
-      <slot />
-    </main>
-    <footer class="sitefoot">Runs 100% in your browser via Pyodide. Your progress lives only in this browser's storage.</footer>
+    <div class="shell">
+      <aside class="rail">
+        <a class="rail-logo" href="/" aria-label="PyDrill home">🐍</a>
+        <nav class="rail-nav">
+          <a class="rail-item" href="/" data-nav="/">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 11.5 12 4l9 7.5"/><path d="M5 10v9a1 1 0 0 0 1 1h4v-6h4v6h4a1 1 0 0 0 1-1v-9"/></svg>
+            <span>Home</span>
+          </a>
+          <a class="rail-item" href="/playground" data-nav="/playground">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="6 3 20 12 6 21 6 3"/></svg>
+            <span>Play</span>
+          </a>
+          <a class="rail-item" href="/progress" data-nav="/progress">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 3v18h18"/><path d="M7 15l4-5 3 3 5-7"/></svg>
+            <span>Progress</span>
+          </a>
+        </nav>
+      </aside>
+      <div class="shell-main">
+        <div class="topline">
+          <div class="topline-left"><slot name="topline-left"><strong>PyDrill</strong></slot></div>
+          <div class="streak-chip"><span aria-hidden="true">🔥</span><span data-streak>–</span></div>
+        </div>
+        <main class="page">
+          <slot />
+        </main>
+        <footer class="sitefoot">Runs 100% in your browser via Pyodide. Your progress lives only in this browser's storage.</footer>
+      </div>
+    </div>
+
+    <script>
+      (function () {
+        const path = window.location.pathname;
+        document.querySelectorAll("[data-nav]").forEach((el) => {
+          const target = el.getAttribute("data-nav");
+          const isHome = target === "/";
+          const active = isHome ? path === "/" : path.startsWith(target || "");
+          if (active) el.classList.add("active");
+        });
+
+        function touchStreak() {
+          const today = new Date().toISOString().slice(0, 10);
+          let data = { last: null, count: 0 };
+          try {
+            const raw = localStorage.getItem("pydrill:streak");
+            if (raw) data = JSON.parse(raw);
+          } catch {}
+          if (data.last !== today) {
+            const yesterday = new Date(Date.now() - 86400000).toISOString().slice(0, 10);
+            data.count = data.last === yesterday ? data.count + 1 : 1;
+            data.last = today;
+            try {
+              localStorage.setItem("pydrill:streak", JSON.stringify(data));
+            } catch {}
+          }
+          return data.count;
+        }
+
+        const n = touchStreak();
+        document.querySelectorAll("[data-streak]").forEach((el) => {
+          el.textContent = `${n} day${n === 1 ? "" : "s"}`;
+        });
+      })();
+    </script>
   </body>
 </html>

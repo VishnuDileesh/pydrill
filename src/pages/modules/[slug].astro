@@ -11,22 +11,27 @@ const mod = modules.find((m) => m.slug === slug)!;
 const items = getModuleChallenges(slug!);
 ---
 <Base title={mod.name}>
-  <a class="back" href="/">← All modules</a>
-  <h1>{mod.name}</h1>
-  <p class="text-dim">{mod.blurb}</p>
+  <Fragment slot="topline-left">
+    <a class="back-link" href="/">← Back to list</a>
+  </Fragment>
 
-  <ol class="challenge-list">
-    {items.map((c, i) => (
-      <li>
-        <a class="challenge-row card" href={`/challenge/${c.id}`} data-id={c.id}>
-          <span class="row-num">{i + 1}</span>
-          <span class="row-title">{c.title}</span>
-          <span class={`badge badge-${c.difficulty}`}>{c.difficulty}</span>
-          <span class="row-check" data-check aria-hidden="true"></span>
-        </a>
-      </li>
-    ))}
-  </ol>
+  <h1>{mod.name}</h1>
+  <p class="text-dim lede">{mod.blurb}</p>
+
+  <div class="card lesson-card">
+    <ol class="challenge-list">
+      {items.map((c, i) => (
+        <li>
+          <a class="challenge-row" href={`/challenge/${c.id}`} data-id={c.id}>
+            <span class="row-index" data-idx>{i + 1}</span>
+            <span class="row-title">{c.title}</span>
+            <span class={`badge badge-${c.difficulty}`}>{c.difficulty}</span>
+            <svg class="row-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 6l6 6-6 6"/></svg>
+          </a>
+        </li>
+      ))}
+    </ol>
+  </div>
 </Base>
 
 <script>
@@ -43,29 +48,48 @@ const items = getModuleChallenges(slug!);
     const id = el.getAttribute("data-id");
     if (id && completed.has(id)) {
       el.classList.add("done");
-      const check = el.querySelector("[data-check]");
-      if (check) check.textContent = "✓";
+      const idx = el.querySelector("[data-idx]");
+      if (idx) {
+        idx.innerHTML = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" width="14" height="14"><path d="M20 6 9 17l-5-5"/></svg>';
+      }
     }
   });
 </script>
 
 <style>
-  .back { color: var(--text-dim); text-decoration: none; font-size: 0.9rem; }
-  h1 { margin: 10px 0 4px; }
-  .challenge-list { list-style: none; margin: 20px 0 0; padding: 0; display: flex; flex-direction: column; gap: 8px; }
+  .back-link { color: var(--text-dim); text-decoration: none; font-size: 0.9rem; font-weight: 600; }
+  h1 { margin: 14px 0 4px; font-size: 1.5rem; }
+  .lede { margin: 0 0 20px; }
+
+  .lesson-card { padding: 8px; }
+  .challenge-list { list-style: none; margin: 0; padding: 0; }
   .challenge-row {
     display: flex;
     align-items: center;
     gap: 12px;
     text-decoration: none;
     color: var(--text);
-    padding: 14px 16px;
+    padding: 14px 12px;
+    border-radius: var(--radius-md);
   }
-  .row-num { color: var(--text-dim); font-size: 0.85rem; width: 1.6em; flex-shrink: 0; }
-  .row-title { flex: 1; font-weight: 600; font-size: 0.96rem; }
-  .row-check {
-    width: 1.4em; text-align: center; color: var(--ok); font-weight: 700; flex-shrink: 0;
+  .challenge-row:hover { background: var(--surface-2); }
+  .challenge-list li + li { margin-top: 2px; }
+
+  .row-index {
+    width: 28px;
+    height: 28px;
+    flex-shrink: 0;
+    border-radius: 999px;
+    background: var(--surface-2);
+    color: var(--text-dim);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 0.78rem;
+    font-weight: 700;
   }
-  .challenge-row.done { border-color: var(--ok); }
+  .challenge-row.done .row-index { background: var(--ok-bg); color: var(--ok); }
+  .row-title { flex: 1; font-weight: 600; font-size: 0.95rem; min-width: 0; }
   .challenge-row.done .row-title { color: var(--text-dim); }
+  .row-chevron { width: 18px; height: 18px; color: var(--text-dim); flex-shrink: 0; }
 </style>

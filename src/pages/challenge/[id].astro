@@ -1,6 +1,6 @@
 ---
 import Base from "../../layouts/Base.astro";
-import { challenges, getAdjacent, renderPrompt } from "../../lib/challenges";
+import { challenges, getAdjacent, getModuleChallenges, renderPrompt } from "../../lib/challenges";
 
 export function getStaticPaths() {
   return challenges.map((c) => ({ params: { id: c.id } }));
@@ -10,53 +10,76 @@ const { id } = Astro.params;
 const challenge = challenges.find((c) => c.id === id)!;
 const { prev, next } = getAdjacent(id!);
 const promptHtml = renderPrompt(challenge.prompt);
+const moduleItems = getModuleChallenges(challenge.moduleSlug);
 ---
 <Base title={challenge.title}>
-  <div class="crumb">
-    <a href={`/modules/${challenge.moduleSlug}`}>← {challenge.module}</a>
-  </div>
+  <Fragment slot="topline-left">
+    <a class="back-link" href={`/modules/${challenge.moduleSlug}`}>← {challenge.module}</a>
+  </Fragment>
 
-  <div class="head-row">
-    <h1>{challenge.title}</h1>
-    <span class={`badge badge-${challenge.difficulty}`}>{challenge.difficulty}</span>
-  </div>
+  <div class="challenge-shell">
+    <aside class="lesson-rail card">
+      <div class="lesson-rail-head">{challenge.module}</div>
+      <ol class="rail-list">
+        {moduleItems.map((c, i) => (
+          <li>
+            <a class={`rail-row ${c.id === challenge.id ? "active" : ""}`} href={`/challenge/${c.id}`} data-id={c.id}>
+              <span class="row-index" data-idx>{i + 1}</span>
+              <span class="row-title">{c.title}</span>
+            </a>
+          </li>
+        ))}
+      </ol>
+    </aside>
 
-  <p class="prompt" set:html={promptHtml} />
-
-  <div class="panels">
-    <div class="panel editor-panel">
-      <div class="panel-bar">
-        <span class="panel-label">code.py</span>
-        <button id="reset-btn" class="ghost-btn" title="Reset to starter code">Reset</button>
+    <div class="player">
+      <div class="head-row">
+        <h1>{challenge.title}</h1>
+        <span class={`badge badge-${challenge.difficulty}`}>{challenge.difficulty}</span>
       </div>
-      <textarea id="editor" class="code-editor" spellcheck="false" autocapitalize="off" autocomplete="off"></textarea>
-      <div class="action-row">
-        <button id="run-btn" class="btn">▶ Run</button>
-        <button id="test-btn" class="btn btn-primary">✓ Run Tests</button>
+      <p class="prompt" set:html={promptHtml} />
+
+      <div class="panels">
+        <div class="panel editor-panel">
+          <div class="panel-bar">
+            <span class="panel-label">code.py</span>
+          </div>
+          <textarea id="editor" class="code-editor" spellcheck="false" autocapitalize="off" autocomplete="off"></textarea>
+        </div>
+
+        <div class="panel output-panel">
+          <div class="panel-bar"><span class="panel-label">Output</span></div>
+          <div id="output" class="output-body">
+            <p class="text-dim hint">Run your code or run the tests to see results here.</p>
+          </div>
+        </div>
       </div>
+
       <p id="status-line" class="status-line" aria-live="polite"></p>
-    </div>
+      <p id="success-line" class="success-line" hidden>🎉 All tests passed — marked as solved.</p>
 
-    <div class="panel output-panel">
-      <div class="panel-bar"><span class="panel-label">Output</span></div>
-      <div id="output" class="output-body">
-        <p class="text-dim hint">Run your code or run the tests to see results here.</p>
+      <div class="control-bar card">
+        <div class="control-left">
+          <button id="reset-btn" class="icon-btn" title="Reset to starter code" aria-label="Reset to starter code">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 12a9 9 0 1 0 3-6.7"/><path d="M3 4v5h5"/></svg>
+          </button>
+          <button id="run-btn" class="btn">▶ Run</button>
+          <button id="test-btn" class="btn btn-primary">✓ Run Tests</button>
+        </div>
+        <div class="control-right">
+          {prev
+            ? <a class="icon-btn" href={`/challenge/${prev.id}`} title={`Previous: ${prev.title}`} aria-label="Previous challenge">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 18l-6-6 6-6"/></svg>
+              </a>
+            : <span />}
+          <a class="btn" href="/playground">Playground</a>
+          {next
+            ? <a class="btn btn-primary" href={`/challenge/${next.id}`}>Next →</a>
+            : <a class="btn btn-primary" href="/">Done →</a>}
+        </div>
       </div>
     </div>
   </div>
-
-  <div id="success-banner" class="success-banner" hidden>
-    <span>🎉 All tests passed — nice work!</span>
-    <div class="success-actions">
-      {next && <a class="btn btn-primary" href={`/challenge/${next.id}`}>Next challenge →</a>}
-      {!next && <a class="btn btn-primary" href="/">Back to modules</a>}
-    </div>
-  </div>
-
-  <nav class="pager">
-    {prev ? <a class="btn" href={`/challenge/${prev.id}`}>← {prev.title}</a> : <span />}
-    {next ? <a class="btn" href={`/challenge/${next.id}`}>{next.title} →</a> : <span />}
-  </nav>
 </Base>
 
 <script define:vars={{
@@ -71,7 +94,7 @@ const promptHtml = renderPrompt(challenge.prompt);
   const resetBtn = document.getElementById("reset-btn");
   const output = document.getElementById("output");
   const statusLine = document.getElementById("status-line");
-  const successBanner = document.getElementById("success-banner");
+  const successLine = document.getElementById("success-line");
 
   const DRAFT_KEY = "pydrill:draft:" + id;
   const COMPLETED_KEY = "pydrill:completed";
@@ -115,7 +138,7 @@ const promptHtml = renderPrompt(challenge.prompt);
       editor.value = starter;
       saveDraft(starter);
       output.innerHTML = '<p class="text-dim hint">Run your code or run the tests to see results here.</p>';
-      successBanner.hidden = true;
+      successLine.hidden = true;
     }
   });
 
@@ -151,7 +174,6 @@ const promptHtml = renderPrompt(challenge.prompt);
   }
 
   function fmtValue(v) {
-    if (typeof v === "string") return JSON.stringify(v);
     return JSON.stringify(v);
   }
 
@@ -212,7 +234,7 @@ json.dumps(results)
 
   runBtn.addEventListener("click", async () => {
     setButtonsDisabled(true);
-    successBanner.hidden = true;
+    successLine.hidden = true;
     output.innerHTML = '<p class="text-dim hint">Running…</p>';
     try {
       const pyodide = await getPyodide();
@@ -233,7 +255,7 @@ json.dumps(results)
 
   testBtn.addEventListener("click", async () => {
     setButtonsDisabled(true);
-    successBanner.hidden = true;
+    successLine.hidden = true;
     output.innerHTML = '<p class="text-dim hint">Running tests…</p>';
     try {
       const pyodide = await getPyodide();
@@ -249,7 +271,7 @@ json.dumps(results)
         return;
       }
 
-      const rows = res.tests.map((t, i) => {
+      const rows = res.tests.map((t) => {
         const argsStr = t.args.map(fmtValue).join(", ");
         if (t.passed) {
           return `<li class="test-row pass"><span class="tmark">✓</span><code>${funcName}(${escapeHtml(argsStr)})</code> → <code>${escapeHtml(fmtValue(t.actual))}</code></li>`;
@@ -267,7 +289,13 @@ json.dumps(results)
 
       if (allPass) {
         markCompleted();
-        successBanner.hidden = false;
+        successLine.hidden = false;
+        const railRow = document.querySelector(`.rail-row[data-id="${id}"]`);
+        if (railRow) {
+          railRow.classList.add("done");
+          const idx = railRow.querySelector("[data-idx]");
+          if (idx) idx.innerHTML = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" width="12" height="12"><path d="M20 6 9 17l-5-5"/></svg>';
+        }
       }
     } catch (e) {
       output.innerHTML = `<p class="err-line">${escapeHtml(e)}</p>`;
@@ -275,18 +303,60 @@ json.dumps(results)
       setButtonsDisabled(false);
     }
   });
+
+  (function paintCompletedInRail() {
+    try {
+      const raw = localStorage.getItem(COMPLETED_KEY);
+      const completed = new Set(raw ? JSON.parse(raw) : []);
+      document.querySelectorAll(".rail-row[data-id]").forEach((el) => {
+        const rid = el.getAttribute("data-id");
+        if (rid && completed.has(rid)) {
+          el.classList.add("done");
+          const idx = el.querySelector("[data-idx]");
+          if (idx) idx.innerHTML = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" width="12" height="12"><path d="M20 6 9 17l-5-5"/></svg>';
+        }
+      });
+    } catch {}
+  })();
 </script>
 
 <style>
-  .crumb a { color: var(--text-dim); text-decoration: none; font-size: 0.88rem; }
-  .head-row { display: flex; align-items: center; gap: 10px; flex-wrap: wrap; margin: 10px 0 6px; }
-  .head-row h1 { margin: 0; font-size: 1.4rem; }
-  .prompt { color: var(--text); font-size: 0.98rem; max-width: 68ch; margin: 0 0 20px; }
+  .back-link { color: var(--text-dim); text-decoration: none; font-size: 0.9rem; font-weight: 600; }
+
+  .challenge-shell { display: flex; flex-direction: column; gap: 16px; }
+
+  .lesson-rail { display: none; }
+  .lesson-rail-head { font-size: 0.72rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.04em; color: var(--text-dim); padding: 6px 10px 10px; }
+  .rail-list { list-style: none; margin: 0; padding: 0; max-height: 60vh; overflow-y: auto; }
+  .rail-row {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    text-decoration: none;
+    color: var(--text);
+    padding: 9px 10px;
+    border-radius: var(--radius-sm);
+    font-size: 0.86rem;
+  }
+  .rail-row:hover { background: var(--surface-2); }
+  .rail-row.active { background: var(--surface-2); font-weight: 700; }
+  .rail-row .row-index {
+    width: 22px; height: 22px; flex-shrink: 0; border-radius: 999px;
+    background: var(--code-bg); color: var(--text-dim);
+    display: flex; align-items: center; justify-content: center;
+    font-size: 0.7rem; font-weight: 700;
+  }
+  .rail-row.done .row-index { background: var(--ok-bg); color: var(--ok); }
+  .rail-row .row-title { min-width: 0; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+
+  .head-row { display: flex; align-items: center; gap: 10px; flex-wrap: wrap; margin: 4px 0 6px; }
+  .head-row h1 { margin: 0; font-size: 1.35rem; }
+  .prompt { color: var(--text); font-size: 0.98rem; max-width: 68ch; margin: 0 0 18px; }
 
   .panels { display: flex; flex-direction: column; gap: 14px; }
   .panel {
     border: 1px solid var(--border);
-    border-radius: var(--radius);
+    border-radius: var(--radius-lg);
     background: var(--surface);
     overflow: hidden;
   }
@@ -294,19 +364,11 @@ json.dumps(results)
     display: flex;
     align-items: center;
     justify-content: space-between;
-    padding: 8px 12px;
+    padding: 8px 14px;
     border-bottom: 1px solid var(--border);
-    background: var(--code-bg);
+    background: var(--surface-2);
   }
   .panel-label { font-size: 0.78rem; color: var(--text-dim); font-weight: 600; }
-  .ghost-btn {
-    background: none;
-    border: none;
-    color: var(--text-dim);
-    font-size: 0.82rem;
-    padding: 4px 8px;
-  }
-  .ghost-btn:hover { color: var(--text); }
 
   .code-editor {
     width: 100%;
@@ -322,14 +384,15 @@ json.dumps(results)
   }
   .code-editor:focus { outline: none; }
 
-  .action-row {
-    display: flex;
-    gap: 10px;
-    padding: 12px;
-    border-top: 1px solid var(--border);
+  .status-line { margin: 10px 2px 0; font-size: 0.82rem; color: var(--text-dim); min-height: 1em; }
+  .success-line {
+    margin: 10px 0 0;
+    font-weight: 700;
+    color: var(--ok);
+    background: var(--ok-bg);
+    padding: 10px 14px;
+    border-radius: var(--radius-md);
   }
-  .action-row .btn { flex: 1; }
-  .status-line { padding: 0 12px 10px; margin: 0; font-size: 0.82rem; color: var(--text-dim); min-height: 1em; }
 
   .output-body { padding: 14px; min-height: 80px; }
   .output-body .hint { margin: 0; }
@@ -368,28 +431,43 @@ json.dumps(results)
   .test-row.fail .tmark { color: var(--fail); }
   .test-row code { word-break: break-word; }
 
-  .success-banner {
+  .control-bar {
     margin-top: 16px;
     display: flex;
-    flex-direction: column;
+    align-items: center;
+    justify-content: space-between;
     gap: 10px;
-    align-items: flex-start;
-    background: var(--ok-bg);
-    color: var(--ok);
-    border-radius: var(--radius);
-    padding: 16px;
-    font-weight: 600;
+    flex-wrap: wrap;
+    padding: 10px;
+    position: sticky;
+    bottom: 76px;
   }
-  .success-actions .btn { color: var(--accent-contrast); }
+  .control-left, .control-right { display: flex; align-items: center; gap: 8px; flex-wrap: wrap; }
+  .icon-btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 44px;
+    height: 44px;
+    border-radius: 999px;
+    border: 1px solid var(--border);
+    background: var(--surface);
+    color: var(--text);
+    text-decoration: none;
+    flex-shrink: 0;
+  }
+  .icon-btn svg { width: 18px; height: 18px; }
+  .icon-btn:hover { background: var(--surface-2); }
 
-  .pager { display: flex; justify-content: space-between; gap: 10px; margin-top: 24px; }
-  .pager .btn { max-width: 48%; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
-
-  @media (min-width: 780px) {
+  @media (min-width: 900px) {
+    .challenge-shell { flex-direction: row; align-items: flex-start; }
+    .lesson-rail { display: block; flex: 0 0 260px; position: sticky; top: 76px; padding: 10px; }
+    .player { flex: 1; min-width: 0; }
+    .control-bar { position: sticky; bottom: 16px; }
     .panels { flex-direction: row; align-items: stretch; }
     .panel { flex: 1; display: flex; flex-direction: column; }
     .editor-panel { flex: 1.1; }
     .code-editor { flex: 1; }
-    .output-body { flex: 1; overflow-y: auto; max-height: 460px; }
+    .output-body { flex: 1; overflow-y: auto; max-height: 420px; }
   }
 </style>

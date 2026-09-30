@@ -1,0 +1,130 @@
+---
+import Base from "../layouts/Base.astro";
+import { challenges, modules } from "../lib/challenges";
+
+const total = challenges.length;
+const moduleIds = modules.map((m) => ({
+  slug: m.slug,
+  name: m.name,
+  ids: challenges.filter((c) => c.moduleSlug === m.slug).map((c) => c.id),
+}));
+---
+<Base title="Progress">
+  <Fragment slot="topline-left"><strong>Progress</strong></Fragment>
+
+  <div class="stat-row">
+    <div class="card stat-card">
+      <div class="stat-value" id="total-value">0/{total}</div>
+      <div class="stat-label">Challenges solved</div>
+      <div class="progress-track"><div class="progress-fill" id="total-fill"></div></div>
+    </div>
+    <div class="card stat-card streak-card">
+      <div class="stat-value">🔥 <span id="streak-value">0</span></div>
+      <div class="stat-label">Day streak</div>
+    </div>
+  </div>
+
+  <h2 class="section-title">By module</h2>
+  <div class="card module-list-card">
+    {moduleIds.map((m) => (
+      <div class="module-row" data-module={m.slug}>
+        <a href={`/modules/${m.slug}`} class="module-row-name">{m.name}</a>
+        <span class="module-row-count" data-count>0/{m.ids.length}</span>
+        <div class="progress-track small"><div class="progress-fill" data-fill></div></div>
+      </div>
+    ))}
+  </div>
+
+  <button id="reset-btn" class="btn danger-btn">Reset all progress</button>
+</Base>
+
+<script define:vars={{ moduleIds, allIds: challenges.map((c) => c.id) }}>
+  function getCompleted() {
+    try {
+      const raw = localStorage.getItem("pydrill:completed");
+      return new Set(raw ? JSON.parse(raw) : []);
+    } catch {
+      return new Set();
+    }
+  }
+
+  function render() {
+    const completed = getCompleted();
+    const total = allIds.length;
+    const done = allIds.filter((id) => completed.has(id)).length;
+    const pct = total ? (done / total) * 100 : 0;
+    document.getElementById("total-value").textContent = `${done}/${total}`;
+    document.getElementById("total-fill").style.width = pct + "%";
+
+    for (const m of moduleIds) {
+      const row = document.querySelector(`[data-module="${m.slug}"]`);
+      if (!row) continue;
+      const doneHere = m.ids.filter((id) => completed.has(id)).length;
+      row.querySelector("[data-count]").textContent = `${doneHere}/${m.ids.length}`;
+      const pctHere = m.ids.length ? (doneHere / m.ids.length) * 100 : 0;
+      row.querySelector("[data-fill]").style.width = pctHere + "%";
+    }
+
+    try {
+      const raw = localStorage.getItem("pydrill:streak");
+      const data = raw ? JSON.parse(raw) : { count: 0 };
+      document.getElementById("streak-value").textContent = data.count || 0;
+    } catch {
+      document.getElementById("streak-value").textContent = "0";
+    }
+  }
+
+  render();
+
+  document.getElementById("reset-btn").addEventListener("click", () => {
+    if (confirm("This clears all completed challenges and saved drafts on this device. Continue?")) {
+      try {
+        const keys = Object.keys(localStorage).filter((k) => k.startsWith("pydrill:"));
+        keys.forEach((k) => localStorage.removeItem(k));
+      } catch {}
+      render();
+    }
+  });
+</script>
+
+<style>
+  h2.section-title { font-size: 1.05rem; margin: 26px 0 12px; }
+  .stat-row { display: grid; grid-template-columns: 1fr; gap: 12px; margin-top: 8px; }
+  @media (min-width: 560px) {
+    .stat-row { grid-template-columns: 2fr 1fr; }
+  }
+  .stat-card { display: flex; flex-direction: column; gap: 8px; }
+  .stat-value { font-size: 1.8rem; font-weight: 800; letter-spacing: -0.02em; }
+  .stat-label { color: var(--text-dim); font-size: 0.86rem; }
+  .streak-card { justify-content: center; align-items: flex-start; }
+
+  .progress-track {
+    height: 8px;
+    border-radius: 999px;
+    background: var(--code-bg);
+    overflow: hidden;
+    margin-top: 4px;
+  }
+  .progress-track.small { height: 6px; }
+  .progress-fill { height: 100%; width: 0%; background: var(--ok); transition: width 0.3s ease; }
+
+  .module-list-card { padding: 6px; }
+  .module-row {
+    display: grid;
+    grid-template-columns: 1fr auto;
+    align-items: center;
+    gap: 4px 12px;
+    padding: 12px 12px 14px;
+  }
+  .module-row + .module-row { border-top: 1px solid var(--border); }
+  .module-row-name { font-weight: 600; font-size: 0.95rem; text-decoration: none; color: var(--text); }
+  .module-row-count { font-size: 0.8rem; color: var(--text-dim); }
+  .module-row .progress-track { grid-column: 1 / -1; }
+
+  .danger-btn {
+    margin-top: 24px;
+    color: var(--fail);
+    border-color: var(--fail-bg);
+    background: var(--fail-bg);
+  }
+</style>
