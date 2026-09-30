@@ -15,7 +15,7 @@ const {
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <title>{title} · PyDrill</title>
     <meta name="description" content={description} />
-    <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🐍</text></svg>" />
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><rect width=%22100%22 height=%22100%22 rx=%2224%22 fill=%22%2316160f%22/><text x=%2250%22 y=%2266%22 font-family=%22system-ui,sans-serif%22 font-size=%2252%22 font-weight=%22700%22 fill=%22%23ffffff%22 text-anchor=%22middle%22>P</text></svg>" />
     <style is:global>
       :root {
         --bg: #f1f0ec;
@@ -99,7 +99,16 @@ const {
         height: 100vh;
       }
       .rail-logo {
-        font-size: 1.5rem;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        width: 36px;
+        height: 36px;
+        border-radius: var(--radius-sm);
+        background: var(--accent);
+        color: var(--accent-contrast);
+        font-weight: 800;
+        font-size: 1rem;
         text-decoration: none;
         line-height: 1;
       }
@@ -231,7 +240,7 @@ const {
   <body>
     <div class="shell">
       <aside class="rail">
-        <a class="rail-logo" href="/" aria-label="PyDrill home">🐍</a>
+        <a class="rail-logo" href="/" aria-label="PyDrill home">P</a>
         <nav class="rail-nav">
           <a class="rail-item" href="/" data-nav="/">
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 11.5 12 4l9 7.5"/><path d="M5 10v9a1 1 0 0 0 1 1h4v-6h4v6h4a1 1 0 0 0 1-1v-9"/></svg>
