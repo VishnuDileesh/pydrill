@@ -15,6 +15,7 @@ const {
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <title>{title} · PyDrill</title>
     <meta name="description" content={description} />
+    <meta name="color-scheme" content="light" />
     <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><rect width=%22100%22 height=%22100%22 rx=%2224%22 fill=%22%2316160f%22/><text x=%2250%22 y=%2266%22 font-family=%22system-ui,sans-serif%22 font-size=%2252%22 font-weight=%22700%22 fill=%22%23ffffff%22 text-anchor=%22middle%22>P</text></svg>" />
     <style is:global>
       :root {
@@ -33,8 +34,6 @@ const {
         --fail-bg: #fbeceb;
         --warn: #a87415;
         --warn-bg: #fbf1de;
-        --flame-bg: #fdece0;
-        --flame-text: #c2530f;
         --radius-lg: 22px;
         --radius-md: 14px;
         --radius-sm: 10px;
@@ -42,28 +41,8 @@ const {
         --font-ui: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
         --font-mono: ui-monospace, SFMono-Regular, "SF Mono", Menlo, Consolas, monospace;
       }
-      @media (prefers-color-scheme: dark) {
-        :root {
-          --bg: #0e0e0c;
-          --surface: #191917;
-          --surface-2: #201f1c;
-          --border: #2c2b27;
-          --text: #f1f0ea;
-          --text-dim: #948f83;
-          --accent: #f1f0ea;
-          --accent-contrast: #16160f;
-          --code-bg: #201f1c;
-          --ok: #4fd1a5;
-          --ok-bg: #12271f;
-          --fail: #f28b82;
-          --fail-bg: #2a1615;
-          --warn: #e0b45a;
-          --warn-bg: #2c2210;
-          --flame-bg: #2c1c10;
-          --flame-text: #f0975a;
-        }
-      }
       * { box-sizing: border-box; }
+      html { color-scheme: light; }
       html, body { margin: 0; padding: 0; }
       body {
         background: var(--bg);
@@ -143,8 +122,9 @@ const {
         display: inline-flex;
         align-items: center;
         gap: 6px;
-        background: var(--flame-bg);
-        color: var(--flame-text);
+        background: var(--surface-2);
+        border: 1px solid var(--border);
+        color: var(--text);
         font-weight: 700;
         font-size: 0.82rem;
         padding: 8px 12px;
@@ -259,7 +239,7 @@ const {
       <div class="shell-main">
         <div class="topline">
           <div class="topline-left"><slot name="topline-left"><strong>PyDrill</strong></slot></div>
-          <div class="streak-chip"><span aria-hidden="true">🔥</span><span data-streak>–</span></div>
+          <div class="streak-chip"><span data-streak>–</span> streak</div>
         </div>
         <main class="page">
           <slot />
